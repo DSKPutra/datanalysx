@@ -1,6 +1,6 @@
 import { matvec, solve, transpose, matmul } from './linalg';
 
-/** Regresi sederhana dengan rumus materi: b = (nΣXY − ΣXΣY)/(nΣX² − (ΣX)²), a = (ΣY − bΣX)/n. */
+/** Regresi sederhana dengan rumus kuadrat terkecil: b = (nΣXY − ΣXΣY)/(nΣX² − (ΣX)²), a = (ΣY − bΣX)/n. */
 export function simpleRegression(x: number[], y: number[]) {
   const n = x.length;
   let sx = 0, sy = 0, sxy = 0, sxx = 0;

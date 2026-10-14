@@ -1,4 +1,4 @@
-# Sumber: Lampiran kode program pada laporan Tugas 02 (Google Colab), disalin apa adanya.
+# Sumber: Lampiran kode program pada laporan studi kasus 02 (Google Colab), disalin apa adanya.
 # Penanda "# %% Cell N" menandai sel notebook asli.
 
 # %% Cell 1
@@ -6,9 +6,7 @@
 # PADA AI ECONOMY PULSE DATASET TAHUN 2022-2026
 # MENGGUNAKAN ALGORITMA LINEAR DAN NON-LINEAR
  
-# Nama  : [Dea Saka Kurnia Putra]
-# NIM   : [261012000111]
-# Kelas : [S2 TI Reg B 02]
+# Penulis : Dea Saka Kurnia Putra
 
 # %% Cell 3
 import pandas as pd

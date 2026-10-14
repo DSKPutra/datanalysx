@@ -3,7 +3,7 @@
 Dibangkitkan oleh `scripts/verify_numbers.py` (Python 3.13, numpy 2.2.5, pandas 2.3.3, scikit-learn 1.7.0, scipy 1.14.1 — sama dengan Pyodide 0.29.5).
 Kolom *Laporan* = angka yang ditampilkan di tab Hasil Laporan (dari laporan / model_summary.json); *Reproduksi* = hasil menjalankan modul `python/dmx` pada dataset asli.
 
-| Tugas | Angka | Laporan | Sumber | Reproduksi | Status |
+| Studi kasus | Angka | Laporan | Sumber | Reproduksi | Status |
 |---|---|---|---|---|---|
 | 01 | MAE | 0.0047 | Tabel 3.3 | 0.00466861 | ✓ cocok |
 | 01 | RMSE | 0.0101 | Tabel 3.3 | 0.0100536 | ✓ cocok |
@@ -113,12 +113,12 @@ Kolom *Laporan* = angka yang ditampilkan di tab Hasil Laporan (dari laporan / mo
 **Ringkasan:** 101 dari 104 angka cocok dalam toleransi pembulatan.
 
 ## Catatan perbedaan (dilaporkan, tidak diganti diam-diam)
-- **Tugas 01:** scikit-learn ≥ 1.8 menghasilkan solusi `LinearRegression` berbeda (MAE 1,34) karena kolom Volume berorde 10⁸; numpy `lstsq` dan scikit-learn 1.7.0 mereproduksi laporan. Aplikasi & CI dikunci ke 1.7.0.
-- **Tugas 02:** berkas data identik dengan *LLM Agent Failure Analysis Benchmark Dataset* (Apache 2.0), bukan *AI Economy Pulse* yang dikutip laporan.
-- **Tugas 03:** CV Random Forest: RMSE 4,906 / MAE 0,946 (laporan 4,912 / 0,949) — perbedaan implementasi pohon antarversi scikit-learn; R² dan tujuh model lain cocok.
-- **Tugas 04:** laporan menyebut 4.184 baris bersih; kode menghasilkan 4.203 baris bersih → 4.183 observasi (cocok). Baris terakhir pada skrip asli memperoleh target 0 walau Close H+1 tak diketahui; aplikasi menyediakan opsi membuangnya.
-- **Tugas 06:** batas IQR laporan dihitung dari seluruh periode (termasuk data uji) dan baris terakhir ikut dengan target 0; mode ‘benar’ (batas dari data latih) memberi akurasi 52,05%.
-- **Tugas 08:** pada pemilihan K, DBI terbaik live dapat berbeda dari laporan (K = 10) bila n_init diperkecil demi kecepatan browser.
-- **Tugas 09:** laporan belum tersedia — tidak ada angka Hasil Laporan.
+- **Studi kasus 01:** scikit-learn ≥ 1.8 menghasilkan solusi `LinearRegression` berbeda (MAE 1,34) karena kolom Volume berorde 10⁸; numpy `lstsq` dan scikit-learn 1.7.0 mereproduksi laporan. Aplikasi & CI dikunci ke 1.7.0.
+- **Studi kasus 02:** berkas data identik dengan *LLM Agent Failure Analysis Benchmark Dataset* (Apache 2.0), bukan *AI Economy Pulse* yang dikutip laporan.
+- **Studi kasus 03:** CV Random Forest: RMSE 4,906 / MAE 0,946 (laporan 4,912 / 0,949) — perbedaan implementasi pohon antarversi scikit-learn; R² dan tujuh model lain cocok.
+- **Studi kasus 04:** laporan menyebut 4.184 baris bersih; kode menghasilkan 4.203 baris bersih → 4.183 observasi (cocok). Baris terakhir pada skrip asli memperoleh target 0 walau Close H+1 tak diketahui; aplikasi menyediakan opsi membuangnya.
+- **Studi kasus 06:** batas IQR laporan dihitung dari seluruh periode (termasuk data uji) dan baris terakhir ikut dengan target 0; mode ‘benar’ (batas dari data latih) memberi akurasi 52,05%.
+- **Studi kasus 08:** pada pemilihan K, DBI terbaik live dapat berbeda dari laporan (K = 10) bila n_init diperkecil demi kecepatan browser.
+- **Studi kasus 09:** laporan belum tersedia — tidak ada angka Hasil Laporan.
 
-Tugas 04 direproduksi dengan data NASDAQ lokal (tidak diredistribusi). Tugas 07–08 dibandingkan dengan model_summary.json resmi.
+Studi kasus 04 direproduksi dengan data NASDAQ lokal (tidak diredistribusi). Studi kasus 07–08 dibandingkan dengan model_summary.json resmi.

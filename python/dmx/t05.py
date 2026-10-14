@@ -1,6 +1,6 @@
-"""Tugas 05 — Decision Tree: kategori topik pada Trending Topics 2026 (sintetis).
+"""Studi Kasus 05 — Decision Tree: kategori topik pada Trending Topics 2026 (sintetis).
 
-Diringkas dari Lampiran A laporan Tugas 05 (python/original/tugas05_decision_tree.py).
+Diringkas dari Lampiran A laporan studi kasus 05 (python/original/studikasus05_decision_tree.py).
 Skenario 1 = metadata (one-hot source/language/country/sentiment + engagement, trend, day,
 weekday); Skenario 2 = bag-of-words biner dari headline; Skenario 3 = gabungan.
 topic_subcategory dan short_text dibuang karena membocorkan label. Split berstrata 80:20,

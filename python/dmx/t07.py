@@ -1,4 +1,4 @@
-"""Tugas 07 — K-Nearest Neighbors: Instagram Reels "Viral Hit" vs "High Reach".
+"""Studi Kasus 07 — K-Nearest Neighbors: Instagram Reels "Viral Hit" vs "High Reach".
 
 Diringkas dari python/original/knn_instagram_reels.py. Memakai berkas
 instagram_reels_knn_clean.csv (fitur sudah direkayasa oleh skrip asli). Kolom pembentuk

@@ -1,4 +1,4 @@
-# Sumber: lampiran kode pada laporan Tugas 05; paragraf penjelasan laporan dijadikan komentar.
+# Sumber: lampiran kode pada laporan studi kasus 05; paragraf penjelasan laporan dijadikan komentar.
 # Kode pada lampiran ini adalah versi yang dirapikan dan diberi komentar dari skrip analisis yang sebenarnya dijalankan untuk menghasilkan seluruh angka, tabel, dan gambar dalam laporan (bagian kosmetik visualisasi seperti pewarnaan dan tata letak sumbu diringkas agar lebih mudah dibaca). Skrip lengkap dapat diminta dari penulis.
 # A.1 Persiapan Data, Profil Awal, dan Rekayasa Fitur
 # Memuat data, memeriksa kebersihan (nilai hilang dan duplikat), menguji kemenyerupaan sebaran atribut numerik terhadap distribusi seragam, menguji asosiasi antarvariabel kategorikal, dan membentuk dua himpunan fitur untuk Skenario 1 (metadata) dan Skenario 2 (kata pada judul), sesuai Bab 3 dan Subbab 4.1–4.2.

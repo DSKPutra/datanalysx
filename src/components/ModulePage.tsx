@@ -71,7 +71,7 @@ export default function ModulePage({ m, summary, data, report, lab, manual, crit
   const tab = TABS.some((x) => x.id === params.get('tab')) ? params.get('tab')! : 'ringkasan';
   const [visited, setVisited] = useState<Set<string>>(() => new Set([tab]));
   useEffect(() => { setVisited((v) => (v.has(tab) ? v : new Set(v).add(tab))); }, [tab]);
-  useEffect(() => { document.title = `Tugas ${m.no} — ${m.algo} · DATANALYSX`; }, [m]);
+  useEffect(() => { document.title = `Studi Kasus ${m.no} — ${m.algo} · DATANALYSX`; }, [m]);
   const idx = MODULES.findIndex((x) => x.slug === m.slug);
   const prev = MODULES[idx - 1], next = MODULES[idx + 1];
   const content: Record<string, ReactNode> = {
@@ -87,14 +87,17 @@ export default function ModulePage({ m, summary, data, report, lab, manual, crit
     <article className="space-y-5">
       <header className="space-y-2">
         <div className="flex flex-wrap items-center gap-2 text-xs">
-          <span className="chip on-brand">Tugas {m.no}</span>
+          <span className="chip on-brand">Studi Kasus {m.no}</span>
           <span className="chip" style={{ background: 'var(--surface-2)' }}>{m.group}</span>
-          <span className="chip" style={{ background: 'var(--surface-2)' }}>{m.pertemuan}</span>
-          <span className="chip" style={{ background: 'var(--surface-2)' }}>{m.type === 'kelompok' ? 'Tugas kelompok' : 'Tugas individu'}</span>
           {!m.reportAvailable && <span className="chip" style={{ background: 'var(--warn-bg)' }}>Laporan belum tersedia</span>}
         </div>
         <h1 className="text-4xl font-bold leading-tight md:text-5xl">{m.title}</h1>
         <p className="max-w-3xl muted">{m.short}</p>
+        {m.tool && (
+          <p className="max-w-3xl rounded-lg border-l-4 px-3 py-2 text-sm" style={{ borderColor: 'var(--gold)', background: 'var(--surface-2)' }}>
+            Halaman ini adalah <strong>studi kasus</strong> — contoh penerapan pada satu dataset, bukan patokan. Untuk menganalisis data Anda sendiri, gunakan alat <Link to={m.tool.path}><strong>{m.tool.label}</strong></Link>.
+          </p>
+        )}
       </header>
       <div role="tablist" aria-label="Bagian modul" className="flex gap-1 overflow-x-auto border-b pb-px" style={{ borderColor: 'var(--line)' }}>
         {TABS.map((x) => (
@@ -108,8 +111,8 @@ export default function ModulePage({ m, summary, data, report, lab, manual, crit
         <div key={x.id} role="tabpanel" id={`panel-${x.id}`} aria-labelledby={`tab-${x.id}`} hidden={tab !== x.id}>{content[x.id]}</div>
       ))}
       <nav className="flex justify-between gap-3 border-t pt-4 text-sm" style={{ borderColor: 'var(--line)' }} aria-label="Modul lain">
-        {prev ? <Link to={`/${prev.slug}`}>← Tugas {prev.no}: {prev.algo}</Link> : <span />}
-        {next ? <Link to={`/${next.slug}`}>Tugas {next.no}: {next.algo} →</Link> : <span />}
+        {prev ? <Link to={`/${prev.slug}`}>← Studi Kasus {prev.no}: {prev.algo}</Link> : <span />}
+        {next ? <Link to={`/${next.slug}`}>Studi Kasus {next.no}: {next.algo} →</Link> : <span />}
       </nav>
     </article>
   );

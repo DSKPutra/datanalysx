@@ -10,7 +10,7 @@ import { py } from '../lib/pyodide/client';
 import { palette } from '../lib/theme';
 import { useAsync, useJson } from '../lib/useAsync';
 
-const m = bySlug('tugas-04')!;
+const m = bySlug('studi-kasus-04')!;
 const DEMO = { url: 'data/samples/t01_nvidia_stock_1999_2026.csv', label: 'DEMO PENGGANTI: OHLC NVIDIA (CC0) — bukan dataset laporan', license: 'CC0' };
 const pv = (v: number) => (v < 0.0001 ? '< 0,0001' : fmtFixed(v, 4));
 
@@ -32,7 +32,7 @@ function Confusion({ cm, labels = ['Turun/Tetap (0)', 'Naik (1)'] }: { cm: numbe
 }
 
 function Report() {
-  const { data: r } = useJson<any>('data/tugas-04.json');
+  const { data: r } = useJson<any>('data/studi-kasus-04.json');
   if (!r) return <Spinner text="Memuat hasil laporan …" />;
   const p = palette();
   const lt = [...r.lintas_saham].sort((a: any, b: any) => a[3] - b[3]);
@@ -207,6 +207,6 @@ function Manual() {
   );
 }
 
-export default function Tugas04() {
+export default function StudiKasus04() {
   return <ModulePage m={m} report={<Report />} lab={<Lab />} manual={<Manual />} />;
 }

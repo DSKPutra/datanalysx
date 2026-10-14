@@ -1,6 +1,6 @@
-"""Tugas 01 — Regresi Linear: prediksi harga Close saham NVIDIA (1999–2026).
+"""Studi Kasus 01 — Regresi Linear: prediksi harga Close saham NVIDIA (1999–2026).
 
-Diringkas dari lampiran kode laporan Tugas 01 (python/original/tugas01_regresi_nvidia.py).
+Diringkas dari lampiran kode laporan studi kasus 01 (python/original/studikasus01_regresi_nvidia.py).
 Mode "same_day" mereplikasi laporan (fitur Open/High/Low hari yang sama, split acak 80:20,
 random_state=42). Mode "next_day" adalah eksperimen tambahan aplikasi: memprediksi Close
 hari berikutnya hanya dari informasi hari ini (peramalan sesungguhnya, tanpa look-ahead).

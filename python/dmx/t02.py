@@ -1,6 +1,6 @@
-"""Tugas 02 — Regresi Linear vs Random Forest Regression: tingkat keparahan kegagalan agen AI.
+"""Studi Kasus 02 — Regresi Linear vs Random Forest Regression: tingkat keparahan kegagalan agen AI.
 
-Diringkas dari lampiran kode laporan Tugas 02 (python/original/tugas02_regresi_linear_rf.py).
+Diringkas dari lampiran kode laporan studi kasus 02 (python/original/studikasus02_regresi_linear_rf.py).
 Rekayasa fitur: difficulty_score (Easy=1, Medium=2, Hard=3), prompt_length dan context_length
 (jumlah kata), target severity_score (Low=1 ... Critical=4). Split acak 80:20, random_state=42.
 """

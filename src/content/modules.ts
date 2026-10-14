@@ -10,8 +10,6 @@ export interface ModuleInfo {
   short: string;
   algo: string;
   group: Group;
-  pertemuan: string;
-  type: 'individu' | 'kelompok';
   question: string;
   dataset: { name: string; detail: string; origin: string; license: string };
   sample: SampleInfo | null;
@@ -24,6 +22,7 @@ export interface ModuleInfo {
   when: string;
   code: { label: string; path: string; note?: string }[];
   reportAvailable: boolean;
+  tool?: { path: string; label: string };
 }
 
 const dmx = (n: string, extra: { label: string; path: string; note?: string }[] = []) => [
@@ -33,8 +32,8 @@ const dmx = (n: string, extra: { label: string; path: string; note?: string }[] 
 
 export const MODULES: ModuleInfo[] = [
   {
-    no: '01', slug: 'tugas-01', title: 'Linear Regression: Harga Close Saham NVIDIA', short: 'Regresi linear berganda memprediksi Close NVIDIA dari OHLC, volume, SMA 50, RSI 14.',
-    algo: 'Linear Regression', group: 'Regresi', pertemuan: 'Pertemuan 01', type: 'individu',
+    no: '01', slug: 'studi-kasus-01', title: 'Linear Regression: Harga Close Saham NVIDIA', short: 'Regresi linear berganda memprediksi Close NVIDIA dari OHLC, volume, SMA 50, RSI 14.',
+    algo: 'Linear Regression', group: 'Regresi',
     question: 'Seberapa akurat Linear Regression mengestimasi harga penutupan (Close) saham NVIDIA dari enam variabel numerik, dan apa makna koefisiennya?',
     dataset: { name: 'NVIDIA Stock Data (1999–2026)', detail: '7.079 baris × 16 kolom, 22 Jan 1999 – 11 Mar 2026; 0 duplikat; missing hanya struktural (stock_split 7.073, key_event 6.826); 5 era bisnis, 6 stock split.', origin: 'Kaggle — Shah (2026), alitaqishah/nvidia-stock-data-19992026-the-ai-mega-stock', license: 'CC0: Public Domain' },
     sample: { url: 'data/samples/t01_nvidia_stock_1999_2026.csv', label: 'NVIDIA Stock Data 1999–2026', license: 'CC0' },
@@ -57,12 +56,13 @@ export const MODULES: ModuleInfo[] = [
     pros: ['Sederhana, cepat, mudah direproduksi (scikit-learn).', 'Koefisien langsung dapat ditafsirkan (ceteris paribus).'],
     cons: ['Fitur hari yang sama → bukan peramalan.', 'Tanpa lag features, encoding kategori, validasi silang, atau pembanding algoritma.'],
     when: 'Hubungan kira-kira linear antara variabel numerik; butuh model yang mudah dijelaskan sebagai baseline.',
-    code: dmx('01', [{ label: 'Skrip laporan (Lampiran A)', path: 'code/original/tugas01_regresi_nvidia.py', note: 'Kode Google Colab dari Lampiran A laporan Tugas 01 (penanda # %% Cell N).' }]),
+    code: dmx('01', [{ label: 'Skrip laporan (Lampiran A)', path: 'code/original/studikasus01_regresi_nvidia.py', note: 'Kode Google Colab dari Lampiran A laporan Studi Kasus 01 (penanda # %% Cell N).' }]),
     reportAvailable: true,
+    tool: { path: '/regresi?sample=nvidia', label: 'Regresi' },
   },
   {
-    no: '02', slug: 'tugas-02', title: 'Regresi Linear vs Non-Linear: Keparahan Kegagalan Agen AI', short: 'Linear Regression vs Random Forest Regression memprediksi severity_score kegagalan agen AI.',
-    algo: 'Linear Regression & Random Forest Regression', group: 'Regresi', pertemuan: 'Pertemuan 02', type: 'individu',
+    no: '02', slug: 'studi-kasus-02', title: 'Regresi Linear vs Non-Linear: Keparahan Kegagalan Agen AI', short: 'Linear Regression vs Random Forest Regression memprediksi severity_score kegagalan agen AI.',
+    algo: 'Linear Regression & Random Forest Regression', group: 'Regresi',
     question: 'Algoritma mana — linear atau non-linear — yang lebih baik mengestimasi tingkat keparahan kegagalan agen AI dari karakteristik tugas?',
     dataset: { name: 'Disebut di laporan: “AI Economy Pulse Dataset Tahun 2022-2026”', detail: '1.500 baris × 10 kolom (task_id, domain, difficulty, prompt, context, expected_answer, agent_answer, failure_type, failure_severity, notes); 0 missing, 0 duplikat.', origin: 'Isi berkas identik byte-per-byte dengan “LLM Agent Failure Analysis Benchmark Dataset” (Kaggle sunil123kumar/ai-agent-failure-benchmark-dataset) — bukan dataset AI Economy Pulse (belbino) yang dikutip laporan.', license: 'Apache 2.0' },
     sample: { url: 'data/samples/t02_llm_agent_failure_benchmark.csv', label: 'LLM Agent Failure Analysis Benchmark (1.500 baris)', license: 'Apache 2.0' },
@@ -85,12 +85,13 @@ export const MODULES: ModuleInfo[] = [
     pros: ['Random Forest menangkap pola ambang & interaksi tanpa spesifikasi manual.', 'Linear Regression transparan sebagai baseline.'],
     cons: ['Random Forest kurang dapat ditafsirkan dan tak dapat mengekstrapolasi.', 'Linear Regression gagal pada hubungan non-linear (R² 0,139).'],
     when: 'Random Forest Regression untuk hubungan non-linear/berinteraksi pada data tabular; linear sebagai pembanding wajib.',
-    code: dmx('02', [{ label: 'Skrip laporan (Lampiran A)', path: 'code/original/tugas02_regresi_linear_rf.py' }]),
+    code: dmx('02', [{ label: 'Skrip laporan (Lampiran A)', path: 'code/original/studikasus02_regresi_linear_rf.py' }]),
     reportAvailable: true,
+    tool: { path: '/regresi', label: 'Regresi' },
   },
   {
-    no: '03', slug: 'tugas-03', title: 'Regresi Linear Sederhana & Berganda: Industri Semikonduktor', short: 'R&D, capex, dan margin operasi terhadap pendapatan 39 perusahaan chip (2010–2026), bergaya widget Orange.',
-    algo: 'Regresi Linear Sederhana & Berganda (OLS)', group: 'Regresi', pertemuan: 'Pertemuan 03', type: 'individu',
+    no: '03', slug: 'studi-kasus-03', title: 'Regresi Linear Sederhana & Berganda: Industri Semikonduktor', short: 'R&D, capex, dan margin operasi terhadap pendapatan 39 perusahaan chip (2010–2026), bergaya widget Orange.',
+    algo: 'Regresi Linear Sederhana & Berganda (OLS)', group: 'Regresi',
     question: 'Seberapa besar belanja R&D dan capex menjelaskan pendapatan perusahaan semikonduktor, dan apakah asumsi regresi terpenuhi?',
     dataset: { name: 'chip_companies_financials.csv — Global Semiconductor Industry 2010-2026', detail: '617 baris, 40 perusahaan; 28 baris bernilai nol dibuang (Graphcore gugur) → 589 baris, 39 perusahaan.', origin: 'Kaggle — sergionefedov/global-semiconductor-industry-2010-2026', license: 'CC0: Public Domain' },
     sample: { url: 'data/samples/t03_chip_companies_financials.csv', label: 'chip_companies_financials.csv', license: 'CC0' },
@@ -114,12 +115,13 @@ export const MODULES: ModuleInfo[] = [
     pros: ['Koefisien & elastisitas mudah ditafsirkan; uji statistik lengkap.', 'Log-log memulihkan homoskedastisitas (BP p = 0,975 pada model sederhana).'],
     cons: ['Sensitif pada titik berpengaruh (NVIDIA 2026, Cook 13,6).', 'Asumsi independensi dilanggar pada data panel.'],
     when: 'Hubungan linear (atau log-linear) antar variabel kontinu ketika interpretasi koefisien & inferensi dibutuhkan.',
-    code: dmx('03', [{ label: 'Skrip laporan (Lampiran 1)', path: 'code/original/tugas03_regresi_semikonduktor.py' }]),
+    code: dmx('03', [{ label: 'Skrip laporan (Lampiran 1)', path: 'code/original/studikasus03_regresi_semikonduktor.py' }]),
     reportAvailable: true,
+    tool: { path: '/regresi?sample=semikonduktor', label: 'Regresi' },
   },
   {
-    no: '04', slug: 'tugas-04', title: 'Regresi Logistik: Arah Harga Saham NASDAQ (AAPL)', short: 'Prediksi naik/turun hari berikutnya dari 10 fitur OHLC tanpa look-ahead; MLE, walk-forward, bootstrap, uji 20 saham.',
-    algo: 'Logistic Regression', group: 'Klasifikasi', pertemuan: 'Pertemuan 04', type: 'individu',
+    no: '04', slug: 'studi-kasus-04', title: 'Regresi Logistik: Arah Harga Saham NASDAQ (AAPL)', short: 'Prediksi naik/turun hari berikutnya dari 10 fitur OHLC tanpa look-ahead; MLE, walk-forward, bootstrap, uji 20 saham.',
+    algo: 'Logistic Regression', group: 'Klasifikasi',
     question: 'Apakah fitur teknikal turunan OHLC mampu memprediksi arah Close hari berikutnya lebih baik dari tebakan acak?',
     dataset: { name: 'NASDAQ Daily Stock Prices — OHLC 1962-01-02 s.d. 2026-09-18', detail: 'Studi kasus AAPL, dibatasi 2010-01-01 s.d. 2026-09-18 → 4.183 observasi; time-based split 80:20 → 3.346 latih / 837 uji. Uji generalisasi pada 20 emiten.', origin: 'Kaggle — svaningelgem/nasdaq-daily-stock-prices', license: 'Data files © Original Authors (tidak boleh diredistribusi)' },
     sample: null,
@@ -142,14 +144,15 @@ export const MODULES: ModuleInfo[] = [
     pros: ['Probabilitas & odds ratio mudah ditafsirkan; inferensi formal (SE, z, LR-test).', 'Cepat, baseline kuat, regularisasi menstabilkan koefisien.'],
     cons: ['Asumsi log-odds linear; kurang menangkap interaksi.', 'Asumsi independensi dilanggar pada deret waktu.'],
     when: 'Klasifikasi biner yang butuh probabilitas terkalibrasi dan interpretasi; baseline sebelum model kompleks.',
-    code: dmx('04', [{ label: 'logistic_regression_nasdaq.py', path: 'code/original/logistic_regression_nasdaq.py', note: 'Skrip lengkap dari Lampiran 1 laporan Tugas 04.' }]),
+    code: dmx('04', [{ label: 'logistic_regression_nasdaq.py', path: 'code/original/logistic_regression_nasdaq.py', note: 'Skrip lengkap dari Lampiran 1 laporan Studi Kasus 04.' }]),
     reportAvailable: true,
+    tool: { path: '/klasifikasi', label: 'Klasifikasi' },
   },
   {
-    no: '05', slug: 'tugas-05', title: 'Decision Tree: Kategori Topik Trending 2026', short: 'Pohon keputusan pada metadata vs kata judul: 20% vs 100% — cermin data, bukan pencipta pola.',
-    algo: 'Decision Tree (CART, Gini/Entropy)', group: 'Klasifikasi', pertemuan: 'Pertemuan 05', type: 'individu',
+    no: '05', slug: 'studi-kasus-05', title: 'Decision Tree: Kategori Topik Trending 2026', short: 'Pohon keputusan pada metadata vs kata judul: 20% vs 100% — cermin data, bukan pencipta pola.',
+    algo: 'Decision Tree (CART, Gini/Entropy)', group: 'Klasifikasi',
     question: 'Seberapa jauh pohon keputusan dapat dipercaya ketika data mungkin tidak menyimpan pola?',
-    dataset: { name: 'trending_topics_2026_synthetic.csv (Global Trending Topics 2026 – Multi-Source Dataset)', detail: '2.500 baris × 14 kolom, 1–28 Feb 2026, 5 kelas seimbang (17,8–21,8%). Data SINTETIS.', origin: 'Laporan: “disediakan dosen”; berkas identik tersedia di Kaggle mmuneeb5522/crossplatform-trending-topics-2026multilanguage', license: 'CC0: Public Domain' },
+    dataset: { name: 'trending_topics_2026_synthetic.csv (Global Trending Topics 2026 – Multi-Source Dataset)', detail: '2.500 baris × 14 kolom, 1–28 Feb 2026, 5 kelas seimbang (17,8–21,8%). Data SINTETIS.', origin: 'Kaggle mmuneeb5522/crossplatform-trending-topics-2026multilanguage', license: 'CC0: Public Domain' },
     sample: { url: 'data/samples/t05_trending_topics_2026_synthetic.csv', label: 'Trending Topics 2026 (sintetis)', license: 'CC0' },
     crisp: [
       ['Business understanding', 'Klasifikasi otomatis kategori topik untuk platform konten.'],
@@ -169,12 +172,13 @@ export const MODULES: ModuleInfo[] = [
     pros: ['Mudah dibaca (aturan JIKA–MAKA).', 'Tanpa scaling; seleksi atribut implisit; cepat.'],
     cons: ['Rentan overfitting & tidak stabil.', 'Bias ke atribut dengan banyak titik pisah; prediksi terlalu yakin.'],
     when: 'Saat keterbacaan aturan penting; gunakan pruning/ensemble dan uji permutasi bila sinyal diragukan.',
-    code: dmx('05', [{ label: 'Skrip laporan (Lampiran A)', path: 'code/original/tugas05_decision_tree.py' }]),
+    code: dmx('05', [{ label: 'Skrip laporan (Lampiran A)', path: 'code/original/studikasus05_decision_tree.py' }]),
     reportAvailable: true,
+    tool: { path: '/klasifikasi?sample=trending', label: 'Klasifikasi' },
   },
   {
-    no: '06', slug: 'tugas-06', title: 'Naïve Bayes: Arah IHSG dari Data Makro Multi-Aset', short: 'Gaussian NB memprediksi arah IHSG esok hari; dampak outlier USD/IDR +902% terhadap akurasi & kalibrasi.',
-    algo: 'Gaussian Naïve Bayes', group: 'Klasifikasi', pertemuan: 'Pertemuan 06', type: 'kelompok',
+    no: '06', slug: 'studi-kasus-06', title: 'Naïve Bayes: Arah IHSG dari Data Makro Multi-Aset', short: 'Gaussian NB memprediksi arah IHSG esok hari; dampak outlier USD/IDR +902% terhadap akurasi & kalibrasi.',
+    algo: 'Gaussian Naïve Bayes', group: 'Klasifikasi',
     question: 'Dapatkah indikator makro-finansial hari ini memprediksi arah IHSG esok hari, dan seberapa sensitif Naïve Bayes terhadap outlier?',
     dataset: { name: 'Daily Multi-Asset Macroeconomic and Financial Time Series Dataset (Indonesia/Global Markets)', detail: '4.277 observasi harian, 2010-01-01 – 2026-05-29; OIL, GOLD, USDIDR, SP500, IHSG, VIX, CPI, BI_rate, US_rate.', origin: 'Kaggle — raphaelnazareth/indonesia-financial-time-series-dataset-2010-2026', license: 'CC BY-SA 4.0' },
     sample: { url: 'data/samples/t06_indonesia_multiasset_macro_2010_2026.csv', label: 'Indonesia Financial Time Series 2010–2026', license: 'CC BY-SA 4.0 (atribusi: Raphael Nazareth)' },
@@ -197,12 +201,13 @@ export const MODULES: ModuleInfo[] = [
     pros: ['Sangat cepat (O(n·d)) dan parameter mudah ditafsirkan.', 'Tetap memberi sinyal di atas acak meski asumsi dilanggar.'],
     cons: ['Sangat sensitif terhadap outlier (varians membengkak).', 'Asumsi Gaussian & independensi sering tidak realistis pada return finansial.'],
     when: 'Baseline klasifikasi cepat, data kecil–besar, terutama teks (Multinomial) atau fitur yang mendekati independen.',
-    code: dmx('06', [{ label: 'naive_bayes_ihsg.py', path: 'code/original/naive_bayes_ihsg.py', note: 'Skrip lengkap dari Lampiran A laporan Tugas 06 (Kelompok 4).' }]),
+    code: dmx('06', [{ label: 'naive_bayes_ihsg.py', path: 'code/original/naive_bayes_ihsg.py', note: 'Skrip lengkap dari Lampiran A laporan Studi Kasus 06 (proyek tim).' }]),
     reportAvailable: true,
+    tool: { path: '/klasifikasi', label: 'Klasifikasi' },
   },
   {
-    no: '07', slug: 'tugas-07', title: 'KNN: Instagram Reels “Viral Hit” vs “High Reach”', short: 'KNN bebas leakage dengan Pipeline; scaling, metrik jarak, K, lazy learner, curse of dimensionality.',
-    algo: 'K-Nearest Neighbors', group: 'Klasifikasi', pertemuan: 'Pertemuan 07', type: 'individu',
+    no: '07', slug: 'studi-kasus-07', title: 'KNN: Instagram Reels “Viral Hit” vs “High Reach”', short: 'KNN bebas leakage dengan Pipeline; scaling, metrik jarak, K, lazy learner, curse of dimensionality.',
+    algo: 'K-Nearest Neighbors', group: 'Klasifikasi',
     question: 'Dapatkah KNN membedakan Reels “Viral Hit” (virality_score ≥ 75) dari “High Reach” hanya dari informasi saat unggah?',
     dataset: { name: 'Instagram Reels: Virality & Engagement Trends 2026', detail: '88 unggahan, 9 kreator, 5 niche; 39 Viral Hit / 49 High Reach; split 66 latih / 22 uji.', origin: 'Kaggle — harishyadav0506/instagram-reels-virality-and-engagement-trends-2026', license: 'CC0: Public Domain' },
     sample: { url: 'data/samples/t07_instagram_reels_knn_clean.csv', label: 'instagram_reels_knn_clean.csv (88 baris)', license: 'CC0' },
@@ -224,12 +229,13 @@ export const MODULES: ModuleInfo[] = [
     pros: ['Transparan (bisa dihitung tangan), tanpa fase pelatihan.', 'Non-parametrik, menangkap batas keputusan kompleks.'],
     cons: ['Sensitif terhadap skala & metrik; biaya prediksi tumbuh dengan data.', 'Melemah pada dimensi tinggi (curse of dimensionality).'],
     when: 'Data kecil–menengah berdimensi rendah, setelah scaling yang tepat; pencarian kemiripan.',
-    code: dmx('07', [{ label: 'knn_instagram_reels.py', path: 'code/original/knn_instagram_reels.py', note: 'Skrip asli Tugas 07.' }]),
+    code: dmx('07', [{ label: 'knn_instagram_reels.py', path: 'code/original/knn_instagram_reels.py', note: 'Skrip asli Studi Kasus 07.' }]),
     reportAvailable: true,
+    tool: { path: '/klasifikasi?sample=reels', label: 'Klasifikasi' },
   },
   {
-    no: '08', slug: 'tugas-08', title: 'K-Means: Rezim Pasar Harian AAPL 2026', short: 'Pengelompokan 116 hari perdagangan menjadi 3 rezim; pemilihan K berbasis kestabilan.',
-    algo: 'K-Means (Lloyd, k-means++)', group: 'Clustering', pertemuan: 'Pertemuan 08', type: 'individu',
+    no: '08', slug: 'studi-kasus-08', title: 'K-Means: Rezim Pasar Harian AAPL 2026', short: 'Pengelompokan 116 hari perdagangan menjadi 3 rezim; pemilihan K berbasis kestabilan.',
+    algo: 'K-Means (Lloyd, k-means++)', group: 'Clustering',
     question: 'Rezim pasar apa yang dapat diidentifikasi K-Means dari perilaku harian saham AAPL, dan seberapa andal?',
     dataset: { name: 'Apple Inc. (AAPL) Stock Price Dataset 2026', detail: '136 hari perdagangan (2 Jan – 20 Jul 2026) × 15 kolom; semi-sintetis menurut penyusunnya; 116 hari setelah pemanasan fitur.', origin: 'Kaggle — Sung (2026), crystalbaby/apple-inc-aapl-stock-price-dataset-2026', license: 'Apache 2.0' },
     sample: { url: 'data/samples/t08_aapl_2026_stock_data.csv', label: 'AAPL 2026 (semi-sintetis)', license: 'Apache 2.0' },
@@ -251,12 +257,13 @@ export const MODULES: ModuleInfo[] = [
     pros: ['Sederhana, cepat, selalu konvergen, mudah ditafsirkan.'],
     cons: ['K harus ditentukan; peka inisialisasi, skala, outlier; mengasumsikan klaster bulat; selalu “menemukan” klaster.'],
     when: 'Segmentasi data numerik berskala setara dengan klaster kira-kira bulat; selalu periksa kestabilan.',
-    code: dmx('08', [{ label: 'kmeans_aapl_stock.py', path: 'code/original/kmeans_aapl_stock.py', note: 'Skrip asli Tugas 08.' }]),
+    code: dmx('08', [{ label: 'kmeans_aapl_stock.py', path: 'code/original/kmeans_aapl_stock.py', note: 'Skrip asli Studi Kasus 08.' }]),
     reportAvailable: true,
+    tool: { path: '/clustering?sample=aapl2026', label: 'Clustering' },
   },
   {
-    no: '09', slug: 'tugas-09', title: 'Text Mining: Komentar Publik terkait MBG', short: 'Preprocessing Bahasa Indonesia, TF-IDF, sentimen leksikon InSet, klasifikasi, LDA/NMF — laporan belum tersedia.',
-    algo: 'Text Mining (TF-IDF, InSet, MNB/LR/SVM/KNN, LDA/NMF)', group: 'Text Mining', pertemuan: 'Pertemuan 09', type: 'individu',
+    no: '09', slug: 'studi-kasus-09', title: 'Text Mining: Komentar Publik terkait MBG', short: 'Preprocessing Bahasa Indonesia, TF-IDF, sentimen leksikon InSet, klasifikasi, LDA/NMF — laporan belum tersedia.',
+    algo: 'Text Mining (TF-IDF, InSet, MNB/LR/SVM/KNN, LDA/NMF)', group: 'Text Mining',
     question: 'Bagaimana sentimen dan topik percakapan di kolom komentar terkait program Makan Bergizi Gratis?',
     dataset: { name: 'Indonesia MBG Sentiment Analysis (komentar-mbg.csv, MBG_sentiment_analysis.csv)', detail: 'komentar-mbg.csv: 15.000 baris × 4 kolom (author, comment, likes, published_at), 17 Feb – 24 Jun 2026; 3.496 duplikat penuh; 11.375 komentar unik.', origin: 'Kaggle — neevvv/indonesia-mbg-sentiment-analysis', license: '“Other (specified in description)” — tidak ada izin redistribusi eksplisit' },
     sample: null,
@@ -268,7 +275,7 @@ export const MODULES: ModuleInfo[] = [
       ['Evaluation', 'Akurasi, F1-makro, confusion matrix, ROC-AUC; koherensi topik (UMass).'],
       ['Deployment/insight', 'Etika: pseudonim, sensor kata kasar, bahasa netral.'],
     ],
-    findings: ['Laporan Tugas 09 belum tersedia — tidak ada angka Hasil Laporan.'],
+    findings: ['Laporan Studi Kasus 09 belum tersedia — tidak ada angka Hasil Laporan.'],
     critical: [
       'Label sentimen otomatis (leksikon) ≠ ground truth; model yang dilatih pada label leksikon pada dasarnya meniru leksikon (sirkular).',
       'Komentar YouTube ≠ opini publik Indonesia; hanya ±10% komentar unik menyebut MBG secara eksplisit.',
@@ -280,6 +287,7 @@ export const MODULES: ModuleInfo[] = [
     when: 'Analisis pola besar pada teks; validasi dengan sampel beranotasi manusia sebelum menarik kesimpulan.',
     code: dmx('09', []),
     reportAvailable: false,
+    tool: { path: '/text-mining', label: 'Text Mining' },
   },
 ];
 

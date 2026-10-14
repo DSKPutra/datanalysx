@@ -1,6 +1,6 @@
-"""Transkripsi angka "Hasil Laporan" ke public/data/tugas-XX.json.
-Tugas 01–06: disalin dari tabel laporan (field "sumber" menunjuk tabel/subbab).
-Tugas 07–08: diambil dari model_summary.json resmi. Tugas 09: laporan belum tersedia."""
+"""Transkripsi angka "Hasil Laporan" ke public/data/studi-kasus-XX.json.
+Studi kasus 01–06: disalin dari tabel laporan (field "sumber" menunjuk tabel/subbab).
+Studi kasus 07–08: diambil dari model_summary.json resmi. Studi kasus 09: laporan belum tersedia."""
 import json
 from pathlib import Path
 
@@ -10,9 +10,9 @@ D = ROOT / "public/data"
 def w(name, obj):
     (D / name).write_text(json.dumps(obj, ensure_ascii=False, indent=1))
 
-w("tugas-01.json", {
+w("studi-kasus-01.json", {
  "judul": "Penerapan Algoritma Linear Regression pada NVIDIA Stock Data (1999–2026)",
- "sumber": "Laporan Pertemuan 01 (Tugas 01)",
+ "sumber": "Laporan studi kasus 01",
  "dataset": {"nama": "NVIDIA Stock Data (1999–2026)", "baris": 7079, "kolom": 16, "periode": "22 Jan 1999 – 11 Mar 2026",
    "duplikat": 0, "missing_struktural": {"stock_split": 7073, "key_event": 6826}, "sumber": "Tabel 2.4; Lampiran B"},
  "split": {"latih": 5663, "uji": 1416, "metode": "train_test_split acak 80:20, random_state=42", "sumber": "Subbab 3.2"},
@@ -25,9 +25,9 @@ w("tugas-01.json", {
    ["SMA 50",2.95,3.84,0.03,22.00],["RSI 14",56.36,10.15,38.00,78.00]],
  "statistik_sumber": "Tabel 2.5"})
 
-w("tugas-02.json", {
+w("studi-kasus-02.json", {
  "judul": "Pemodelan dan Perbandingan Algoritma Regresi Linear serta Non-Linear",
- "sumber": "Laporan Pertemuan 02 (Tugas 02)",
+ "sumber": "Laporan studi kasus 02",
  "dataset": {"nama_di_laporan": "AI Economy Pulse Dataset Tahun 2022-2026", "baris": 1500, "kolom": 10, "missing": 0, "duplikat": 0, "sumber": "Tabel 2.1"},
  "statistik": [["difficulty_score",1.9,0.700233,1,3],["prompt_length",22.896,7.549604,10,59],["context_length",19.112667,8.379904,3,48],["severity_score",2.401333,0.844239,1,4]],
  "statistik_sumber": "Tabel 2.4",
@@ -37,9 +37,9 @@ w("tugas-02.json", {
  "model_sumber": "Tabel 3.4; Lampiran C",
  "persamaan": {"intercept": 1.637357, "difficulty_score": -0.078486, "prompt_length": 0.007658, "context_length": 0.038742, "sumber": "Tabel 3.2"}})
 
-w("tugas-03.json", {
+w("studi-kasus-03.json", {
  "judul": "Analisis Regresi Linear Sederhana dan Berganda — Industri Semikonduktor (2010–2026)",
- "sumber": "Laporan Pertemuan 03 (Tugas 03)",
+ "sumber": "Laporan studi kasus 03",
  "csv_ditinjau": [
    ["chip_companies_financials.csv","Keuangan tahunan 40 perusahaan chip, 2010–2026",617,"Layak: banyak observasi, beberapa variabel numerik kontinu"],
    ["ai_chip_market.csv","Spesifikasi & pengiriman chip AI, 2020–2026",120,"Kurang layak: ASP hampir konstan; pendapatan = unit × ASP (identitas)"],
@@ -66,9 +66,9 @@ w("tugas-03.json", {
  "asumsi_sumber": "Tabel 18 (Breusch–Pagan p, Shapiro–Wilk p, Durbin–Watson)",
  "prediksi_contoh": {"input": {"R&D": 10, "Capex": 8, "Margin": 30}, "hasil": {"Sederhana – linear": 52.58, "Sederhana – log-log": 65.23, "Berganda – linear": 52.62, "Berganda – log-log": 68.73}, "sumber": "Tabel 19"}})
 
-w("tugas-04.json", {
+w("studi-kasus-04.json", {
  "judul": "Regresi Logistik — Prediksi Arah Harga Saham (NASDAQ Daily OHLC, AAPL)",
- "sumber": "Laporan Pertemuan 04 (Tugas 04)",
+ "sumber": "Laporan studi kasus 04",
  "dataset": {"baris_bersih_menurut_laporan": 4184, "observasi": 4183, "periode": "2010-02-02 – 2026-09-18", "naik": 2222, "turun_tetap": 1961, "sumber": "Subbab 3.2–3.3, 4.1"},
  "split": {"latih": 3346, "uji": 837, "sumber": "Tabel 6"},
  "confusion": {"TN": 94, "FP": 287, "FN": 120, "TP": 336, "sumber": "Tabel 7"},
@@ -92,9 +92,9 @@ w("tugas-04.json", {
    ["PEP",4183,0.4791,0.4972,0.5978],["MSFT",4183,0.5090,0.4970,0.6353],["AAPL",4183,0.5137,0.4844,0.6228],["PYPL",2799,0.5018,0.4772,0.6098],["ADBE",4183,0.4994,0.4771,0.6295]],
  "lintas_saham_ringkas": {"mean_auc": 0.5156, "sd": 0.0234, "min": 0.4771, "max": 0.5584, "n_di_atas_05": 14, "t": 2.991, "p_t": 0.0075, "p_wilcoxon": 0.0121, "sumber": "Tabel 12; Subbab 4.13"}})
 
-w("tugas-05.json", {
+w("studi-kasus-05.json", {
  "judul": "Pemodelan Decision Tree untuk Klasifikasi Kategori Topik pada Trending Topics 2026 Dataset",
- "sumber": "Laporan Pertemuan 05 (Tugas 05)",
+ "sumber": "Laporan studi kasus 05",
  "dataset": {"baris": 2500, "kolom": 14, "periode": "1–28 Februari 2026", "kelas": {"AI & Tech":507,"Economy":492,"Entertainment":511,"Global Events":544,"Sports":446}, "mayoritas": 0.218, "sumber": "Tabel 2, 3, 8"},
  "split": {"latih": 2000, "uji": 500, "sumber": "Subbab 3.5"},
  "skenario1": [["Constant (mayoritas)",0.500,0.218,0.078,0.047,0.218,0.002],["Tree (default Orange)",0.496,0.198,0.196,0.200,0.198,0.018],["Tree (Entropy, default)",0.491,0.183,0.182,0.184,0.183,0.028],
@@ -113,11 +113,9 @@ w("tugas-05.json", {
    ["Record engagement for recent cricket matches","Sports","Sports","Benar"],["Startup funding for climate technology grows","AI & Tech","Sports","Salah"]],
  "judul_baru_sumber": "Tabel 15"})
 
-w("tugas-06.json", {
+w("studi-kasus-06.json", {
  "judul": "Naïve Bayes — Klasifikasi Arah IHSG Berbasis Indikator Makro-Finansial Multi-Aset (2010–2026)",
- "sumber": "Laporan Tugas 06 Kelompok 4",
- "anggota": [["Annisa Nur Islamyah","261012000103"],["Dea Saka Kurnia Putra","261012000111"],["Jihan Nur Esya Djamalullail","261012000065"],["Muhamad Abdul Fikri","261012000105"],["Sofyan Reza Ferianto","261012000069"]],
- "anggota_sumber": "Lampiran A (header naive_bayes_ihsg.py)",
+ "sumber": "Laporan studi kasus 06 (proyek tim)",
  "dataset": {"observasi": 4277, "periode": "2010-01-01 – 2026-05-29", "siap_model": 4276, "naik": 0.5035, "sumber": "Subbab 3.2, 3.4"},
  "split": {"latih": 3420, "uji": 856, "periode_latih": "2010-01-04 – 2023-02-10", "periode_uji": "2023-02-13 – 2026-05-29", "sumber": "Tabel 3.3"},
  "outlier": [["OIL_ret",-8.004,8.124,52],["GOLD_ret",-3.457,3.586,40],["USDIDR_ret",-1.841,1.877,130],["SP500_ret",-3.067,3.260,68],["IHSG_ret",-3.331,3.433,56]],
@@ -130,6 +128,6 @@ w("tugas-06.json", {
  "worked_example": {"tanggal": "2023-02-21", "posterior_turun": 0.9024, "posterior_naik": 0.0976, "log_joint": [-14.9841, -17.2085], "aktual_ihsg_besok": -0.9229, "sumber": "Tabel 4.1–4.4"},
  "korelasi": {"SP500_ret–VIX_chg": -0.81, "target–SP500_ret": 0.19, "target–VIX_chg": -0.15, "sumber": "Subbab 4.2"}})
 
-w("tugas-09.json", {"judul": "Text Mining — Analisis Sentimen dan Pemodelan Topik Komentar Publik terkait MBG",
-  "sumber": None, "status": "Laporan Tugas 09 belum tersedia; tidak ada angka Hasil Laporan."})
+w("studi-kasus-09.json", {"judul": "Text Mining — Analisis Sentimen dan Pemodelan Topik Komentar Publik terkait MBG",
+  "sumber": None, "status": "Laporan studi kasus 09 belum tersedia; tidak ada angka Hasil Laporan."})
 print("ok")

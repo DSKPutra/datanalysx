@@ -10,7 +10,7 @@ import { py } from '../lib/pyodide/client';
 import { palette } from '../lib/theme';
 import { useAsync, useJson } from '../lib/useAsync';
 
-const m = bySlug('tugas-03')!;
+const m = bySlug('studi-kasus-03')!;
 const pv = (v: number) => (v < 0.001 ? '< 0,001' : fmtFixed(v, 3));
 
 /** Panel bergaya widget Orange: judul + ikon, kontrol kiri, hasil kanan. */
@@ -29,7 +29,7 @@ function Widget({ icon, title, controls, children }: { icon: string; title: stri
 }
 
 function Report() {
-  const { data: r } = useJson<any>('data/tugas-03.json');
+  const { data: r } = useJson<any>('data/studi-kasus-03.json');
   if (!r) return <Spinner text="Memuat hasil laporan …" />;
   return (
     <div className="space-y-5">
@@ -194,7 +194,7 @@ function Manual() {
     <div className="space-y-5">
       <DataSource dataKey="t03" sample={m.sample} onReady={setKey} />
       {r && ts && (
-        <Section title="Regresi sederhana dengan rumus materi (10 observasi pertama)" right={<LiveBadge />}>
+        <Section title="Regresi sederhana dengan rumus kuadrat terkecil (10 observasi pertama)" right={<LiveBadge />}>
           <Toggle label="Skala log-log" checked={log} onChange={setLog} />
           <Table head={['Perusahaan', 'Tahun', 'X (R&D)', 'Y (Pendapatan)', 'XY', 'X²']} numeric={[2, 3, 4, 5]} rows={[...r.rows.map((x: any) => [x.company, String(x.year), fmt(x.x, 4), fmt(x.y, 4), fmt(x.xy, 4), fmt(x.x2, 4)]), ['Σ', '', fmt(ts.sx, 4), fmt(ts.sy, 4), fmt(ts.sxy, 4), fmt(ts.sxx, 4)]]} />
           <p className="font-mono text-sm">b = [nΣXY − ΣXΣY] / [nΣX² − (ΣX)²] = [{r.n}·{fmt(ts.sxy, 4)} − {fmt(ts.sx, 4)}·{fmt(ts.sy, 4)}] / [{r.n}·{fmt(ts.sxx, 4)} − {fmt(ts.sx, 4)}²] = <strong>{fmt(ts.b, 8)}</strong></p>
@@ -217,7 +217,7 @@ function Manual() {
   );
 }
 
-export default function Tugas03() {
+export default function StudiKasus03() {
   return <ModulePage m={m} report={<Report />} lab={<Lab />} manual={<Manual />} data={<DataTab m={m}>
     <Callout kind="info" title="Mengapa operating_income dibuang?">operating_income = pendapatan × margin operasi (selisih maksimum hanya galat pembulatan 0,08 miliar USD). Memasukkannya sebagai prediktor membocorkan target dan membuat R² menyesatkan.</Callout>
   </DataTab>} />;

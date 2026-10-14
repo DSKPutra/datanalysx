@@ -3,7 +3,14 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 export type Lang = 'id' | 'en';
 const dict = {
   home: ['Beranda', 'Home'],
-  modules: ['Modul', 'Modules'],
+  modules: ['Studi Kasus', 'Case Studies'],
+  tools: ['Alat Analisis', 'Analysis Tools'],
+  explore: ['Eksplorasi', 'Explore'],
+  regression: ['Regresi', 'Regression'],
+  classification: ['Klasifikasi', 'Classification'],
+  clustering: ['Clustering', 'Clustering'],
+  text: ['Text Mining', 'Text Mining'],
+  guide: ['Panduan', 'Guide'],
   regLab: ['Regression Lab', 'Regression Lab'],
   dataLab: ['Data Lab', 'Data Lab'],
   compare: ['Perbandingan', 'Comparison'],

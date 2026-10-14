@@ -10,10 +10,10 @@ import { py } from '../lib/pyodide/client';
 import { palette } from '../lib/theme';
 import { useAsync, useJson } from '../lib/useAsync';
 
-const m = bySlug('tugas-05')!;
+const m = bySlug('studi-kasus-05')!;
 
 function Report() {
-  const { data: r } = useJson<any>('data/tugas-05.json');
+  const { data: r } = useJson<any>('data/studi-kasus-05.json');
   if (!r) return <Spinner text="Memuat hasil laporan …" />;
   return (
     <div className="space-y-5">
@@ -168,6 +168,6 @@ function Manual() {
   );
 }
 
-export default function Tugas05() {
+export default function StudiKasus05() {
   return <ModulePage m={m} report={<Report />} lab={<Lab />} manual={<Manual />} />;
 }

@@ -9,12 +9,12 @@ import { py } from '../lib/pyodide/client';
 import { palette } from '../lib/theme';
 import { useAsync, useJson } from '../lib/useAsync';
 
-const m = bySlug('tugas-01')!;
+const m = bySlug('studi-kasus-01')!;
 const FEATS = ['open', 'high', 'low', 'volume', 'sma_50', 'rsi_14'];
 const ERA_COLORS = ['#999999', '#56B4E9', '#E69F00', '#009E73', '#CC79A7'];
 
 function Report() {
-  const { data: r } = useJson<any>('data/tugas-01.json');
+  const { data: r } = useJson<any>('data/studi-kasus-01.json');
   if (!r) return <Spinner text="Memuat hasil laporan …" />;
   const coef = Object.entries(r.koefisien).filter(([k]) => k !== 'sumber') as [string, number][];
   return (
@@ -149,7 +149,7 @@ function Manual() {
   );
 }
 
-export default function Tugas01() {
+export default function StudiKasus01() {
   return <ModulePage m={m} report={<Report />} lab={<Lab />} manual={<Manual />} data={<DataTab m={m}>
     <Section title="Kualitas data (laporan)"><Table head={['Aspek', 'Temuan']} rows={[['Ukuran', '7.079 × 16'], ['Missing variabel numerik utama', '0'], ['Missing stock_split', '7.073 (struktural)'], ['Missing key_event', '6.826 (struktural)'], ['Duplikat', '0']]} /></Section>
   </DataTab>} />;

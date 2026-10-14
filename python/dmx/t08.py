@@ -1,4 +1,4 @@
-"""Tugas 08 — K-Means: rezim pasar harian AAPL 2026 (dataset semi-sintetis).
+"""Studi Kasus 08 — K-Means: rezim pasar harian AAPL 2026 (dataset semi-sintetis).
 
 Diringkas dari python/original/kmeans_aapl_stock.py: 10 fitur stasioner tanpa look-ahead
 (enam fitur inti dipakai untuk klaster), buang 20 baris pemanasan → 116 hari, Pipeline

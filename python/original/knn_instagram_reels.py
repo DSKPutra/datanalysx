@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
 """
 =====================================================================
- Laporan Tugas 07 — K-Nearest Neighbors (KNN)
+ Studi Kasus 07 — K-Nearest Neighbors (KNN)
  Klasifikasi "Viral Hit" vs "High Reach" pada Instagram Reels 2026
 ---------------------------------------------------------------------
- Penulis     : Dea Saka Kurnia Putra (NIM 261012000111)
- Mata Kuliah : Data Mining — Magister Teknik Informatika, Universitas Pamulang
- Dosen       : Dr. Ir. Agung Budi Susanto, M.M.
- Tahun Ajaran: 2026/2027
+ Penulis     : Dea Saka Kurnia Putra (2026)
 ---------------------------------------------------------------------
  Alur mengikuti CRISP-DM:
    1. Business Understanding   -> definisi masalah & target

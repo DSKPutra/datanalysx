@@ -9,10 +9,10 @@ import { py } from '../lib/pyodide/client';
 import { palette } from '../lib/theme';
 import { useAsync, useJson } from '../lib/useAsync';
 
-const m = bySlug('tugas-02')!;
+const m = bySlug('studi-kasus-02')!;
 
 function Report() {
-  const { data: r } = useJson<any>('data/tugas-02.json');
+  const { data: r } = useJson<any>('data/studi-kasus-02.json');
   if (!r) return <Spinner text="Memuat hasil laporan …" />;
   const p = palette();
   return (
@@ -152,7 +152,7 @@ function Manual() {
   );
 }
 
-export default function Tugas02() {
+export default function StudiKasus02() {
   return <ModulePage m={m} report={<Report />} lab={<Lab />} manual={<Manual />} data={<DataTab m={m}>
     <Callout kind="warn" title="Catatan asal dataset">Laporan menamai dataset “AI Economy Pulse Dataset 2022–2026” (Kaggle belbino). Kolom & isi berkas yang dipakai identik dengan “LLM Agent Failure Analysis Benchmark Dataset” (Kaggle sunil123kumar, Apache 2.0). Aplikasi menyertakan berkas tersebut dengan atribusi ini.</Callout>
   </DataTab>} />;

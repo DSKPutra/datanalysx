@@ -101,3 +101,31 @@ def preprocess(data_key: str, impute: str = "median", outlier: str = "none", iqr
     return {"log": log, "before": before, "after": after, "shape_before": list(get(data_key).shape),
             "shape_after": list(df.shape), "head": df.head(8).astype(str).to_dict(orient="records"),
             "csv": df.to_csv(index=False) if len(df) <= 20000 else None}
+
+
+def columns(data_key: str) -> dict:
+    """Daftar kolom beserta jenisnya (untuk mengisi pilihan di UI)."""
+    df = get(data_key)
+    out = []
+    for c in df.columns:
+        s = df[c]
+        if pd.api.types.is_numeric_dtype(s) and not pd.api.types.is_bool_dtype(s):
+            kind = "numerik"
+        else:
+            avg_len = s.dropna().astype(str).str.len().mean() if s.notna().any() else 0
+            kind = "teks" if (s.nunique() > max(50, len(df) // 20) and avg_len > 25) else "kategorikal"
+        out.append({"name": str(c), "kind": kind, "unique": int(s.nunique()), "missing": int(s.isna().sum())})
+    return {"n_rows": len(df), "columns": out}
+
+
+def simple_pair(data_key: str, x: str, y: str, n_rows: int = 12, log: bool = False) -> dict:
+    """Pasangan X–Y (n baris pertama tanpa nilai kosong) untuk perhitungan manual regresi sederhana,
+    beserta koefisien LinearRegression scikit-learn sebagai pembanding."""
+    from sklearn.linear_model import LinearRegression
+    d = get(data_key)[[x, y]].apply(pd.to_numeric, errors="coerce").dropna()
+    if log:
+        d = d[(d[x] > 0) & (d[y] > 0)]
+        d = np.log(d)
+    d = d.head(n_rows)
+    sk = LinearRegression().fit(d[[x]].values, d[y].values)
+    return {"x": d[x].values, "y": d[y].values, "a_sklearn": float(sk.intercept_), "b_sklearn": float(sk.coef_[0]), "n": len(d)}

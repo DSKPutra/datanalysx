@@ -2,10 +2,10 @@
   "name": "datanalysx",
   "private": true,
   "version": "1.0.0",
-  "description": "DATANALYSX — From Raw Data to Insight. Portofolio interaktif & lab Data Mining (Tugas 01–09), Magister Teknik Informatika Universitas Pamulang.",
+  "description": "DATANALYSX — From Raw Data to Insight. Lab analisis data & data mining di browser: eksplorasi, regresi, klasifikasi, clustering, dan text mining untuk CSV Anda, dengan sembilan studi kasus.",
   "type": "module",
   "license": "MIT",
-  "author": "Dea Saka Kurnia Putra (NIM 261012000111)",
+  "author": "Dea Saka Kurnia Putra",
   "scripts": {
     "sync": "node scripts/sync-assets.mjs",
     "predev": "npm run sync",

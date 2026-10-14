@@ -10,7 +10,7 @@ import { py } from '../lib/pyodide/client';
 import { palette } from '../lib/theme';
 import { useAsync, useJson } from '../lib/useAsync';
 
-const m = bySlug('tugas-06')!;
+const m = bySlug('studi-kasus-06')!;
 const MODES = [
   { value: 'report', label: 'Replikasi laporan (IQR dari seluruh periode)' },
   { value: 'report_none', label: 'Replikasi laporan TANPA penanganan outlier' },
@@ -18,18 +18,8 @@ const MODES = [
   { value: 'none', label: 'Tanpa penanganan outlier (tanpa kebocoran)' },
 ];
 
-function Members() {
-  const { data: r } = useJson<any>('data/tugas-06.json');
-  if (!r) return null;
-  return (
-    <Section title="Kelompok 4" right={<span className="text-xs muted">{r.anggota_sumber}</span>}>
-      <Table head={['No', 'Nama', 'NIM']} rows={r.anggota.map((a: string[], i: number) => [i + 1, a[0], a[1]])} />
-    </Section>
-  );
-}
-
 function Report() {
-  const { data: r } = useJson<any>('data/tugas-06.json');
+  const { data: r } = useJson<any>('data/studi-kasus-06.json');
   if (!r) return <Spinner text="Memuat hasil laporan …" />;
   const p = palette();
   return (
@@ -136,6 +126,6 @@ function Manual() {
   );
 }
 
-export default function Tugas06() {
-  return <ModulePage m={m} summary={<Summary m={m} extra={<Members />} />} report={<Report />} lab={<Lab />} manual={<Manual />} />;
+export default function StudiKasus06() {
+  return <ModulePage m={m} summary={<Summary m={m} />} report={<Report />} lab={<Lab />} manual={<Manual />} />;
 }

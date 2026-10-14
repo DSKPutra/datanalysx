@@ -1,29 +1,6 @@
 {
  "judul": "Naïve Bayes — Klasifikasi Arah IHSG Berbasis Indikator Makro-Finansial Multi-Aset (2010–2026)",
- "sumber": "Laporan Tugas 06 Kelompok 4",
- "anggota": [
-  [
-   "Annisa Nur Islamyah",
-   "261012000103"
-  ],
-  [
-   "Dea Saka Kurnia Putra",
-   "261012000111"
-  ],
-  [
-   "Jihan Nur Esya Djamalullail",
-   "261012000065"
-  ],
-  [
-   "Muhamad Abdul Fikri",
-   "261012000105"
-  ],
-  [
-   "Sofyan Reza Ferianto",
-   "261012000069"
-  ]
- ],
- "anggota_sumber": "Lampiran A (header naive_bayes_ihsg.py)",
+ "sumber": "Laporan studi kasus 06 (proyek tim)",
  "dataset": {
   "observasi": 4277,
   "periode": "2010-01-01 – 2026-05-29",

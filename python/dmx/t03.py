@@ -1,7 +1,7 @@
-"""Tugas 03 — Regresi Linear Sederhana & Berganda: R&D, capex, margin vs pendapatan
+"""Studi Kasus 03 — Regresi Linear Sederhana & Berganda: R&D, capex, margin vs pendapatan
 perusahaan semikonduktor global (2010–2026).
 
-Diringkas dari Lampiran 1 laporan Tugas 03 (python/original/tugas03_regresi_semikonduktor.py):
+Diringkas dari Lampiran 1 laporan studi kasus 03 (python/original/studikasus03_regresi_semikonduktor.py):
 kelas OLS dari nol (koefisien, uji t, uji F, R², VIF, Breusch–Pagan, Durbin–Watson),
 hold-out 80:20 (random_state=42), dan validasi silang 10-lipatan KFold(shuffle, 42).
 """
@@ -220,7 +220,7 @@ def predict(data_key: str, rd: float, capex: float, margin: float) -> dict:
 
 
 def manual_simple(data_key: str, n_rows: int = 10, log: bool = False) -> dict:
-    """Contoh manual rumus kuadrat terkecil regresi sederhana (materi Pertemuan 2):
+    """Contoh manual rumus kuadrat terkecil regresi sederhana:
     b = (nΣXY − ΣXΣY) / (nΣX² − (ΣX)²),  a = (ΣY − bΣX) / n."""
     c = prepare(data_key).head(n_rows)
     x = (np.log(c[RD]) if log else c[RD]).values.astype(float)

@@ -7,8 +7,8 @@ export interface SampleInfo { url: string; label: string; license: string }
 
 /** Pilih dataset contoh (bila lisensinya mengizinkan) atau unggah CSV sendiri.
  *  Memanggil onReady(key) setelah data dimuat ke Python. */
-export default function DataSource({ dataKey, sample, onReady, uploadHint, multiple = false, onMulti }: {
-  dataKey: string; sample?: SampleInfo | null; onReady: (key: string, source: string) => void; uploadHint?: string;
+export default function DataSource({ dataKey, sample, onReady, uploadHint, uploadTitle = 'Dataset contoh tidak disertakan', multiple = false, onMulti }: {
+  dataKey: string; sample?: SampleInfo | null; onReady: (key: string, source: string) => void; uploadHint?: string; uploadTitle?: string;
   multiple?: boolean; onMulti?: (keys: string[]) => void;
 }) {
   const { t } = useI18n();
@@ -69,7 +69,7 @@ export default function DataSource({ dataKey, sample, onReady, uploadHint, multi
         {source && !busy && <span className="text-sm">Data aktif: <strong>{source}</strong></span>}
       </div>
       {sample && <p className="text-xs muted">Dataset contoh: {sample.label} — lisensi {sample.license}.</p>}
-      {!sample && <Callout kind="info" title="Dataset contoh tidak disertakan">{uploadHint ?? 'Lisensi dataset asli tidak mengizinkan redistribusi; silakan unggah berkas Anda sendiri.'}</Callout>}
+      {!sample && <Callout kind="info" title={uploadTitle}>{uploadHint ?? 'Lisensi dataset asli tidak mengizinkan redistribusi; silakan unggah berkas Anda sendiri.'}</Callout>}
       <p className="text-xs muted">🔒 {t('privacy')}</p>
       {err && <Callout kind="warn" title="Gagal memuat data">{err}</Callout>}
     </div>

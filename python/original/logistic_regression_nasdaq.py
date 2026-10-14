@@ -3,10 +3,7 @@
  LAMPIRAN PROGRAM: REGRESI LOGISTIK UNTUK PREDIKSI ARAH HARGA SAHAM
  Studi Kasus Utama: Saham AAPL (Apple Inc.) — NASDAQ Daily OHLC Dataset
  Uji Generalisasi: 20 Emiten Teknologi/Konsumer NASDAQ Berlikuiditas Tinggi
- Program Studi Magister Teknik Informatika - Universitas Pamulang
- Mata Kuliah: Data Mining
- Penulis   : Dea Saka Kurnia Putra
- NIM       : 261012000111
+ Penulis   : Dea Saka Kurnia Putra (2026)
 ==============================================================================
  
 Versi 2 — analisis diperluas dengan:

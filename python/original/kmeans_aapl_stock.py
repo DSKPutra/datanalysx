@@ -2,12 +2,10 @@
 # -*- coding: utf-8 -*-
 """
 =====================================================================================
- LAPORAN TUGAS 08 - KONSEP DAN IMPLEMENTASI ALGORITMA K-MEANS
+ STUDI KASUS 08 - KONSEP DAN IMPLEMENTASI ALGORITMA K-MEANS
  Pengelompokan Hari Perdagangan Saham AAPL 2026 ke dalam "Rezim Pasar"
 -------------------------------------------------------------------------------------
- Nama   : Dea Saka Kurnia Putra            NIM : 261012000111
- Kuliah : Data Mining - Magister Teknik Informatika, Universitas Pamulang (2026/2027)
- Dosen  : Dr. Ir. Agung Budi Susanto, M.M.
+ Penulis : Dea Saka Kurnia Putra (2026)
 -------------------------------------------------------------------------------------
  Cara menjalankan :  python kmeans_aapl_stock.py
  Masukan          :  AAPL_2026_stock_data.csv (satu folder dengan skrip ini)

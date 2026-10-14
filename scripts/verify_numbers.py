@@ -1,5 +1,5 @@
 """Bangkitkan docs/verifikasi-angka.md: angka Hasil Laporan → sumber → hasil reproduksi dmx.
-Jalankan dengan versi pustaka requirements-test.txt. Tugas 04 memerlukan .localdata/AAPL.csv."""
+Jalankan dengan versi pustaka requirements-test.txt. Studi kasus 04 memerlukan .localdata/AAPL.csv."""
 import json, sys, warnings
 from pathlib import Path
 warnings.filterwarnings("ignore")
@@ -61,27 +61,27 @@ for nm, k, v in [("Akurasi", "accuracy", 0.5187), ("Presisi", "precision", 0.495
 add("06", "Baseline mayoritas", 0.4755, "Tabel 4.5", r["baseline_majority"], 5e-5); add("06", "CV AUC", 0.5994, "Subbab 4.9", r["cv_auc_mean"], 5e-5)
 add("06", "Akurasi tanpa outlier handling", 0.4848, "Abstrak", r0["metrics"]["accuracy"], 5e-5); add("06", "Brier tanpa outlier handling", 0.461, "Abstrak", r0["metrics"]["brier"], 5e-4)
 p = t06.model_params("t06"); add("06", "Posterior Turun 21-02-2023", 0.9024, "Tabel 4.4", float(t06.manual_posterior(p)["posterior"][0]), 5e-5)
-e = t07.evaluate("t07"); summ = json.loads((ROOT / "public/data/tugas-07.json").read_text())
+e = t07.evaluate("t07"); summ = json.loads((ROOT / "public/data/studi-kasus-07.json").read_text())
 add("07", "CV GridSearch", summ["gridsearch"]["best_cv_acc"], "model_summary.gridsearch", e["cv_acc"], 5e-5)
 for k in ["accuracy", "precision", "recall", "f1", "roc_auc"]: add("07", f"Uji {k}", summ["knn_test"][k], "model_summary.knn_test", e["test"][k], 5e-5)
-f8 = t08.fit("t08"); s8 = json.loads((ROOT / "public/data/tugas-08.json").read_text())["final_model"]
+f8 = t08.fit("t08"); s8 = json.loads((ROOT / "public/data/studi-kasus-08.json").read_text())["final_model"]
 for k in ["inertia", "silhouette", "dbi", "ch"]: add("08", k, s8[k], "model_summary.final_model", f8[k], 5e-4)
 for i, c in enumerate(["C1", "C2", "C3"]): add("08", f"Ukuran {c}", s8["sizes"][c], "model_summary.final_model", int(f8["sizes"][i]), 0)
 lines = ["# Verifikasi angka “Hasil Laporan”", "",
          "Dibangkitkan oleh `scripts/verify_numbers.py` (Python 3.13, numpy 2.2.5, pandas 2.3.3, scikit-learn 1.7.0, scipy 1.14.1 — sama dengan Pyodide 0.29.5).",
          "Kolom *Laporan* = angka yang ditampilkan di tab Hasil Laporan (dari laporan / model_summary.json); *Reproduksi* = hasil menjalankan modul `python/dmx` pada dataset asli.", "",
-         "| Tugas | Angka | Laporan | Sumber | Reproduksi | Status |", "|---|---|---|---|---|---|"]
+         "| Studi kasus | Angka | Laporan | Sumber | Reproduksi | Status |", "|---|---|---|---|---|---|"]
 lines += [f"| {a} | {b} | {c} | {d} | {e_} | {f_} |" for a, b, c, d, e_, f_ in rows]
 n_ok = sum(1 for r in rows if r[5].startswith("✓"))
 lines += ["", f"**Ringkasan:** {n_ok} dari {len(rows)} angka cocok dalam toleransi pembulatan.", "",
           "## Catatan perbedaan (dilaporkan, tidak diganti diam-diam)",
-          "- **Tugas 01:** scikit-learn ≥ 1.8 menghasilkan solusi `LinearRegression` berbeda (MAE 1,34) karena kolom Volume berorde 10⁸; numpy `lstsq` dan scikit-learn 1.7.0 mereproduksi laporan. Aplikasi & CI dikunci ke 1.7.0.",
-          "- **Tugas 02:** berkas data identik dengan *LLM Agent Failure Analysis Benchmark Dataset* (Apache 2.0), bukan *AI Economy Pulse* yang dikutip laporan.",
-          "- **Tugas 03:** CV Random Forest: RMSE 4,906 / MAE 0,946 (laporan 4,912 / 0,949) — perbedaan implementasi pohon antarversi scikit-learn; R² dan tujuh model lain cocok.",
-          "- **Tugas 04:** laporan menyebut 4.184 baris bersih; kode menghasilkan 4.203 baris bersih → 4.183 observasi (cocok). Baris terakhir pada skrip asli memperoleh target 0 walau Close H+1 tak diketahui; aplikasi menyediakan opsi membuangnya.",
-          "- **Tugas 06:** batas IQR laporan dihitung dari seluruh periode (termasuk data uji) dan baris terakhir ikut dengan target 0; mode ‘benar’ (batas dari data latih) memberi akurasi 52,05%.",
-          "- **Tugas 08:** pada pemilihan K, DBI terbaik live dapat berbeda dari laporan (K = 10) bila n_init diperkecil demi kecepatan browser.",
-          "- **Tugas 09:** laporan belum tersedia — tidak ada angka Hasil Laporan.", "",
-          "Tugas 04 direproduksi dengan data NASDAQ lokal (tidak diredistribusi). Tugas 07–08 dibandingkan dengan model_summary.json resmi."]
+          "- **Studi kasus 01:** scikit-learn ≥ 1.8 menghasilkan solusi `LinearRegression` berbeda (MAE 1,34) karena kolom Volume berorde 10⁸; numpy `lstsq` dan scikit-learn 1.7.0 mereproduksi laporan. Aplikasi & CI dikunci ke 1.7.0.",
+          "- **Studi kasus 02:** berkas data identik dengan *LLM Agent Failure Analysis Benchmark Dataset* (Apache 2.0), bukan *AI Economy Pulse* yang dikutip laporan.",
+          "- **Studi kasus 03:** CV Random Forest: RMSE 4,906 / MAE 0,946 (laporan 4,912 / 0,949) — perbedaan implementasi pohon antarversi scikit-learn; R² dan tujuh model lain cocok.",
+          "- **Studi kasus 04:** laporan menyebut 4.184 baris bersih; kode menghasilkan 4.203 baris bersih → 4.183 observasi (cocok). Baris terakhir pada skrip asli memperoleh target 0 walau Close H+1 tak diketahui; aplikasi menyediakan opsi membuangnya.",
+          "- **Studi kasus 06:** batas IQR laporan dihitung dari seluruh periode (termasuk data uji) dan baris terakhir ikut dengan target 0; mode ‘benar’ (batas dari data latih) memberi akurasi 52,05%.",
+          "- **Studi kasus 08:** pada pemilihan K, DBI terbaik live dapat berbeda dari laporan (K = 10) bila n_init diperkecil demi kecepatan browser.",
+          "- **Studi kasus 09:** laporan belum tersedia — tidak ada angka Hasil Laporan.", "",
+          "Studi kasus 04 direproduksi dengan data NASDAQ lokal (tidak diredistribusi). Studi kasus 07–08 dibandingkan dengan model_summary.json resmi."]
 (ROOT / "docs/verifikasi-angka.md").write_text("\n".join(lines) + "\n")
 print(f"{n_ok}/{len(rows)} cocok"); [print(r) for r in rows if not r[5].startswith("✓")]

@@ -1,6 +1,6 @@
-"""Tugas 06 — Gaussian Naïve Bayes: arah IHSG hari berikutnya dari data makro multi-aset.
+"""Studi Kasus 06 — Gaussian Naïve Bayes: arah IHSG hari berikutnya dari data makro multi-aset.
 
-Diringkas dari python/original/naive_bayes_ihsg.py (tugas kelompok 4):
+Diringkas dari python/original/naive_bayes_ihsg.py (proyek tim):
 interpolasi linear harga aset, return harian (%), VIX_chg, rate_diff = BI_rate − US_rate,
 CPI_chg, winsorization IQR 3× pada lima fitur return, target = IHSG_ret(t+1) > 0,
 split temporal 80:20, GaussianNB tanpa scaling, TimeSeriesSplit 5 lipatan.

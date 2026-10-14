@@ -1,8 +1,8 @@
-"""Tugas 09 — Text Mining komentar publik terkait program Makan Bergizi Gratis (MBG).
+"""Studi Kasus 09 — Text Mining komentar publik terkait program Makan Bergizi Gratis (MBG).
 
-PERHATIAN: laporan Tugas 09 dan skrip textmining_mbg.py BELUM tersedia. Modul ini adalah
-implementasi baru untuk lab aplikasi, mengikuti rancangan pada prompt tugas (tahap
-preprocessing sesuai materi Pertemuan 9), bukan reproduksi hasil laporan.
+PERHATIAN: laporan studi kasus 09 dan skrip textmining_mbg.py BELUM tersedia. Modul ini adalah
+implementasi baru untuk lab aplikasi, mengikuti rancangan aplikasi (tahap
+preprocessing teks Bahasa Indonesia standar), bukan reproduksi hasil laporan.
 
 Etika: nama akun diganti pseudonim (hash), kata kasar disensor pada setiap kutipan,
 dan hasil hanya memetakan sentimen korpus — bukan opini publik Indonesia.

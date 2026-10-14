@@ -1,6 +1,6 @@
 {
  "judul": "Regresi Logistik — Prediksi Arah Harga Saham (NASDAQ Daily OHLC, AAPL)",
- "sumber": "Laporan Pertemuan 04 (Tugas 04)",
+ "sumber": "Laporan studi kasus 04",
  "dataset": {
   "baris_bersih_menurut_laporan": 4184,
   "observasi": 4183,

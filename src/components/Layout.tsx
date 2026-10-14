@@ -21,14 +21,19 @@ export default function Layout({ children }: { children: ReactNode }) {
   const loc = useLocation();
   const nav = [
     { to: '/', label: t('home') },
-    { to: '/regression-lab', label: t('regLab') },
-    { to: '/data-lab', label: t('dataLab') },
+    { to: '/eksplorasi', label: t('explore') },
+    { to: '/regresi', label: t('regression') },
+    { to: '/klasifikasi', label: t('classification') },
+    { to: '/clustering', label: t('clustering') },
+    { to: '/text-mining', label: t('text') },
+  ];
+  const guide = [
     { to: '/perbandingan', label: t('compare') },
     { to: '/pelajaran', label: t('lessons') },
     { to: '/tentang', label: t('about') },
   ];
   const linkCls = ({ isActive }: { isActive: boolean }) =>
-    `rounded-md px-2.5 py-1.5 text-sm font-medium ${isActive ? 'on-brand' : ''}`;
+    `whitespace-nowrap rounded-md px-2.5 py-1.5 text-sm font-medium ${isActive ? 'on-brand' : ''}`;
   const activeStyle = () => ({});
   return (
     <div className="flex min-h-screen flex-col">
@@ -39,32 +44,40 @@ export default function Layout({ children }: { children: ReactNode }) {
             <img src={`${BASE}img/favicon.svg`} alt="" aria-hidden width={36} height={36} className="h-9 w-9" />
             <span className="leading-tight">
               <span className="block font-display text-xl font-bold tracking-wide" style={{ color: 'var(--brand)' }}>DATANALYSX</span>
-              <span className="hidden text-[11px] muted sm:block">Data Mining Lab · UNPAM</span>
+              <span className="hidden text-[11px] muted sm:block">Data Analysis & Data Mining Lab</span>
             </span>
           </Link>
-          <nav className="ml-auto hidden items-center gap-1 lg:flex" aria-label="Navigasi utama">
+          <nav className="ml-auto hidden items-center gap-1 xl:flex" aria-label="Navigasi utama">
             {nav.map((n) => <NavLink key={n.to} to={n.to} end className={linkCls} style={activeStyle}>{n.label}</NavLink>)}
             <details className="relative">
-              <summary className="cursor-pointer list-none rounded-md px-2.5 py-1.5 text-sm font-medium">{t('modules')} ▾</summary>
-              <div className="absolute right-0 mt-2 w-80 rounded-xl border p-2 shadow-lg" style={{ background: 'var(--surface)', borderColor: 'var(--line)' }}>
+              <summary className="cursor-pointer list-none whitespace-nowrap rounded-md px-2.5 py-1.5 text-sm font-medium">{t('modules')} ▾</summary>
+              <div className="absolute right-0 z-50 mt-2 w-80 rounded-xl border p-2 shadow-lg" style={{ background: 'var(--surface)', borderColor: 'var(--line)' }}>
+                <p className="px-2 pb-1 text-xs muted">Contoh penerapan alat pada dataset nyata</p>
                 {MODULES.map((m) => (
                   <Link key={m.slug} to={`/${m.slug}`} className="block rounded-md px-2 py-1.5 text-sm no-underline hover:opacity-80" style={{ color: 'var(--text)' }}>
-                    <strong>Tugas {m.no}</strong> · {m.algo}
+                    <strong>{m.no}</strong> · {m.algo}
                   </Link>
                 ))}
+              </div>
+            </details>
+            <details className="relative">
+              <summary className="cursor-pointer list-none whitespace-nowrap rounded-md px-2.5 py-1.5 text-sm font-medium">{t('guide')} ▾</summary>
+              <div className="absolute right-0 z-50 mt-2 w-60 rounded-xl border p-2 shadow-lg" style={{ background: 'var(--surface)', borderColor: 'var(--line)' }}>
+                {guide.map((g) => <Link key={g.to} to={g.to} className="block rounded-md px-2 py-1.5 text-sm no-underline" style={{ color: 'var(--text)' }}>{g.label}</Link>)}
               </div>
             </details>
           </nav>
           <PyIndicator />
           <button className="btn-ghost !px-2.5" onClick={() => setLang(lang === 'id' ? 'en' : 'id')} aria-label={`${lang === 'id' ? 'EN' : 'ID'} — ganti bahasa / switch language`}>{lang === 'id' ? 'EN' : 'ID'}</button>
           <button className="btn-ghost !px-2.5" onClick={toggle} aria-label={t('theme')} title={t('theme')}>{dark ? '☀' : '☾'}</button>
-          <button className="btn-ghost !px-2.5 lg:hidden" aria-expanded={open} aria-controls="mnav" onClick={() => setOpen(!open)}>☰<span className="sr-only">Menu</span></button>
+          <button className="btn-ghost !px-2.5 xl:hidden" aria-expanded={open} aria-controls="mnav" onClick={() => setOpen(!open)}>☰<span className="sr-only">Menu</span></button>
         </div>
         {open && (
-          <nav id="mnav" className="border-t px-4 py-3 lg:hidden" style={{ borderColor: 'var(--line)' }} aria-label="Navigasi seluler" onClick={() => setOpen(false)}>
+          <nav id="mnav" className="border-t px-4 py-3 xl:hidden" style={{ borderColor: 'var(--line)' }} aria-label="Navigasi seluler" onClick={() => setOpen(false)}>
             <div className="grid grid-cols-2 gap-1">
-              {nav.map((n) => <NavLink key={n.to} to={n.to} end className={linkCls} style={activeStyle}>{n.label}</NavLink>)}
-              {MODULES.map((m) => <NavLink key={m.slug} to={`/${m.slug}`} className={linkCls} style={activeStyle}>Tugas {m.no}</NavLink>)}
+              {[...nav, ...guide].map((n) => <NavLink key={n.to} to={n.to} end className={linkCls} style={activeStyle}>{n.label}</NavLink>)}
+              <p className="col-span-2 mt-2 text-xs muted">{t('modules')}</p>
+              {MODULES.map((m) => <NavLink key={m.slug} to={`/${m.slug}`} className={linkCls} style={activeStyle}>{m.no} · {m.algo.split(' (')[0].split(' &')[0]}</NavLink>)}
             </div>
           </nav>
         )}
@@ -77,8 +90,8 @@ export default function Layout({ children }: { children: ReactNode }) {
               <img src={`${BASE}img/logo-dsk-light.png`} alt="Logo personal branding Dea Saka Kurnia Putra (@PUTRATALKS)" className="h-10 w-auto" width={143} height={40} />
             </span>
             <div className="text-xs muted">
-              <p><strong style={{ color: 'var(--text)' }}>Dea Saka Kurnia Putra</strong> · NIM 261012000111 · S2 TI Reg B 02 (01MKMM002)</p>
-              <p>Data Mining — Magister Teknik Informatika, Universitas Pamulang · Dosen: Dr. Ir. Agung Budi Susanto, M.M. · 2026/2027</p>
+              <p><strong style={{ color: 'var(--text)' }}>Dea Saka Kurnia Putra</strong> · @PUTRATALKS</p>
+              <p>DATANALYSX — Data Analysis & Data Mining Lab · 2026</p>
             </div>
           </div>
           <p className="max-w-md text-xs muted">🔒 {t('privacy')} Tanpa backend, tanpa API key, tanpa pelacakan. Kode MIT; dataset mengikuti lisensi masing-masing.</p>

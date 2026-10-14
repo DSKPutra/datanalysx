@@ -10,7 +10,7 @@ import { py } from '../lib/pyodide/client';
 import { palette } from '../lib/theme';
 import { useAsync, useJson } from '../lib/useAsync';
 
-const m = bySlug('tugas-08')!;
+const m = bySlug('studi-kasus-08')!;
 const SYM = ['triangle-up', 'triangle-down', 'diamond', 'circle', 'square', 'cross', 'x', 'star', 'hexagon', 'pentagon'];
 
 function SyntheticWarning() {
@@ -18,7 +18,7 @@ function SyntheticWarning() {
 }
 
 function Report() {
-  const { data: r } = useJson<any>('data/tugas-08.json');
+  const { data: r } = useJson<any>('data/studi-kasus-08.json');
   if (!r) return <Spinner text="Memuat hasil laporan …" />;
   const p = palette();
   const ks = Object.keys(r.k_selection.per_k);
@@ -27,7 +27,7 @@ function Report() {
   const nin = r.init_convergence.n_init_effect['k-means++'];
   return (
     <div className="space-y-5">
-      <ReportBadge source="model_summary.json Tugas 08" />
+      <ReportBadge source="model_summary.json studi kasus 08" />
       <SyntheticWarning />
       <Section title="Model final: StandardScaler → K-Means (K = 3, k-means++, n_init = 100)">
         <StatGrid>
@@ -182,6 +182,6 @@ function Manual() {
   );
 }
 
-export default function Tugas08() {
+export default function StudiKasus08() {
   return <ModulePage m={m} report={<Report />} lab={<Lab />} manual={<Manual />} />;
 }

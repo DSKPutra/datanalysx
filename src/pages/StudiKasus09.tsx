@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import DataSource from '../components/DataSource';
+import Dataset, { type Column } from '../components/Dataset';
 import ModulePage from '../components/ModulePage';
 import Plot from '../components/Plot';
 import { Callout, ErrorBox, LiveBadge, Section, Select, Slider, Spinner, Stat, StatGrid, Table, Toggle } from '../components/ui';
@@ -10,7 +11,7 @@ import { ensurePackages, py, setResource } from '../lib/pyodide/client';
 import { palette } from '../lib/theme';
 import { useAsync } from '../lib/useAsync';
 
-const m = bySlug('tugas-09')!;
+const m = bySlug('studi-kasus-09')!;
 const LEX = [
   { name: 'inset_positive', url: 'https://raw.githubusercontent.com/fajri91/InSet/master/positive.tsv' },
   { name: 'inset_negative', url: 'https://raw.githubusercontent.com/fajri91/InSet/master/negative.tsv' },
@@ -52,11 +53,11 @@ function ResourceNote({ s }: { s: ReturnType<typeof useResources> }) {
 function Report() {
   return (
     <div className="space-y-5">
-      <Callout kind="warn" title="Laporan Tugas 09 belum tersedia">Belum ada laporan maupun berkas textmining_mbg.py/model_summary.json, sehingga tab ini sengaja kosong dari angka. Seluruh hasil pada tab Lab adalah Hasil Live yang dihitung ulang di browser dari data yang Anda unggah.</Callout>
-      <Section title="Rancangan analisis (dari prompt tugas)">
+      <Callout kind="warn" title="Laporan Studi Kasus 09 belum tersedia">Belum ada laporan maupun berkas textmining_mbg.py/model_summary.json, sehingga tab ini sengaja kosong dari angka. Seluruh hasil pada tab Lab adalah Hasil Live yang dihitung ulang di browser dari data yang Anda unggah.</Callout>
+      <Section title="Rancangan analisis">
         <ul className="prose-dmx">
           <li>Data: komentar-mbg.csv (15.000 × 4) dan MBG_sentiment_analysis.csv (11.375 × 6, tanpa label & tanpa stemming).</li>
-          <li>Preprocessing sesuai materi Pertemuan 9, negasi dipertahankan, stemming Sastrawi.</li>
+          <li>Preprocessing teks Bahasa Indonesia standar, negasi dipertahankan, stemming Sastrawi.</li>
           <li>Label InSet, divalidasi sampel beranotasi (Cohen’s κ); klasifikasi MNB/LogReg/Linear SVM/KNN; LDA/NMF.</li>
           <li>Etika: username disamarkan, kata kasar disensor, bahasa netral.</li>
         </ul>
@@ -65,7 +66,7 @@ function Report() {
   );
 }
 
-function Playground() {
+export function Playground() {
   const res = useResources();
   const [text, setText] = useState(EXAMPLES[1]);
   const [order, setOrder] = useState('slide');
@@ -80,7 +81,7 @@ function Playground() {
       <div className="flex flex-wrap gap-2">{EXAMPLES.map((e, i) => <button key={i} className="btn-ghost text-xs" onClick={() => setText(e)}>Contoh {i + 1}</button>)}</div>
       <p className="text-xs muted">Contoh adalah kalimat ilustratif buatan, bukan kutipan data.</p>
       <div className="grid gap-4 md:grid-cols-3">
-        <Select label="Urutan tahap" value={order} onChange={setOrder} options={[{ value: 'slide', label: 'Materi: stopword → normalisasi' }, { value: 'normalize_first', label: 'Normalisasi → stopword (negasi slang aman)' }]} />
+        <Select label="Urutan tahap" value={order} onChange={setOrder} options={[{ value: 'slide', label: 'Klasik: stopword → normalisasi' }, { value: 'normalize_first', label: 'Normalisasi → stopword (negasi slang aman)' }]} />
         <Toggle label="Pertahankan kata negasi" checked={keepNeg} onChange={setKeepNeg} />
         <Toggle label="Stemming Sastrawi" checked={stem} onChange={setStem} />
       </div>
@@ -96,9 +97,23 @@ function Playground() {
   );
 }
 
-function CorpusLab() {
+export function CorpusLab({ generic = false }: { generic?: boolean }) {
   const res = useResources();
   const [key, setKey] = useState<string | null>(null);
+  const [cols, setCols] = useState<Column[]>([]);
+  const [textCol, setTextCol] = useState('');
+  const [authorCol, setAuthorCol] = useState('');
+  const [dateCol, setDateCol] = useState('');
+  async function onData(k: string, preset?: { text?: string }) {
+    const info = await py<{ columns: Column[] }>('dmx.eda', 'columns', { data_key: k });
+    const names = info.columns.map((c) => c.name);
+    const pick = (cands: string[]) => cands.find((c) => names.includes(c)) ?? '';
+    setCols(info.columns);
+    setTextCol(preset?.text && names.includes(preset.text) ? preset.text : pick(['comment', 'text', 'review', 'content', 'headline']) || (info.columns.find((c) => c.kind === 'teks')?.name ?? names[0]));
+    setAuthorCol(pick(['author', 'user', 'username']));
+    setDateCol(pick(['published_at', 'date', 'created_at', 'timestamp']));
+    setKey(k);
+  }
   const [subset, setSubset] = useState<'all' | 'mbg'>('all');
   const [order, setOrder] = useState('normalize_first');
   const [keepNeg, setKeepNeg] = useState(true);
@@ -113,7 +128,7 @@ function CorpusLab() {
   const top = useAsync<any>();
   const co = useAsync<any>();
   const conc = useAsync<any>();
-  useEffect(() => { if (key && res.data) ov.run(() => py('dmx.t09', 'load_corpus', { data_key: key })); }, [key, res.data, ov.run]);
+  useEffect(() => { if (key && res.data && textCol) ov.run(() => py('dmx.t09', 'load_corpus', { data_key: key, text_col: textCol, author_col: authorCol || null, date_col: dateCol || null })); }, [key, res.data, textCol, authorCol, dateCol, ov.run]);
   useEffect(() => {
     if (!ov.data) return;
     pre.run(async () => {
@@ -130,8 +145,20 @@ function CorpusLab() {
   const sentColor: Record<string, string> = { positif: p.up, netral: p.neutral, negatif: p.down };
   return (
     <div className="space-y-5">
-      <Callout kind="info" title="Dataset MBG tidak disertakan">Lisensi Kaggle neevvv/indonesia-mbg-sentiment-analysis tidak memberi izin redistribusi eksplisit dan data memuat nama akun. Unggah komentar-mbg.csv (kolom author, comment, likes, published_at) — nama akun langsung diganti pseudonim (hash) di browser.</Callout>
-      <DataSource dataKey="t09" sample={null} onReady={setKey} uploadHint="Unggah komentar-mbg.csv atau CSV lain dengan kolom teks bernama comment/text." />
+      {generic ? (
+        <Dataset dataKey="teks" tool="teks" onReady={(i) => onData(i.key, i.preset)} />
+      ) : (<>
+        <Callout kind="info" title="Dataset MBG tidak disertakan">Lisensi Kaggle neevvv/indonesia-mbg-sentiment-analysis tidak memberi izin redistribusi eksplisit dan data memuat nama akun. Unggah komentar-mbg.csv (kolom author, comment, likes, published_at) — nama akun langsung diganti pseudonim (hash) di browser.</Callout>
+        <DataSource dataKey="t09" sample={null} onReady={(k) => onData(k)} uploadHint="Unggah komentar-mbg.csv atau CSV lain dengan kolom teks bernama comment/text." />
+      </>)}
+      {key && cols.length > 0 && (
+        <div className="grid gap-4 md:grid-cols-3">
+          <Select label="Kolom teks" value={textCol} onChange={setTextCol} options={cols.map((c) => ({ value: c.name, label: c.name }))} />
+          <Select label="Kolom penulis (disamarkan)" value={authorCol} onChange={setAuthorCol} options={[{ value: '', label: '(tidak ada)' }, ...cols.map((c) => ({ value: c.name, label: c.name }))]} />
+          <Select label="Kolom tanggal" value={dateCol} onChange={setDateCol} options={[{ value: '', label: '(tidak ada)' }, ...cols.map((c) => ({ value: c.name, label: c.name }))]} />
+        </div>
+      )}
+      {generic && <p className="text-xs muted">Leksikon sentimen InSet dan kamus slang berbahasa Indonesia; teks berbahasa lain akan banyak berlabel netral.</p>}
       <ResourceNote s={res} />
       {ov.data && (
         <Section title="Pemahaman data (sebelum preprocessing)" right={<LiveBadge />}>
@@ -153,7 +180,7 @@ function CorpusLab() {
         <Section title="Preprocessing korpus & label leksikon InSet">
           <div className="grid gap-4 md:grid-cols-4">
             <Select label="Cakupan" value={subset} onChange={setSubset} options={[{ value: 'all', label: 'Korpus penuh' }, { value: 'mbg', label: 'Hanya yang menyebut MBG' }]} />
-            <Select label="Urutan" value={order} onChange={setOrder} options={[{ value: 'normalize_first', label: 'Normalisasi → stopword' }, { value: 'slide', label: 'Stopword → normalisasi (materi)' }]} />
+            <Select label="Urutan" value={order} onChange={setOrder} options={[{ value: 'normalize_first', label: 'Normalisasi → stopword' }, { value: 'slide', label: 'Stopword → normalisasi (klasik)' }]} />
             <Toggle label="Pertahankan negasi" checked={keepNeg} onChange={setKeepNeg} />
             <Toggle label="Stemming" checked={stem} onChange={setStem} />
           </div>
@@ -224,7 +251,7 @@ function Lab() {
   return <div className="space-y-5"><Playground /><CorpusLab /></div>;
 }
 
-function Manual() {
+export function TfidfManual() {
   const [docsText, setDocsText] = useState('makan gratis bagus\ngizi anak tidak bagus\nmakan siang anak sekolah\nprogram gizi makan gratis\nanggaran makan tidak jelas');
   const [smooth, setSmooth] = useState(true);
   const docs = useMemo(() => docsText.split('\n').map((d) => d.trim()).filter(Boolean), [docsText]);
@@ -248,6 +275,6 @@ function Manual() {
   );
 }
 
-export default function Tugas09() {
-  return <ModulePage m={m} report={<Report />} lab={<Lab />} manual={<Manual />} />;
+export default function StudiKasus09() {
+  return <ModulePage m={m} report={<Report />} lab={<Lab />} manual={<TfidfManual />} />;
 }

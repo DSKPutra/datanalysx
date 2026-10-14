@@ -2,15 +2,7 @@
 =====================================================================================
   NAIVE BAYES UNTUK PREDIKSI ARAH PERGERAKAN IHSG BERBASIS INDIKATOR MAKRO-FINANSIAL
 =====================================================================================
-Tugas 06 - Data Mining (Tugas Kelompok)
-Anggota Kelompok:
-  1. Annisa Nur Islamyah            - 261012000103
-  2. Dea Saka Kurnia Putra          - 261012000111
-  3. Jihan Nur Esya Djamalullail    - 261012000065
-  4. Muhamad Abdul Fikri            - 261012000105
-  5. Sofyan Reza Ferianto           - 261012000069
-Prodi  : Magister Teknik Informatika - Universitas Pamulang
-Dosen  : Dr. Ir. Agung Budi Susanto, M.M.
+Studi Kasus 06 — Naive Bayes (proyek tim)
  
 Skrip ini bersifat end-to-end dan reproducible: menjalankan skrip ini dari awal
 akan menghasilkan seluruh angka, tabel, dan grafik yang dikutip di dalam laporan.

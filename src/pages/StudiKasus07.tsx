@@ -10,19 +10,19 @@ import { py } from '../lib/pyodide/client';
 import { palette } from '../lib/theme';
 import { useAsync, useJson } from '../lib/useAsync';
 
-const m = bySlug('tugas-07')!;
+const m = bySlug('studi-kasus-07')!;
 const METRICS = [{ value: 'euclidean', label: 'Euclidean' }, { value: 'manhattan', label: 'Manhattan' }, { value: 'cosine', label: 'Cosine' }, { value: 'chebyshev', label: 'Chebyshev' }] as const;
 const SCALERS = [{ value: 'none', label: 'Tanpa scaling' }, { value: 'standard', label: 'StandardScaler' }, { value: 'minmax', label: 'MinMaxScaler' }] as const;
 const CLS = ['High Reach', 'Viral Hit'];
 
 function Report() {
-  const { data: r } = useJson<any>('data/tugas-07.json');
+  const { data: r } = useJson<any>('data/studi-kasus-07.json');
   if (!r) return <Spinner text="Memuat hasil laporan …" />;
   const p = palette();
   const t = r.knn_test;
   return (
     <div className="space-y-5">
-      <ReportBadge source="model_summary.json Tugas 07" />
+      <ReportBadge source="model_summary.json studi kasus 07" />
       <Section title={`KNN terbaik (${r.gridsearch.best_scaler}, ${r.gridsearch.best_metric}, K = ${r.gridsearch.best_k}, ${r.gridsearch.best_weights})`}>
         <StatGrid>
           <Stat label="CV (GridSearch)" value={pct(r.gridsearch.best_cv_acc)} hint={`${int(r.gridsearch.n_candidates)} kombinasi, ${int(r.gridsearch.n_fits)} fit`} />
@@ -167,6 +167,6 @@ function Manual() {
   );
 }
 
-export default function Tugas07() {
+export default function StudiKasus07() {
   return <ModulePage m={m} report={<Report />} lab={<Lab />} manual={<Manual />} />;
 }

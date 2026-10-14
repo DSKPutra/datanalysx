@@ -1,4 +1,4 @@
-# Sumber: lampiran kode pada laporan Tugas 03; paragraf penjelasan laporan dijadikan komentar.
+# Sumber: lampiran kode pada laporan studi kasus 03; paragraf penjelasan laporan dijadikan komentar.
 # Seluruh perhitungan pada laporan ini dijalankan dengan Python (tanpa pustaka statsmodels) agar proses regresi, uji asumsi, dan validasi sepenuhnya transparan dan dapat direproduksi. Kode berikut disajikan dalam lima bagian: (1) kelas OLS untuk regresi dari nol, (2) pemuatan dan pembersihan data serta pembentukan model, (3) validasi hold-out dan validasi silang 10-lipatan ala widget Test and Score, (4) analisis segmen dan efek tetap perusahaan, dan (5) contoh pembuatan satu visualisasi bergaya widget Orange.
 # 1. ols.py — Kelas regresi OLS dari nol (koefisien, t, F, R², VIF, Breusch–Pagan, Durbin–Watson, jarak Cook)
 import numpy as np, pandas as pd

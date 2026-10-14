@@ -1,6 +1,6 @@
-"""Tugas 04 — Regresi Logistik: arah harga penutupan hari berikutnya dari data OHLC NASDAQ.
+"""Studi Kasus 04 — Regresi Logistik: arah harga penutupan hari berikutnya dari data OHLC NASDAQ.
 
-Diringkas dari python/original/logistic_regression_nasdaq.py (lampiran laporan Tugas 04):
+Diringkas dari python/original/logistic_regression_nasdaq.py (lampiran laporan studi kasus 04):
 pembersihan OHLC, 10 fitur teknikal tanpa look-ahead, split temporal 80:20, StandardScaler
 yang di-fit hanya pada data latih, LogisticRegression L2 (C=1, lbfgs, max_iter=2000, rs=42),
 MLE tanpa regularisasi via IRLS, VIF, walk-forward 5 lipatan, penalaan C (TimeSeriesSplit),
