@@ -7,7 +7,7 @@ Seluruh komputasi Python (numpy, pandas, scikit-learn, scipy) berjalan **di brow
 |---|---|
 | **Pemilik** | Dea Saka Kurnia Putra — NIM 261012000111 — S2 TI Reg B 02 (01MKMM002) |
 | **Mata kuliah** | Data Mining — Dosen: Dr. Ir. Agung Budi Susanto, M.M. — T.A. 2026/2027 |
-| **Demo** | <!--URLS-->GitHub Pages · Netlify · Vercel (lihat bagian *Tautan*)<!--/URLS--> |
+| **Demo** | <!--URLS-->[GitHub Pages](https://dskputra.github.io/datanalysx/) · [Vercel](https://datanalysx.vercel.app) · [Netlify](https://datanalysx.netlify.app)<!--/URLS--> |
 
 ![Beranda](docs/screenshots/home.png)
 
@@ -15,6 +15,9 @@ Seluruh komputasi Python (numpy, pandas, scikit-learn, scipy) berjalan **di brow
 
 <!--LINKS-->
 - Repositori: https://github.com/DSKPutra/datanalysx
+- GitHub Pages: https://dskputra.github.io/datanalysx/ (dideploy otomatis oleh GitHub Actions dari `main`)
+- Vercel: https://datanalysx.vercel.app
+- Netlify: https://datanalysx.netlify.app (situs sudah dibuat; deploy menunggu kredit akun Netlify ditambahkan)
 <!--/LINKS-->
 
 ## Sembilan modul
