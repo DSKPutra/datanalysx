@@ -1,26 +1,32 @@
-# DATANALYSX — ringkasan progres (2026-10-14)
+# claude/datanalysx-summary.md — Ringkasan proyek DATANALYSX (status 14 Okt 2026)
 
-## Selesai
-- Kerangka Vite+React+TS+Tailwind (package.json, config, ESLint), git init (belum di-push).
-- Skrip asli Tugas 01–08 diekstrak ke `python/original/` (T09 belum ada laporan/skrip).
-- Paket Python `python/dmx/` (t01–t09, eda, datalab) untuk Pyodide.
-- pytest `python/tests/` — 18/18 lulus dengan versi pustaka = Pyodide 0.29.5 (`requirements-test.txt`):
-  reproduksi angka laporan T01–T08 + kesetaraan perhitungan manual (< 1e-8).
-- Dataset contoh berlisensi di `public/data/samples/`; T04 (NASDAQ) & T09 (MBG) unggah-saja.
-- `public/data/report/t07|t08_model_summary.json`; logo transparan di `public/img/`.
-- Worker/klien Pyodide: `src/lib/pyodide/`.
+**Aplikasi:** DATANALYSX — “From Raw Data to Insight — Data Mining Lab”. Portofolio & lab interaktif Tugas 01–09 Data Mining (Dea Saka Kurnia Putra, NIM 261012000111; dosen Dr. Ir. Agung Budi Susanto, M.M.).
 
-## Temuan yang perlu dicatat di docs/verifikasi-angka.md
-- scikit-learn ≥1.8 salah hitung LinearRegression T01 (Volume 1e8); 1.7.0 & numpy lstsq cocok laporan.
-- T03 CV Random Forest MAE: laporan 0,949; sklearn 1.7 → 0,946.
-- T04: laporan menyebut 4.184 baris bersih; kode menghasilkan 4.203 (observasi 4.183 cocok).
-- T04 & T06 skrip asli: baris terakhir mendapat target 0 walau H+1 tak diketahui; T06 winsorize IQR pakai seluruh periode (opsi "train" disediakan).
-- T02: CSV identik dengan "LLM Agent Failure Analysis Benchmark" (Apache 2.0), bukan AI Economy Pulse (belbino).
-- T02: failure_type membuat R²≈1 (kebocoran).
+## Tautan
+- Repo: https://github.com/DSKPutra/datanalysx (publik, branch `main`)
+- GitHub Pages: https://dskputra.github.io/datanalysx/ (Actions `pages.yml`, BASE_PATH=/datanalysx/)
+- Vercel: https://datanalysx.vercel.app (proyek `putratalks/datanalysx`; dideploy via CLI)
+- Netlify: https://datanalysx.netlify.app (situs dibuat, ID e5e60491-…; deploy DIBLOKIR karena kredit akun tim “Putra Talks” habis)
 
-## Belum dikerjakan
-- Seluruh UI React (halaman Beranda, /tugas-01…09, Regression Lab, Data Lab, Perbandingan,
-  Pelajaran Metodologi, Tentang & Referensi), pustaka manual TS + Vitest + fixtures,
-  scripts/sync-assets.mjs & postbuild.mjs, index.html, sw.js, JSON Hasil Laporan T01–T06,
-  netlify.toml, vercel.json, GitHub Actions, README, LICENSE, verifikasi-angka.md.
-- Deploy (sudah disetujui): repo DSKPutra/datanalysx + Pages, Netlify, Vercel.
+## Keputusan penting
+- Penomoran mengikuti berkas asli: 01 Regresi NVIDIA, 02 Linear vs RF, 03 Regresi sederhana/berganda (gaya widget Orange), 04 Regresi Logistik NASDAQ, 05 Decision Tree (laporan ADA), 06 Naïve Bayes (kelompok 4), 07 KNN, 08 K-Means, 09 Text Mining (laporan BELUM ada → tanpa Hasil Laporan).
+- Logo UNPAM dihapus atas permintaan; favicon netral + logo personal branding di footer.
+- Pyodide 0.29.5 (scikit-learn 1.7.0). pytest dikunci ke versi yang sama (`requirements-test.txt`) karena sklearn ≥ 1.8 salah mereproduksi Tugas 01.
+- Dataset tidak diredistribusi: NASDAQ OHLC (© pemilik) dan komentar MBG (tanpa izin) → unggah saja. InSet & kamus slang dimuat runtime dari GitHub aslinya.
+- “Hasil Laporan” = `public/data/tugas-XX.json` (bersumber tabel), “Hasil Live” = Pyodide; tidak dicampur.
+
+## Kualitas
+- `docs/verifikasi-angka.md`: 101/104 angka cocok; selisih: T03 CV Random Forest (RMSE 4,906 / MAE 0,946 vs 4,912 / 0,949, beda versi sklearn), T04 “4.184 baris bersih” (kode: 4.203; observasi 4.183 cocok).
+- pytest 18 lulus, Vitest 9 lulus, ESLint/tsc bersih, Lighthouse a11y 100, performa 81–99.
+
+## Temuan audit (sudah ditampilkan di aplikasi)
+- T02: berkas = LLM Agent Failure Analysis Benchmark (Apache 2.0), bukan AI Economy Pulse; failure_type membocorkan target (R²≈1).
+- T04 & T06: baris terakhir mendapat target 0 walau H+1 tak diketahui; T06 batas IQR dihitung dari seluruh periode (mode “benar” disediakan).
+
+## Sisa pekerjaan (perlu tindakan Anda)
+1. Netlify: tambah kredit / pindah tim, lalu Project → Link repository → DSKPutra/datanalysx (build `npm run build`, publish `dist`; netlify.toml sudah ada).
+2. Vercel: Account Settings → Authentication → Connect GitHub (Login Connection), lalu Project datanalysx → Settings → Git → Connect DSKPutra/datanalysx agar auto-deploy dari `main`.
+3. Bila laporan Tugas 09 selesai: isi `public/data/tugas-09.json`, tambah `python/original/textmining_mbg.py`, referensinya ke `public/data/references.json`.
+
+## Menjalankan ulang
+`npm ci && npm run dev` · uji: `npm run lint && npm run typecheck && npm test && npm run build` · `pip install -r requirements-test.txt && python -m pytest python/tests -q` · regenerasi: `python scripts/build_report_json.py`, `python scripts/make_fixtures.py`, `python scripts/verify_numbers.py`.
