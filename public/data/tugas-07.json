@@ -1,0 +1,1932 @@
+{
+  "zip_members": [
+    "METHODOLOGY.md",
+    "README.md",
+    "data_dictionary.csv",
+    "dataset_summary.csv",
+    "instagram_reels_clean.csv",
+    "instagram_reels_clean.parquet",
+    "missing_value_report.csv",
+    "niche_coverage_report.csv",
+    "parameter_statistics_report.csv"
+  ],
+  "data_understanding": {
+    "n_rows": 88,
+    "n_cols": 15,
+    "dtypes": {
+      "post_id": "int64",
+      "shortcode": "str",
+      "creator_handle": "str",
+      "caption": "str",
+      "timestamp_utc": "str",
+      "video_duration_sec": "float64",
+      "views": "int64",
+      "likes": "int64",
+      "comments": "int64",
+      "caption_word_count": "int64",
+      "hashtag_count": "int64",
+      "niche": "str",
+      "engagement_rate_pct": "float64",
+      "virality_score": "float64",
+      "virality_tier": "str"
+    },
+    "missing_total": 0,
+    "missing_per_col": {
+      "post_id": 0,
+      "shortcode": 0,
+      "creator_handle": 0,
+      "caption": 0,
+      "timestamp_utc": 0,
+      "video_duration_sec": 0,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "caption_word_count": 0,
+      "hashtag_count": 0,
+      "niche": 0,
+      "engagement_rate_pct": 0,
+      "virality_score": 0,
+      "virality_tier": 0
+    },
+    "duplicate_rows": 0,
+    "duplicate_post_id": 0,
+    "duplicate_shortcode": 0,
+    "n_creators": 9,
+    "n_niches": 5,
+    "ts_min": "2024-03-09 11:20:14+00:00",
+    "ts_max": "2026-09-08 13:18:09+00:00",
+    "tier_counts": {
+      "High Reach": 49,
+      "Viral Hit": 39
+    },
+    "niche_counts": {
+      "Technology & Gadgets": 23,
+      "Fitness & Lifestyle": 21,
+      "Food & Cooking": 20,
+      "Personal Finance": 19,
+      "Entertainment": 5
+    },
+    "creator_counts": {
+      "techburner": 23,
+      "beerbiceps": 21,
+      "kabitaskitchen": 20,
+      "financewithsharan": 19,
+      "ranveerallahbadia": 1,
+      "onepercentclubshow": 1,
+      "shreyahegde": 1,
+      "manish.u.singh": 1,
+      "onepercentclub": 1
+    },
+    "describe": {
+      "video_duration_sec": {
+        "mean": 60.13,
+        "std": 23.851,
+        "min": 15.7,
+        "25%": 43.25,
+        "50%": 57.0,
+        "75%": 72.75,
+        "max": 123.2
+      },
+      "caption_word_count": {
+        "mean": 50.5,
+        "std": 40.641,
+        "min": 2.0,
+        "25%": 9.75,
+        "50%": 43.5,
+        "75%": 81.25,
+        "max": 153.0
+      },
+      "hashtag_count": {
+        "mean": 3.216,
+        "std": 2.996,
+        "min": 0.0,
+        "25%": 0.0,
+        "50%": 4.0,
+        "75%": 5.0,
+        "max": 19.0
+      },
+      "views": {
+        "mean": 465533.17,
+        "std": 599813.375,
+        "min": 8919.0,
+        "25%": 113395.25,
+        "50%": 217533.0,
+        "75%": 473365.0,
+        "max": 3198411.0
+      },
+      "likes": {
+        "mean": 42440.773,
+        "std": 70466.76,
+        "min": 353.0,
+        "25%": 4591.25,
+        "50%": 11051.5,
+        "75%": 45085.5,
+        "max": 371478.0
+      },
+      "comments": {
+        "mean": 464.614,
+        "std": 1084.351,
+        "min": 6.0,
+        "25%": 72.75,
+        "50%": 145.5,
+        "75%": 396.0,
+        "max": 8704.0
+      },
+      "engagement_rate_pct": {
+        "mean": 7.577,
+        "std": 7.632,
+        "min": 1.06,
+        "25%": 3.913,
+        "50%": 6.205,
+        "75%": 8.682,
+        "max": 66.01
+      },
+      "virality_score": {
+        "mean": 74.547,
+        "std": 13.267,
+        "min": 51.4,
+        "25%": 63.475,
+        "50%": 72.6,
+        "75%": 86.475,
+        "max": 98.1
+      }
+    },
+    "iqr_outliers": {
+      "video_duration_sec": {
+        "q1": 43.25,
+        "q3": 72.75,
+        "lower": -1.0,
+        "upper": 117.0,
+        "n_outlier": 3,
+        "pct": 3.41
+      },
+      "caption_word_count": {
+        "q1": 9.75,
+        "q3": 81.25,
+        "lower": -97.5,
+        "upper": 188.5,
+        "n_outlier": 0,
+        "pct": 0.0
+      },
+      "hashtag_count": {
+        "q1": 0.0,
+        "q3": 5.0,
+        "lower": -7.5,
+        "upper": 12.5,
+        "n_outlier": 2,
+        "pct": 2.27
+      },
+      "views": {
+        "q1": 113395.25,
+        "q3": 473365.0,
+        "lower": -426559.375,
+        "upper": 1013319.625,
+        "n_outlier": 15,
+        "pct": 17.05
+      },
+      "likes": {
+        "q1": 4591.25,
+        "q3": 45085.5,
+        "lower": -56150.125,
+        "upper": 105826.875,
+        "n_outlier": 12,
+        "pct": 13.64
+      },
+      "comments": {
+        "q1": 72.75,
+        "q3": 396.0,
+        "lower": -412.125,
+        "upper": 880.875,
+        "n_outlier": 11,
+        "pct": 12.5
+      },
+      "engagement_rate_pct": {
+        "q1": 3.913,
+        "q3": 8.682,
+        "lower": -3.242,
+        "upper": 15.837,
+        "n_outlier": 5,
+        "pct": 5.68
+      },
+      "virality_score": {
+        "q1": 63.475,
+        "q3": 86.475,
+        "lower": 28.975,
+        "upper": 120.975,
+        "n_outlier": 0,
+        "pct": 0.0
+      }
+    }
+  },
+  "preparation": {
+    "target_def": "Viral Hit (virality_score >= 75) = 1; High Reach = 0",
+    "leakage_cols_excluded": [
+      "views",
+      "likes",
+      "comments",
+      "engagement_rate_pct",
+      "virality_score",
+      "virality_tier"
+    ],
+    "id_cols_excluded": [
+      "post_id",
+      "shortcode",
+      "caption",
+      "timestamp_utc",
+      "creator_handle"
+    ],
+    "num_feats": [
+      "video_duration_sec",
+      "caption_word_count",
+      "caption_char_len",
+      "hashtag_count",
+      "emoji_count",
+      "mention_count",
+      "post_age_days",
+      "hour_sin",
+      "hour_cos"
+    ],
+    "bin_feats": [
+      "is_weekend",
+      "has_question"
+    ],
+    "cat_feats": [
+      "niche"
+    ],
+    "n_features_raw": 12,
+    "ref_date": "2026-09-08 13:18:09+00:00",
+    "class_counts": {
+      "High Reach": 49,
+      "Viral Hit": 39
+    },
+    "class_pct": {
+      "High Reach": 55.68,
+      "Viral Hit": 44.32
+    },
+    "imbalance_ratio": 1.256,
+    "corr_leak_with_target": {
+      "views": 0.442,
+      "likes": 0.548,
+      "comments": 0.284,
+      "engagement_rate_pct": 0.507,
+      "virality_score": 0.868
+    },
+    "feature_describe": {
+      "video_duration_sec": {
+        "count": 88.0,
+        "mean": 60.13,
+        "std": 23.851,
+        "min": 15.7,
+        "25%": 43.25,
+        "50%": 57.0,
+        "75%": 72.75,
+        "max": 123.2
+      },
+      "caption_word_count": {
+        "count": 88.0,
+        "mean": 50.5,
+        "std": 40.641,
+        "min": 2.0,
+        "25%": 9.75,
+        "50%": 43.5,
+        "75%": 81.25,
+        "max": 153.0
+      },
+      "caption_char_len": {
+        "count": 88.0,
+        "mean": 319.58,
+        "std": 233.042,
+        "min": 24.0,
+        "25%": 98.5,
+        "50%": 297.5,
+        "75%": 509.25,
+        "max": 976.0
+      },
+      "hashtag_count": {
+        "count": 88.0,
+        "mean": 3.216,
+        "std": 2.996,
+        "min": 0.0,
+        "25%": 0.0,
+        "50%": 4.0,
+        "75%": 5.0,
+        "max": 19.0
+      },
+      "emoji_count": {
+        "count": 88.0,
+        "mean": 1.33,
+        "std": 0.991,
+        "min": 0.0,
+        "25%": 1.0,
+        "50%": 1.0,
+        "75%": 2.0,
+        "max": 5.0
+      },
+      "mention_count": {
+        "count": 88.0,
+        "mean": 0.148,
+        "std": 0.443,
+        "min": 0.0,
+        "25%": 0.0,
+        "50%": 0.0,
+        "75%": 0.0,
+        "max": 2.0
+      },
+      "post_age_days": {
+        "count": 88.0,
+        "mean": 49.137,
+        "std": 136.085,
+        "min": 0.0,
+        "25%": 8.274,
+        "50%": 17.899,
+        "75%": 33.953,
+        "max": 913.082
+      },
+      "hour_sin": {
+        "count": 88.0,
+        "mean": -0.563,
+        "std": 0.489,
+        "min": -1.0,
+        "25%": -0.966,
+        "50%": -0.707,
+        "75%": -0.259,
+        "max": 0.707
+      },
+      "hour_cos": {
+        "count": 88.0,
+        "mean": -0.082,
+        "std": 0.667,
+        "min": -1.0,
+        "25%": -0.866,
+        "50%": -0.0,
+        "75%": 0.5,
+        "max": 0.966
+      },
+      "is_weekend": {
+        "count": 88.0,
+        "mean": 0.261,
+        "std": 0.442,
+        "min": 0.0,
+        "25%": 0.0,
+        "50%": 0.0,
+        "75%": 1.0,
+        "max": 1.0
+      },
+      "has_question": {
+        "count": 88.0,
+        "mean": 0.261,
+        "std": 0.442,
+        "min": 0.0,
+        "25%": 0.0,
+        "50%": 0.0,
+        "75%": 1.0,
+        "max": 1.0
+      }
+    },
+    "median_by_class": {
+      "post_hour": {
+        "High Reach": 17.0,
+        "Viral Hit": 20.0
+      },
+      "caption_word_count": {
+        "High Reach": 71.0,
+        "Viral Hit": 22.0
+      },
+      "video_duration_sec": {
+        "High Reach": 59.2,
+        "Viral Hit": 51.4
+      },
+      "hashtag_count": {
+        "High Reach": 5.0,
+        "Viral Hit": 3.0
+      },
+      "post_age_days": {
+        "High Reach": 14.18,
+        "Viral Hit": 25.89
+      }
+    },
+    "corr_word_char": 0.975,
+    "day_counts": {
+      "Senin": {
+        "High Reach": 10,
+        "Viral Hit": 3
+      },
+      "Selasa": {
+        "High Reach": 10,
+        "Viral Hit": 3
+      },
+      "Rabu": {
+        "High Reach": 7,
+        "Viral Hit": 10
+      },
+      "Kamis": {
+        "High Reach": 5,
+        "Viral Hit": 5
+      },
+      "Jumat": {
+        "High Reach": 3,
+        "Viral Hit": 9
+      },
+      "Sabtu": {
+        "High Reach": 9,
+        "Viral Hit": 5
+      },
+      "Minggu": {
+        "High Reach": 5,
+        "Viral Hit": 4
+      }
+    },
+    "top4_creators_share": 83,
+    "iqr_features": {
+      "video_duration_sec": 3,
+      "caption_word_count": 0,
+      "caption_char_len": 0,
+      "hashtag_count": 2,
+      "emoji_count": 2,
+      "mention_count": 10,
+      "post_age_days": 15,
+      "hour_sin": 0,
+      "hour_cos": 0
+    },
+    "corr_feat_target": {
+      "video_duration_sec": -0.127,
+      "caption_word_count": -0.378,
+      "caption_char_len": -0.38,
+      "hashtag_count": -0.049,
+      "emoji_count": 0.143,
+      "mention_count": 0.168,
+      "post_age_days": 0.266,
+      "hour_sin": -0.125,
+      "hour_cos": 0.452,
+      "is_weekend": -0.062,
+      "has_question": -0.218
+    },
+    "niche_viral_rate": {
+      "Entertainment": 0.2,
+      "Fitness & Lifestyle": 0.952,
+      "Food & Cooking": 0.1,
+      "Personal Finance": 0.105,
+      "Technology & Gadgets": 0.609
+    }
+  },
+  "split": {
+    "n_train": 66,
+    "n_test": 22,
+    "train_pos": 29,
+    "test_pos": 10,
+    "train_pos_pct": 43.94,
+    "test_pos_pct": 45.45
+  },
+  "scaling_ranges": {
+    "none_min": -1.0,
+    "none_max": 835.0,
+    "range_ratio_none": 810000000000.0
+  },
+  "scaling_comparison": {
+    "none": {
+      "cv_acc_k5": 0.7825,
+      "cv_acc_k5_std": 0.1083,
+      "cv_f1_k5": 0.7322,
+      "cv_auc_k5": 0.7759,
+      "best_k": 7,
+      "cv_acc_bestk": 0.8038,
+      "test_acc_bestk": 0.5909,
+      "test_f1_bestk": 0.5714
+    },
+    "standard": {
+      "cv_acc_k5": 0.7998,
+      "cv_acc_k5_std": 0.106,
+      "cv_f1_k5": 0.7669,
+      "cv_auc_k5": 0.8203,
+      "best_k": 9,
+      "cv_acc_bestk": 0.812,
+      "test_acc_bestk": 0.5909,
+      "test_f1_bestk": 0.6087
+    },
+    "minmax": {
+      "cv_acc_k5": 0.8711,
+      "cv_acc_k5_std": 0.1046,
+      "cv_f1_k5": 0.8578,
+      "cv_auc_k5": 0.9179,
+      "best_k": 3,
+      "cv_acc_bestk": 0.8834,
+      "test_acc_bestk": 0.7273,
+      "test_f1_bestk": 0.7273
+    }
+  },
+  "k_curve": {
+    "k": [
+      1,
+      3,
+      5,
+      7,
+      9,
+      11,
+      13,
+      15,
+      17,
+      19,
+      21,
+      23,
+      25,
+      27,
+      29,
+      31,
+      33,
+      35,
+      37,
+      39,
+      41,
+      43,
+      45,
+      47,
+      49
+    ],
+    "train_acc_uniform": [
+      1.0,
+      0.8557,
+      0.8295,
+      0.8223,
+      0.8189,
+      0.8155,
+      0.8083,
+      0.8007,
+      0.8068,
+      0.8083,
+      0.8151,
+      0.8182,
+      0.8109,
+      0.8022,
+      0.7943,
+      0.7867,
+      0.7726,
+      0.7598,
+      0.7553,
+      0.7317,
+      0.6767,
+      0.6154,
+      0.5814,
+      0.5621,
+      0.5606
+    ],
+    "cv_acc_uniform": [
+      0.7814,
+      0.786,
+      0.7998,
+      0.8057,
+      0.812,
+      0.7997,
+      0.792,
+      0.7935,
+      0.7935,
+      0.8013,
+      0.7998,
+      0.8009,
+      0.7921,
+      0.791,
+      0.7801,
+      0.7721,
+      0.7573,
+      0.7543,
+      0.7542,
+      0.7363,
+      0.6688,
+      0.6033,
+      0.5681,
+      0.5589,
+      0.5604
+    ],
+    "cv_std_uniform": [
+      0.0931,
+      0.1008,
+      0.106,
+      0.0955,
+      0.094,
+      0.0961,
+      0.0977,
+      0.0946,
+      0.0921,
+      0.0873,
+      0.0966,
+      0.1026,
+      0.1053,
+      0.106,
+      0.1053,
+      0.1075,
+      0.1066,
+      0.0962,
+      0.1019,
+      0.0846,
+      0.0965,
+      0.0809,
+      0.0454,
+      0.0294,
+      0.0303
+    ],
+    "train_acc_distance": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "cv_acc_distance": [
+      0.7814,
+      0.786,
+      0.7998,
+      0.8057,
+      0.812,
+      0.8011,
+      0.7949,
+      0.801,
+      0.7981,
+      0.8087,
+      0.8073,
+      0.8162,
+      0.8146,
+      0.8116,
+      0.8114,
+      0.8056,
+      0.804,
+      0.8067,
+      0.8055,
+      0.7993,
+      0.7935,
+      0.7784,
+      0.7784,
+      0.7513,
+      0.7348
+    ],
+    "cv_std_distance": [
+      0.0931,
+      0.1008,
+      0.106,
+      0.0955,
+      0.094,
+      0.0953,
+      0.1006,
+      0.0971,
+      0.0929,
+      0.0884,
+      0.093,
+      0.0981,
+      0.0956,
+      0.0985,
+      0.0927,
+      0.0954,
+      0.1001,
+      0.0987,
+      0.0972,
+      0.0992,
+      0.0969,
+      0.1032,
+      0.104,
+      0.1072,
+      0.1011
+    ],
+    "test_err_uniform": [
+      0.3636,
+      0.3636,
+      0.3636,
+      0.3636,
+      0.4091,
+      0.3636,
+      0.4091,
+      0.4091,
+      0.4091,
+      0.3636,
+      0.4091,
+      0.4091,
+      0.4545,
+      0.4545,
+      0.4545,
+      0.4545,
+      0.4545,
+      0.4091,
+      0.4545,
+      0.4545,
+      0.4545,
+      0.4091,
+      0.4545,
+      0.4545,
+      0.4091
+    ],
+    "best_k_uniform": 9,
+    "best_cv_acc_uniform": 0.812,
+    "cv_acc_k1_uniform": 0.7814,
+    "train_acc_k1_uniform": 1.0,
+    "cv_acc_k49_uniform": 0.5604
+  },
+  "gridsearch": {
+    "n_candidates": 500,
+    "n_splits_total": 25,
+    "n_fits": 12500,
+    "time_sec": 126.08,
+    "best_scaler": "MinMaxScaler",
+    "best_metric": "cosine",
+    "best_p": 2,
+    "best_k": 5,
+    "best_weights": "distance",
+    "best_cv_acc": 0.8846,
+    "best_cv_acc_std": 0.1189,
+    "best_cv_f1": 0.8725,
+    "best_cv_auc": 0.9171,
+    "top10": [
+      {
+        "scaler": "MinMaxScaler",
+        "metric": "cosine",
+        "k": 5,
+        "weights": "distance",
+        "cv_acc": 0.8846,
+        "cv_std": 0.1189,
+        "cv_f1": 0.8725,
+        "cv_auc": 0.9171
+      },
+      {
+        "scaler": "MinMaxScaler",
+        "metric": "cosine",
+        "k": 7,
+        "weights": "distance",
+        "cv_acc": 0.8846,
+        "cv_std": 0.1127,
+        "cv_f1": 0.8719,
+        "cv_auc": 0.92
+      },
+      {
+        "scaler": "MinMaxScaler",
+        "metric": "euclidean",
+        "k": 5,
+        "weights": "distance",
+        "cv_acc": 0.8818,
+        "cv_std": 0.116,
+        "cv_f1": 0.8695,
+        "cv_auc": 0.9128
+      },
+      {
+        "scaler": "MinMaxScaler",
+        "metric": "minkowski(p=3)",
+        "k": 5,
+        "weights": "distance",
+        "cv_acc": 0.8787,
+        "cv_std": 0.1139,
+        "cv_f1": 0.8664,
+        "cv_auc": 0.9025
+      },
+      {
+        "scaler": "MinMaxScaler",
+        "metric": "cosine",
+        "k": 3,
+        "weights": "uniform",
+        "cv_acc": 0.8756,
+        "cv_std": 0.1166,
+        "cv_f1": 0.8638,
+        "cv_auc": 0.9118
+      },
+      {
+        "scaler": "MinMaxScaler",
+        "metric": "manhattan",
+        "k": 3,
+        "weights": "distance",
+        "cv_acc": 0.8727,
+        "cv_std": 0.1158,
+        "cv_f1": 0.8608,
+        "cv_auc": 0.9223
+      },
+      {
+        "scaler": "MinMaxScaler",
+        "metric": "manhattan",
+        "k": 3,
+        "weights": "uniform",
+        "cv_acc": 0.8727,
+        "cv_std": 0.1158,
+        "cv_f1": 0.8608,
+        "cv_auc": 0.9169
+      },
+      {
+        "scaler": "MinMaxScaler",
+        "metric": "cosine",
+        "k": 9,
+        "weights": "distance",
+        "cv_acc": 0.8725,
+        "cv_std": 0.1234,
+        "cv_f1": 0.8584,
+        "cv_auc": 0.9207
+      },
+      {
+        "scaler": "MinMaxScaler",
+        "metric": "euclidean",
+        "k": 3,
+        "weights": "distance",
+        "cv_acc": 0.8725,
+        "cv_std": 0.1261,
+        "cv_f1": 0.8594,
+        "cv_auc": 0.9189
+      },
+      {
+        "scaler": "MinMaxScaler",
+        "metric": "euclidean",
+        "k": 3,
+        "weights": "uniform",
+        "cv_acc": 0.8725,
+        "cv_std": 0.1261,
+        "cv_f1": 0.8594,
+        "cv_auc": 0.9145
+      }
+    ],
+    "best_by_metric": {
+      "chebyshev": 0.871,
+      "cosine": 0.8846,
+      "euclidean": 0.8818,
+      "manhattan": 0.8727,
+      "minkowski(p=3)": 0.8787
+    },
+    "best_by_scaler": {
+      "MinMaxScaler": 0.8846,
+      "StandardScaler": 0.8264
+    },
+    "best_by_weights": {
+      "distance": 0.8846,
+      "uniform": 0.8756
+    }
+  },
+  "knn_test": {
+    "model": "KNN (tuned)",
+    "accuracy": 0.7727,
+    "precision": 0.7273,
+    "recall": 0.8,
+    "f1": 0.7619,
+    "balanced_acc": 0.775,
+    "roc_auc": 0.6667,
+    "avg_precision": 0.5933,
+    "confusion_matrix": [
+      [
+        9,
+        3
+      ],
+      [
+        2,
+        8
+      ]
+    ],
+    "tn": 9,
+    "fp": 3,
+    "fn": 2,
+    "tp": 8,
+    "classification_report": {
+      "High Reach": {
+        "precision": 0.8181818181818182,
+        "recall": 0.75,
+        "f1-score": 0.782608695652174,
+        "support": 12.0
+      },
+      "Viral Hit": {
+        "precision": 0.7272727272727273,
+        "recall": 0.8,
+        "f1-score": 0.7619047619047619,
+        "support": 10.0
+      },
+      "accuracy": 0.7727272727272727,
+      "macro avg": {
+        "precision": 0.7727272727272727,
+        "recall": 0.775,
+        "f1-score": 0.7722567287784678,
+        "support": 22.0
+      },
+      "weighted avg": {
+        "precision": 0.7768595041322315,
+        "recall": 0.7727272727272727,
+        "f1-score": 0.7731978166760776,
+        "support": 22.0
+      }
+    },
+    "specificity": 0.75
+  },
+  "model_comparison": [
+    {
+      "model": "Dummy (most frequent)",
+      "accuracy": 0.5455,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "balanced_acc": 0.5,
+      "roc_auc": 0.5,
+      "avg_precision": 0.4545,
+      "cv_acc": 0.5569,
+      "cv_acc_std": 0.0187,
+      "cv_f1": 0.0,
+      "cv_auc": 0.5,
+      "fit_ms": 5.069,
+      "predict_ms": 2.605
+    },
+    {
+      "model": "Dummy (stratified)",
+      "accuracy": 0.4091,
+      "precision": 0.3333,
+      "recall": 0.3,
+      "f1": 0.3158,
+      "balanced_acc": 0.4,
+      "roc_auc": 0.4,
+      "avg_precision": 0.4182,
+      "cv_acc": 0.5816,
+      "cv_acc_std": 0.0945,
+      "cv_f1": 0.5335,
+      "cv_auc": 0.5774,
+      "fit_ms": 5.342,
+      "predict_ms": 3.193
+    },
+    {
+      "model": "Logistic Regression",
+      "accuracy": 0.6818,
+      "precision": 0.6,
+      "recall": 0.9,
+      "f1": 0.72,
+      "balanced_acc": 0.7,
+      "roc_auc": 0.8417,
+      "avg_precision": 0.8532,
+      "cv_acc": 0.7724,
+      "cv_acc_std": 0.0941,
+      "cv_f1": 0.7297,
+      "cv_auc": 0.8651,
+      "fit_ms": 6.978,
+      "predict_ms": 2.86
+    },
+    {
+      "model": "Gaussian Naive Bayes",
+      "accuracy": 0.7273,
+      "precision": 0.6429,
+      "recall": 0.9,
+      "f1": 0.75,
+      "balanced_acc": 0.7417,
+      "roc_auc": 0.8708,
+      "avg_precision": 0.9147,
+      "cv_acc": 0.8115,
+      "cv_acc_std": 0.0775,
+      "cv_f1": 0.7913,
+      "cv_auc": 0.878,
+      "fit_ms": 5.246,
+      "predict_ms": 2.768
+    },
+    {
+      "model": "Decision Tree",
+      "accuracy": 0.6818,
+      "precision": 0.6154,
+      "recall": 0.8,
+      "f1": 0.6957,
+      "balanced_acc": 0.6917,
+      "roc_auc": 0.6833,
+      "avg_precision": 0.6474,
+      "cv_acc": 0.7727,
+      "cv_acc_std": 0.0924,
+      "cv_f1": 0.7256,
+      "cv_auc": 0.7744,
+      "fit_ms": 5.134,
+      "predict_ms": 3.058
+    },
+    {
+      "model": "Random Forest",
+      "accuracy": 0.7273,
+      "precision": 0.6429,
+      "recall": 0.9,
+      "f1": 0.75,
+      "balanced_acc": 0.7417,
+      "roc_auc": 0.725,
+      "avg_precision": 0.6964,
+      "cv_acc": 0.7635,
+      "cv_acc_std": 0.0947,
+      "cv_f1": 0.7301,
+      "cv_auc": 0.8694,
+      "fit_ms": 352.664,
+      "predict_ms": 33.275
+    },
+    {
+      "model": "KNN default (K=5, tanpa scaling)",
+      "accuracy": 0.5455,
+      "precision": 0.5,
+      "recall": 0.6,
+      "f1": 0.5455,
+      "balanced_acc": 0.55,
+      "roc_auc": 0.5667,
+      "avg_precision": 0.5751,
+      "cv_acc": 0.7249,
+      "cv_acc_std": 0.0945,
+      "cv_f1": 0.6668,
+      "cv_auc": 0.7303,
+      "fit_ms": 4.88,
+      "predict_ms": 3.233
+    },
+    {
+      "model": "KNN (tuned)",
+      "accuracy": 0.7727,
+      "precision": 0.7273,
+      "recall": 0.8,
+      "f1": 0.7619,
+      "balanced_acc": 0.775,
+      "roc_auc": 0.6667,
+      "avg_precision": 0.5933,
+      "cv_acc": 0.8333,
+      "cv_acc_std": 0.0832,
+      "cv_f1": 0.8042,
+      "cv_auc": 0.8746,
+      "fit_ms": 4.884,
+      "predict_ms": 3.506
+    }
+  ],
+  "worked_example": {
+    "q_pos": 1,
+    "n_mixed_test": 14,
+    "test_row_index": 34,
+    "shortcode": "DcFvVKjzu-J",
+    "creator": "manish.u.singh",
+    "timestamp_utc": "2026-08-16 05:44:11+00:00",
+    "actual": 0,
+    "actual_label": "High Reach",
+    "raw_features": {
+      "video_duration_sec": 15.7,
+      "caption_word_count": 8.0,
+      "caption_char_len": 120.0,
+      "hashtag_count": 5.0,
+      "emoji_count": 2.0,
+      "mention_count": 2.0,
+      "post_age_days": 23.3153,
+      "hour_sin": 0.2588,
+      "hour_cos": -0.9659,
+      "is_weekend": 1.0,
+      "has_question": 0.0,
+      "niche": "Entertainment"
+    },
+    "transformed": {
+      "num__video_duration_sec": -0.0801,
+      "num__caption_word_count": 0.04,
+      "num__caption_char_len": 0.1173,
+      "num__hashtag_count": 0.4,
+      "num__emoji_count": 0.5714,
+      "num__mention_count": 0.0,
+      "num__post_age_days": 0.3461,
+      "num__hour_sin": 0.7374,
+      "num__hour_cos": 0.0173,
+      "bin__is_weekend": 1.0,
+      "bin__has_question": 0.0,
+      "cat__niche_Entertainment": 1.0,
+      "cat__niche_Fitness & Lifestyle": 0.0,
+      "cat__niche_Food & Cooking": 0.0,
+      "cat__niche_Personal Finance": 0.0,
+      "cat__niche_Technology & Gadgets": 0.0
+    },
+    "metric": "cosine",
+    "p": 2,
+    "k": 5,
+    "weights": "distance",
+    "neighbors": [
+      {
+        "rank": 1,
+        "train_row_index": 27,
+        "shortcode": "DckondhI7kV",
+        "niche": "Entertainment",
+        "duration": 30.7,
+        "words": 102,
+        "hashtags": 0,
+        "age_days": 11.3,
+        "distance": 0.393,
+        "weight": 2.5448,
+        "label": "High Reach"
+      },
+      {
+        "rank": 2,
+        "train_row_index": 33,
+        "shortcode": "DcX3jBDz4Qz",
+        "niche": "Food & Cooking",
+        "duration": 63.0,
+        "words": 45,
+        "hashtags": 5,
+        "age_days": 16.3,
+        "distance": 0.4047,
+        "weight": 2.471,
+        "label": "High Reach"
+      },
+      {
+        "rank": 3,
+        "train_row_index": 71,
+        "shortcode": "Dc7_QiZzi4e",
+        "niche": "Food & Cooking",
+        "duration": 51.8,
+        "words": 67,
+        "hashtags": 5,
+        "age_days": 2.2,
+        "distance": 0.4225,
+        "weight": 2.3666,
+        "label": "High Reach"
+      },
+      {
+        "rank": 4,
+        "train_row_index": 23,
+        "shortcode": "DYaBOhOKCHP",
+        "niche": "Fitness & Lifestyle",
+        "duration": 46.1,
+        "words": 42,
+        "hashtags": 0,
+        "age_days": 114.9,
+        "distance": 0.4656,
+        "weight": 2.1476,
+        "label": "Viral Hit"
+      },
+      {
+        "rank": 5,
+        "train_row_index": 70,
+        "shortcode": "DcDgotzt1Yr",
+        "niche": "Food & Cooking",
+        "duration": 61.2,
+        "words": 99,
+        "hashtags": 5,
+        "age_days": 24.2,
+        "distance": 0.4783,
+        "weight": 2.0908,
+        "label": "High Reach"
+      }
+    ],
+    "next_after_k": [
+      {
+        "rank": 6,
+        "distance": 0.4854,
+        "label": "Viral Hit"
+      },
+      {
+        "rank": 7,
+        "distance": 0.4883,
+        "label": "Viral Hit"
+      },
+      {
+        "rank": 8,
+        "distance": 0.4938,
+        "label": "High Reach"
+      }
+    ],
+    "nearest_contrib": [
+      {
+        "feature": "num__video_duration_sec",
+        "query": -0.0801,
+        "neighbor": 0.0915,
+        "diff": -0.1716,
+        "contrib": -0.0073
+      },
+      {
+        "feature": "num__caption_word_count",
+        "query": 0.04,
+        "neighbor": 0.6667,
+        "diff": -0.6267,
+        "contrib": 0.0267
+      },
+      {
+        "feature": "num__caption_char_len",
+        "query": 0.1173,
+        "neighbor": 0.6679,
+        "diff": -0.5506,
+        "contrib": 0.0783
+      },
+      {
+        "feature": "num__hashtag_count",
+        "query": 0.4,
+        "neighbor": 0.0,
+        "diff": 0.4,
+        "contrib": 0.0
+      },
+      {
+        "feature": "num__emoji_count",
+        "query": 0.5714,
+        "neighbor": 0.0,
+        "diff": 0.5714,
+        "contrib": 0.0
+      },
+      {
+        "feature": "num__mention_count",
+        "query": 0.0,
+        "neighbor": 0.0,
+        "diff": 0.0,
+        "contrib": 0.0
+      },
+      {
+        "feature": "num__post_age_days",
+        "query": 0.3461,
+        "neighbor": 0.1667,
+        "diff": 0.1794,
+        "contrib": 0.0577
+      },
+      {
+        "feature": "num__hour_sin",
+        "query": 0.7374,
+        "neighbor": 0.7374,
+        "diff": 0.0,
+        "contrib": 0.5438
+      },
+      {
+        "feature": "num__hour_cos",
+        "query": 0.0173,
+        "neighbor": 0.0173,
+        "diff": 0.0,
+        "contrib": 0.0003
+      },
+      {
+        "feature": "bin__is_weekend",
+        "query": 1.0,
+        "neighbor": 0.0,
+        "diff": 1.0,
+        "contrib": 0.0
+      },
+      {
+        "feature": "bin__has_question",
+        "query": 0.0,
+        "neighbor": 0.0,
+        "diff": 0.0,
+        "contrib": 0.0
+      },
+      {
+        "feature": "cat__niche_Entertainment",
+        "query": 1.0,
+        "neighbor": 1.0,
+        "diff": 0.0,
+        "contrib": 1.0
+      },
+      {
+        "feature": "cat__niche_Fitness & Lifestyle",
+        "query": 0.0,
+        "neighbor": 0.0,
+        "diff": 0.0,
+        "contrib": 0.0
+      },
+      {
+        "feature": "cat__niche_Food & Cooking",
+        "query": 0.0,
+        "neighbor": 0.0,
+        "diff": 0.0,
+        "contrib": 0.0
+      },
+      {
+        "feature": "cat__niche_Personal Finance",
+        "query": 0.0,
+        "neighbor": 0.0,
+        "diff": 0.0,
+        "contrib": 0.0
+      },
+      {
+        "feature": "cat__niche_Technology & Gadgets",
+        "query": 0.0,
+        "neighbor": 0.0,
+        "diff": 0.0,
+        "contrib": 0.0
+      }
+    ],
+    "nearest_distance_manual": 0.392965,
+    "nearest_dot": 1.69944,
+    "norm_query": 1.781049,
+    "norm_neighbor": 1.571869,
+    "votes": {
+      "High Reach": 9.4732,
+      "Viral Hit": 2.1476
+    },
+    "proba_manual": [
+      0.815191,
+      0.184809
+    ],
+    "proba_sklearn": [
+      0.815191,
+      0.184809
+    ],
+    "pred_manual": "High Reach",
+    "pred_sklearn": "High Reach",
+    "assert_passed": true,
+    "max_abs_diff_proba": 1.1102230246251565e-16,
+    "d_min": 0.393,
+    "d_max": 0.9727,
+    "d_median": 0.7232
+  },
+  "learning_curve": {
+    "sizes": [
+      12,
+      20,
+      28,
+      36,
+      45,
+      53,
+      61,
+      70
+    ],
+    "train": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "val": [
+      0.7476,
+      0.7807,
+      0.8058,
+      0.8208,
+      0.8208,
+      0.8244,
+      0.8378,
+      0.8333
+    ],
+    "val_std": [
+      0.1134,
+      0.0919,
+      0.0849,
+      0.0881,
+      0.0821,
+      0.0735,
+      0.0725,
+      0.0832
+    ]
+  },
+  "validation_curve": {
+    "train": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "val": [
+      0.85,
+      0.8727,
+      0.891,
+      0.8878,
+      0.8787,
+      0.8664,
+      0.8559,
+      0.8513,
+      0.8392,
+      0.8362,
+      0.8333,
+      0.8258,
+      0.8135,
+      0.8043,
+      0.8012,
+      0.8012,
+      0.8026,
+      0.8087,
+      0.8163,
+      0.824,
+      0.8269,
+      0.8314,
+      0.848,
+      0.857,
+      0.8601
+    ]
+  },
+  "permutation_importance": [
+    {
+      "feature": "niche",
+      "mean": 0.2689,
+      "std": 0.0896
+    },
+    {
+      "feature": "is_weekend",
+      "mean": 0.0413,
+      "std": 0.04
+    },
+    {
+      "feature": "hour_cos",
+      "mean": 0.0093,
+      "std": 0.0324
+    },
+    {
+      "feature": "mention_count",
+      "mean": 0.0,
+      "std": 0.0
+    },
+    {
+      "feature": "hour_sin",
+      "mean": -0.0025,
+      "std": 0.0264
+    },
+    {
+      "feature": "caption_char_len",
+      "mean": -0.0041,
+      "std": 0.02
+    },
+    {
+      "feature": "emoji_count",
+      "mean": -0.0063,
+      "std": 0.0263
+    },
+    {
+      "feature": "post_age_days",
+      "mean": -0.0066,
+      "std": 0.0228
+    },
+    {
+      "feature": "hashtag_count",
+      "mean": -0.0077,
+      "std": 0.0188
+    },
+    {
+      "feature": "has_question",
+      "mean": -0.0078,
+      "std": 0.019
+    },
+    {
+      "feature": "video_duration_sec",
+      "mean": -0.0119,
+      "std": 0.039
+    },
+    {
+      "feature": "caption_word_count",
+      "mean": -0.0126,
+      "std": 0.0194
+    }
+  ],
+  "pca": {
+    "evr": [
+      0.2585,
+      0.2219
+    ],
+    "evr_sum": 0.4804,
+    "test_acc_2d_bestk": 0.6364,
+    "test_acc_2d_by_metric": {
+      "euclidean": 0.6818,
+      "cosine": 0.6364
+    }
+  },
+  "curse_of_dimensionality": {
+    "noise_dims": [
+      0,
+      2,
+      5,
+      10,
+      20,
+      50,
+      100,
+      200
+    ],
+    "knn": [
+      0.8333,
+      0.8536,
+      0.8571,
+      0.8412,
+      0.8412,
+      0.8354,
+      0.8294,
+      0.7846
+    ],
+    "knn_std": [
+      0.0832,
+      0.0816,
+      0.0797,
+      0.0826,
+      0.0826,
+      0.0818,
+      0.0775,
+      0.0919
+    ],
+    "knn_euc_std": [
+      0.7513,
+      0.7469,
+      0.671,
+      0.7326,
+      0.6394,
+      0.6275,
+      0.6128,
+      0.5855
+    ],
+    "lr": [
+      0.7935,
+      0.7911,
+      0.7932,
+      0.7959,
+      0.7731,
+      0.7773,
+      0.7502,
+      0.7619
+    ],
+    "contrast": [
+      5.6876,
+      3.6463,
+      2.4982,
+      1.8505,
+      1.1981,
+      0.688,
+      0.4206,
+      0.2662
+    ],
+    "dims_theory": [
+      1,
+      2,
+      5,
+      10,
+      20,
+      50,
+      100,
+      200,
+      500,
+      1000
+    ],
+    "contrast_theory": [
+      386.3856,
+      21.6266,
+      5.5217,
+      2.3908,
+      1.2341,
+      0.5434,
+      0.3624,
+      0.2238,
+      0.1359,
+      0.1043
+    ]
+  },
+  "feature_count_curve": {
+    "order": [
+      "niche",
+      "is_weekend",
+      "hour_cos",
+      "mention_count",
+      "hour_sin",
+      "caption_char_len",
+      "emoji_count",
+      "post_age_days",
+      "hashtag_count",
+      "has_question",
+      "video_duration_sec",
+      "caption_word_count"
+    ],
+    "n": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "knn": [
+      0.8183,
+      0.8641,
+      0.8102,
+      0.8102,
+      0.8215,
+      0.8184,
+      0.808,
+      0.8159,
+      0.826,
+      0.8388,
+      0.8435,
+      0.8333
+    ],
+    "knn_std": [
+      0.0909,
+      0.0798,
+      0.0785,
+      0.0785,
+      0.0732,
+      0.0786,
+      0.0795,
+      0.0743,
+      0.0704,
+      0.0684,
+      0.0836,
+      0.0832
+    ],
+    "best_n": 2,
+    "best_acc": 0.8641
+  },
+  "timing": {
+    "sizes": [
+      500,
+      1000,
+      2000,
+      5000,
+      10000,
+      20000,
+      50000,
+      100000
+    ],
+    "knn_fit": [
+      0.544,
+      0.509,
+      0.629,
+      0.828,
+      1.388,
+      1.544,
+      2.959,
+      6.395
+    ],
+    "knn_pred": [
+      2.003,
+      3.602,
+      11.345,
+      51.327,
+      30.995,
+      52.654,
+      132.768,
+      248.123
+    ],
+    "knn_kd_fit": [
+      0.95,
+      1.44,
+      2.772,
+      5.953,
+      14.802,
+      29.131,
+      79.102,
+      190.732
+    ],
+    "knn_kd_pred": [
+      5.309,
+      5.746,
+      7.0,
+      9.992,
+      14.027,
+      22.972,
+      42.019,
+      119.906
+    ],
+    "lr_fit": [
+      2.555,
+      3.527,
+      6.38,
+      13.471,
+      25.499,
+      37.872,
+      407.698,
+      626.112
+    ],
+    "lr_pred": [
+      0.128,
+      0.139,
+      0.193,
+      0.196,
+      0.268,
+      0.268,
+      0.256,
+      0.279
+    ]
+  },
+  "imbalance": {
+    "Tanpa resampling": {
+      "acc": 0.891,
+      "recall_viral": 0.862,
+      "precision_viral": 0.9058,
+      "f1_viral": 0.8751,
+      "balanced_acc": 0.8878
+    },
+    "Random Oversampling": {
+      "acc": 0.8833,
+      "recall_viral": 0.8693,
+      "precision_viral": 0.8878,
+      "f1_viral": 0.8697,
+      "balanced_acc": 0.8815
+    },
+    "SMOTE": {
+      "acc": 0.891,
+      "recall_viral": 0.8653,
+      "precision_viral": 0.9029,
+      "f1_viral": 0.8758,
+      "balanced_acc": 0.888
+    },
+    "Random Undersampling": {
+      "acc": 0.8725,
+      "recall_viral": 0.8653,
+      "precision_viral": 0.8727,
+      "f1_viral": 0.8591,
+      "balanced_acc": 0.8712
+    }
+  },
+  "sample_rows": [
+    {
+      "shortcode": "Dbno9qGsvOe",
+      "niche": "Personal Finance",
+      "video_duration_sec": 72.9,
+      "caption_word_count": 113,
+      "hashtag_count": 0,
+      "emoji_count": 0,
+      "post_hour": 18,
+      "post_age_days": 35.0,
+      "virality_tier": "High Reach"
+    },
+    {
+      "shortcode": "Db_HTHuP1IS",
+      "niche": "Technology & Gadgets",
+      "video_duration_sec": 67.4,
+      "caption_word_count": 3,
+      "hashtag_count": 4,
+      "emoji_count": 2,
+      "post_hour": 21,
+      "post_age_days": 25.89,
+      "virality_tier": "Viral Hit"
+    },
+    {
+      "shortcode": "Dc592BiNWBK",
+      "niche": "Personal Finance",
+      "video_duration_sec": 111.1,
+      "caption_word_count": 96,
+      "hashtag_count": 5,
+      "emoji_count": 0,
+      "post_hour": 18,
+      "post_age_days": 3.03,
+      "virality_tier": "High Reach"
+    },
+    {
+      "shortcode": "DcgibOIB7FX",
+      "niche": "Fitness & Lifestyle",
+      "video_duration_sec": 22.7,
+      "caption_word_count": 59,
+      "hashtag_count": 3,
+      "emoji_count": 2,
+      "post_hour": 21,
+      "post_age_days": 12.91,
+      "virality_tier": "Viral Hit"
+    },
+    {
+      "shortcode": "Dc_JScUsyv0",
+      "niche": "Personal Finance",
+      "video_duration_sec": 25.6,
+      "caption_word_count": 72,
+      "hashtag_count": 5,
+      "emoji_count": 2,
+      "post_hour": 18,
+      "post_age_days": 1.02,
+      "virality_tier": "High Reach"
+    },
+    {
+      "shortcode": "DcRQmTHvFdz",
+      "niche": "Technology & Gadgets",
+      "video_duration_sec": 72.7,
+      "caption_word_count": 3,
+      "hashtag_count": 5,
+      "emoji_count": 2,
+      "post_hour": 22,
+      "post_age_days": 18.84,
+      "virality_tier": "Viral Hit"
+    }
+  ],
+  "figures": [
+    {
+      "file": "G01_distribusi_target.png",
+      "title": "Distribusi kelas target dan virality_score dengan ambang 75"
+    },
+    {
+      "file": "G02_histogram_fitur.png",
+      "title": "Histogram fitur numerik menurut kelas target"
+    },
+    {
+      "file": "G03_boxplot_fitur.png",
+      "title": "Boxplot fitur numerik per kelas dan outlier IQR"
+    },
+    {
+      "file": "G04_heatmap_korelasi.png",
+      "title": "Heatmap korelasi fitur, kolom leakage, dan target"
+    },
+    {
+      "file": "G05_niche_hari.png",
+      "title": "Sebaran kelas target menurut niche dan hari unggah"
+    },
+    {
+      "file": "G06_sebelum_sesudah_scaling.png",
+      "title": "Rentang fitur numerik sebelum dan sesudah scaling"
+    },
+    {
+      "file": "G07_perbandingan_scaling.png",
+      "title": "Perbandingan akurasi KNN tanpa scaling, StandardScaler, dan MinMaxScaler"
+    },
+    {
+      "file": "G08_error_vs_k.png",
+      "title": "Kurva error rate terhadap K (elbow)"
+    },
+    {
+      "file": "G09_heatmap_gridsearch.png",
+      "title": "Heatmap hasil GridSearchCV K × metric jarak"
+    },
+    {
+      "file": "G10_confusion_matrix.png",
+      "title": "Confusion matrix KNN pada data uji"
+    },
+    {
+      "file": "G11_roc_curve.png",
+      "title": "Kurva ROC KNN dan model pembanding"
+    },
+    {
+      "file": "G12_precision_recall.png",
+      "title": "Kurva precision-recall KNN dan model pembanding"
+    },
+    {
+      "file": "G17_ilustrasi_tetangga.png",
+      "title": "Ilustrasi K tetangga terdekat untuk contoh perhitungan manual"
+    },
+    {
+      "file": "G13_learning_curve.png",
+      "title": "Learning curve KNN"
+    },
+    {
+      "file": "G14_validation_curve.png",
+      "title": "Validation curve KNN terhadap K"
+    },
+    {
+      "file": "G15_permutation_importance.png",
+      "title": "Permutation feature importance KNN"
+    },
+    {
+      "file": "G16_decision_boundary_pca.png",
+      "title": "Decision boundary KNN pada ruang PCA 2D"
+    },
+    {
+      "file": "G19_curse_of_dimensionality.png",
+      "title": "Akurasi dan kontras jarak terhadap jumlah dimensi"
+    },
+    {
+      "file": "G23_akurasi_vs_jumlah_fitur.png",
+      "title": "Akurasi KNN terhadap jumlah fitur asli yang digunakan"
+    },
+    {
+      "file": "G20_waktu_komputasi.png",
+      "title": "Waktu fit dan prediksi terhadap ukuran data"
+    },
+    {
+      "file": "G21_class_imbalance.png",
+      "title": "Perbandingan strategi penanganan class imbalance"
+    },
+    {
+      "file": "G18_perbandingan_model.png",
+      "title": "Perbandingan kinerja KNN dengan baseline dan model pembanding"
+    },
+    {
+      "file": "G22_scatter_fitur.png",
+      "title": "Sebaran dua dimensi fitur utama menurut kelas"
+    },
+    {
+      "file": "G00_crisp_dm.png",
+      "title": "Diagram alur CRISP-DM penelitian"
+    }
+  ],
+  "final_feature_names": [
+    "num__video_duration_sec",
+    "num__caption_word_count",
+    "num__caption_char_len",
+    "num__hashtag_count",
+    "num__emoji_count",
+    "num__mention_count",
+    "num__post_age_days",
+    "num__hour_sin",
+    "num__hour_cos",
+    "bin__is_weekend",
+    "bin__has_question",
+    "cat__niche_Entertainment",
+    "cat__niche_Fitness & Lifestyle",
+    "cat__niche_Food & Cooking",
+    "cat__niche_Personal Finance",
+    "cat__niche_Technology & Gadgets"
+  ],
+  "n_features_transformed": 16,
+  "versions": {
+    "python": "3.11.15",
+    "sklearn": "1.8.0",
+    "pandas": "3.0.2",
+    "numpy": "2.4.4"
+  }
+}

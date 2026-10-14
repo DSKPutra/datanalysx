@@ -1,0 +1,7 @@
+# Dikunci sama dengan paket di Pyodide 0.29.5 agar hasil pytest = hasil di browser.
+numpy==2.2.5
+pandas==2.3.3
+scikit-learn==1.7.0
+scipy==1.14.1
+Sastrawi==1.0.1
+pytest==8.3.4

@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #fafaf7;
+  --surface: #ffffff;
+  --surface-2: #f2f5f1;
+  --text: #121814;
+  --muted: #4f5b55;
+  --line: #d9e1db;
+  --brand: #0b4f3a;
+  --brand-2: #0b7a53;
+  --gold: #b8860b;
+  --up: #009e73;
+  --down: #d55e00;
+  --neutral: #8a8f8c;
+  --c1: #0072b2;
+  --c2: #e69f00;
+  --c3: #009e73;
+  --warn-bg: #fff6e0;
+  --warn-line: #e3b04b;
+  --on-brand: #ffffff;
+  color-scheme: light;
+}
+:root[data-theme='dark'] {
+  --bg: #0b100e;
+  --surface: #121a16;
+  --surface-2: #18221d;
+  --text: #e8efe9;
+  --muted: #a3b2aa;
+  --line: #2a3631;
+  --brand: #4fc79a;
+  --brand-2: #1fa374;
+  --gold: #d9b24c;
+  --up: #2bc59a;
+  --down: #f08a4b;
+  --neutral: #9aa29e;
+  --c1: #56b4e9;
+  --c2: #f0b330;
+  --c3: #2bc59a;
+  --warn-bg: #2a2412;
+  --warn-line: #8a6d22;
+  --on-brand: #04120c;
+  color-scheme: dark;
+}
+
+html { background: var(--bg); }
+body { background: var(--bg); color: var(--text); font-family: Inter, 'Inter Fallback', Calibri, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, .font-display { font-family: 'Cormorant Garamond', 'Cormorant Fallback', Cambria, Georgia, serif; }
+/* Fallback yang ukurannya disetel mendekati Cormorant agar pergantian font tidak menggeser tata letak. */
+@font-face { font-family: 'Cormorant Fallback'; src: local('Georgia'), local('Times New Roman'); size-adjust: 88%; ascent-override: 95%; descent-override: 30%; }
+@font-face { font-family: 'Inter Fallback'; src: local('Arial'), local('Helvetica'); size-adjust: 107%; }
+a { color: var(--brand-2); }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; border-radius: 4px; }
+
+@layer components {
+  .card { @apply rounded-2xl border p-5; background: var(--surface); border-color: var(--line); }
+  .muted { color: var(--muted); }
+  .btn { @apply inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed; }
+  .btn-primary { @apply btn text-white; background: var(--brand); }
+  :root[data-theme='dark'] .btn-primary { color: #04120c; }
+  .btn-primary:hover { background: var(--brand-2); }
+  .btn-ghost { @apply btn border; border-color: var(--line); background: var(--surface); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--brand-2); }
+  .chip { @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold; }
+  .input { @apply w-full rounded-lg border px-3 py-2 text-sm; background: var(--surface); border-color: var(--line); color: var(--text); }
+  .label { @apply mb-1 block text-xs font-semibold uppercase tracking-wide; color: var(--muted); }
+  .tbl { @apply w-full border-collapse text-sm; }
+  .tbl th { @apply border-b px-2 py-1.5 text-left font-semibold; border-color: var(--line); background: var(--surface-2); }
+  .tbl td { @apply border-b px-2 py-1.5 align-top; border-color: var(--line); }
+  .tbl tr:nth-child(even) td { background: color-mix(in srgb, var(--surface-2) 45%, transparent); }
+  .num { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+  .prose-dmx p { @apply mb-3 leading-relaxed; }
+  .prose-dmx ul { @apply mb-3 list-disc pl-5; }
+  .prose-dmx li { @apply mb-1; }
+}
+.on-brand { background: var(--brand); color: var(--on-brand) !important; }
+.code-block { background: #0d1411; color: #e3ece6; }
+.code-block .hljs-keyword, .code-block .hljs-built_in { color: #6ee7b7; }
+.code-block .hljs-string { color: #f5d38a; }
+.code-block .hljs-comment { color: #8a9a92; font-style: italic; }
+.code-block .hljs-number { color: #93c5fd; }
+.code-block .hljs-title, .code-block .hljs-function { color: #a5f3fc; }
+.skip-link { position: absolute; left: -999px; top: 8px; }
+.skip-link:focus { left: 8px; z-index: 50; background: var(--surface); padding: 8px 12px; }

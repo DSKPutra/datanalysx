@@ -1,0 +1,249 @@
+{
+ "judul": "Analisis Regresi Linear Sederhana dan Berganda — Industri Semikonduktor (2010–2026)",
+ "sumber": "Laporan Pertemuan 03 (Tugas 03)",
+ "csv_ditinjau": [
+  [
+   "chip_companies_financials.csv",
+   "Keuangan tahunan 40 perusahaan chip, 2010–2026",
+   617,
+   "Layak: banyak observasi, beberapa variabel numerik kontinu"
+  ],
+  [
+   "ai_chip_market.csv",
+   "Spesifikasi & pengiriman chip AI, 2020–2026",
+   120,
+   "Kurang layak: ASP hampir konstan; pendapatan = unit × ASP (identitas)"
+  ],
+  [
+   "chip_prices.csv",
+   "Harga bulanan DRAM, NAND, HBM3, H100, B200",
+   405,
+   "Cocok untuk tren deret waktu, bukan regresi antarvariabel"
+  ],
+  [
+   "fab_capacity.csv",
+   "Kapasitas wafer bulanan per pabrik",
+   313,
+   "Kurang layak: hanya satu variabel numerik utama"
+  ],
+  [
+   "export_controls.csv",
+   "Peristiwa kebijakan kontrol ekspor",
+   34,
+   "Terlalu kecil dan bersifat kategorikal"
+  ]
+ ],
+ "csv_sumber": "Tabel 1",
+ "pembersihan": {
+  "awal": 617,
+  "nol_dibuang": 28,
+  "analisis": 589,
+  "perusahaan": 39,
+  "sumber": "Tabel 3; Subbab 3.3"
+ },
+ "statistik": [
+  [
+   "Pendapatan (miliar USD)",
+   15.03,
+   21.75,
+   0.1,
+   7.56,
+   250.68,
+   4.55
+  ],
+  [
+   "Belanja R&D (miliar USD)",
+   2.05,
+   4.18,
+   0.01,
+   1.03,
+   62.67,
+   8.71
+  ],
+  [
+   "Capex (miliar USD)",
+   3.27,
+   6.13,
+   0.01,
+   1.09,
+   50.96,
+   3.77
+  ],
+  [
+   "Margin operasi (%)",
+   31.3,
+   10.86,
+   3.3,
+   31.3,
+   64.2,
+   -0.01
+  ]
+ ],
+ "statistik_sumber": "Tabel 4",
+ "model": [
+  {
+   "model": "Sederhana – linear",
+   "persamaan": "Pendapatan′ = 5,324 + 4,726·R&D",
+   "R2": 0.8234,
+   "sumber": "Tabel 5"
+  },
+  {
+   "model": "Sederhana – log-log",
+   "persamaan": "ln(Pendapatan)′ = 2,072 + 0,915·ln(R&D)",
+   "R2": 0.8776,
+   "sumber": "Tabel 7"
+  },
+  {
+   "model": "Berganda – linear",
+   "persamaan": "Pendapatan′ = 2,725 + 3,848·R&D + 1,477·Capex − 0,013·Margin",
+   "R2": 0.9691,
+   "catatan": "Margin tidak signifikan (p = 0,358)",
+   "sumber": "Tabel 9, Tabel 11"
+  },
+  {
+   "model": "Berganda – log-log",
+   "persamaan": "ln(Pendapatan)′ = 1,969 + 0,697·ln R&D + 0,271·ln Capex + 0,0031·Margin",
+   "R2": 0.9884,
+   "catatan": "VIF 1,47 / 1,47 / 1,02",
+   "sumber": "Tabel 10, Tabel 11"
+  }
+ ],
+ "efek_tetap": {
+  "elastisitas": 0.9991,
+  "se": 0.0006,
+  "R2_within": 0.9998,
+  "R2_total": 0.99994,
+  "sumber": "Tabel 16"
+ },
+ "holdout": [
+  [
+   "Sederhana (linear)",
+   100.81,
+   10.04,
+   5.65,
+   0.8561
+  ],
+  [
+   "Sederhana (log-log)",
+   110.35,
+   10.5,
+   4.31,
+   0.8425
+  ],
+  [
+   "Berganda (linear)",
+   8.98,
+   3.0,
+   2.16,
+   0.9872
+  ],
+  [
+   "Berganda (log-log)",
+   10.27,
+   3.2,
+   1.13,
+   0.9853
+  ]
+ ],
+ "holdout_sumber": "Tabel 12 (MSE, RMSE, MAE, R²; latih 471 / uji 118)",
+ "cv": [
+  [
+   "Constant (rata-rata)",
+   472.92,
+   21.747,
+   12.915,
+   -0.002
+  ],
+  [
+   "Linear – sederhana",
+   90.13,
+   9.494,
+   5.243,
+   0.809
+  ],
+  [
+   "Linear – berganda",
+   14.72,
+   3.837,
+   2.503,
+   0.969
+  ],
+  [
+   "Linear – berganda (log)",
+   27.31,
+   5.226,
+   1.767,
+   0.942
+  ],
+  [
+   "kNN (k=5)",
+   56.76,
+   7.534,
+   1.998,
+   0.88
+  ],
+  [
+   "SGD",
+   14.72,
+   3.837,
+   2.505,
+   0.969
+  ],
+  [
+   "SVM (RBF)",
+   105.34,
+   10.264,
+   2.256,
+   0.777
+  ],
+  [
+   "Random Forest",
+   24.12,
+   4.912,
+   0.949,
+   0.949
+  ]
+ ],
+ "cv_sumber": "Tabel 13 (validasi silang 10-lipatan)",
+ "asumsi": [
+  [
+   "Sederhana – linear",
+   "< 0,001",
+   "< 0,001",
+   0.298
+  ],
+  [
+   "Sederhana – log-log",
+   "0,975",
+   "< 0,001",
+   0.09
+  ],
+  [
+   "Berganda – linear",
+   "< 0,001",
+   "< 0,001",
+   0.246
+  ],
+  [
+   "Berganda – log-log",
+   "< 0,001",
+   "< 0,001",
+   0.161
+  ]
+ ],
+ "asumsi_sumber": "Tabel 18 (Breusch–Pagan p, Shapiro–Wilk p, Durbin–Watson)",
+ "prediksi_contoh": {
+  "input": {
+   "R&D": 10,
+   "Capex": 8,
+   "Margin": 30
+  },
+  "hasil": {
+   "Sederhana – linear": 52.58,
+   "Sederhana – log-log": 65.23,
+   "Berganda – linear": 52.62,
+   "Berganda – log-log": 68.73
+  },
+  "sumber": "Tabel 19"
+ }
+}

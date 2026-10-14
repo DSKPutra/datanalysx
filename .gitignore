@@ -1,0 +1,17 @@
+node_modules/
+dist/
+coverage/
+.localdata/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+*.log
+.netlify/
+.vercel/
+public/code/
+release/
+.claude/
+Prompt/
+prompt-datanalysx.md

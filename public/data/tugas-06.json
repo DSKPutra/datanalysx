@@ -1,0 +1,128 @@
+{
+ "judul": "Naïve Bayes — Klasifikasi Arah IHSG Berbasis Indikator Makro-Finansial Multi-Aset (2010–2026)",
+ "sumber": "Laporan Tugas 06 Kelompok 4",
+ "anggota": [
+  [
+   "Annisa Nur Islamyah",
+   "261012000103"
+  ],
+  [
+   "Dea Saka Kurnia Putra",
+   "261012000111"
+  ],
+  [
+   "Jihan Nur Esya Djamalullail",
+   "261012000065"
+  ],
+  [
+   "Muhamad Abdul Fikri",
+   "261012000105"
+  ],
+  [
+   "Sofyan Reza Ferianto",
+   "261012000069"
+  ]
+ ],
+ "anggota_sumber": "Lampiran A (header naive_bayes_ihsg.py)",
+ "dataset": {
+  "observasi": 4277,
+  "periode": "2010-01-01 – 2026-05-29",
+  "siap_model": 4276,
+  "naik": 0.5035,
+  "sumber": "Subbab 3.2, 3.4"
+ },
+ "split": {
+  "latih": 3420,
+  "uji": 856,
+  "periode_latih": "2010-01-04 – 2023-02-10",
+  "periode_uji": "2023-02-13 – 2026-05-29",
+  "sumber": "Tabel 3.3"
+ },
+ "outlier": [
+  [
+   "OIL_ret",
+   -8.004,
+   8.124,
+   52
+  ],
+  [
+   "GOLD_ret",
+   -3.457,
+   3.586,
+   40
+  ],
+  [
+   "USDIDR_ret",
+   -1.841,
+   1.877,
+   130
+  ],
+  [
+   "SP500_ret",
+   -3.067,
+   3.26,
+   68
+  ],
+  [
+   "IHSG_ret",
+   -3.331,
+   3.433,
+   56
+  ]
+ ],
+ "outlier_sumber": "Tabel 3.2 (batas bawah %, batas atas %, jumlah di-cap)",
+ "dampak_outlier": {
+  "akurasi_sebelum": 0.4848,
+  "akurasi_sesudah": 0.5187,
+  "brier_sebelum": 0.461,
+  "brier_sesudah": 0.256,
+  "sumber": "Abstrak; Subbab 4.3"
+ },
+ "metrik": {
+  "akurasi": 0.5187,
+  "presisi": 0.4955,
+  "recall": 0.6806,
+  "f1": 0.5735,
+  "roc_auc": 0.5689,
+  "brier": 0.2557,
+  "pr_auc": 0.5376,
+  "baseline": 0.4755,
+  "sumber": "Tabel 4.5"
+ },
+ "confusion": {
+  "TN": 167,
+  "FP": 282,
+  "FN": 130,
+  "TP": 277,
+  "sumber": "Subbab 4.7"
+ },
+ "cv": {
+  "auc_mean": 0.5994,
+  "auc_sd": 0.0292,
+  "acc_mean": 0.5289,
+  "acc_sd": 0.0474,
+  "sumber": "Subbab 4.9"
+ },
+ "prior": {
+  "turun_tetap": 0.4895,
+  "naik": 0.5105,
+  "sumber": "Subbab 4.5"
+ },
+ "worked_example": {
+  "tanggal": "2023-02-21",
+  "posterior_turun": 0.9024,
+  "posterior_naik": 0.0976,
+  "log_joint": [
+   -14.9841,
+   -17.2085
+  ],
+  "aktual_ihsg_besok": -0.9229,
+  "sumber": "Tabel 4.1–4.4"
+ },
+ "korelasi": {
+  "SP500_ret–VIX_chg": -0.81,
+  "target–SP500_ret": 0.19,
+  "target–VIX_chg": -0.15,
+  "sumber": "Subbab 4.2"
+ }
+}

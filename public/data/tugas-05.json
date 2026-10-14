@@ -1,0 +1,250 @@
+{
+ "judul": "Pemodelan Decision Tree untuk Klasifikasi Kategori Topik pada Trending Topics 2026 Dataset",
+ "sumber": "Laporan Pertemuan 05 (Tugas 05)",
+ "dataset": {
+  "baris": 2500,
+  "kolom": 14,
+  "periode": "1–28 Februari 2026",
+  "kelas": {
+   "AI & Tech": 507,
+   "Economy": 492,
+   "Entertainment": 511,
+   "Global Events": 544,
+   "Sports": 446
+  },
+  "mayoritas": 0.218,
+  "sumber": "Tabel 2, 3, 8"
+ },
+ "split": {
+  "latih": 2000,
+  "uji": 500,
+  "sumber": "Subbab 3.5"
+ },
+ "skenario1": [
+  [
+   "Constant (mayoritas)",
+   0.5,
+   0.218,
+   0.078,
+   0.047,
+   0.218,
+   0.002
+  ],
+  [
+   "Tree (default Orange)",
+   0.496,
+   0.198,
+   0.196,
+   0.2,
+   0.198,
+   0.018
+  ],
+  [
+   "Tree (Entropy, default)",
+   0.491,
+   0.183,
+   0.182,
+   0.184,
+   0.183,
+   0.028
+  ],
+  [
+   "Tree (tuning/pruning)",
+   0.496,
+   0.212,
+   0.153,
+   0.166,
+   0.212,
+   0.022
+  ],
+  [
+   "Random Forest",
+   0.499,
+   0.198,
+   0.196,
+   0.198,
+   0.198,
+   0.011
+  ],
+  [
+   "Logistic Regression",
+   0.506,
+   0.215,
+   0.194,
+   0.201,
+   0.215,
+   0.01
+  ]
+ ],
+ "skenario1_sumber": "Tabel 12 (AUC, CA, F1, Presisi, Recall, SD CA)",
+ "skenario2": [
+  [
+   "Constant (mayoritas)",
+   0.5,
+   0.218,
+   0.078,
+   0.047,
+   0.218,
+   0.002
+  ],
+  [
+   "Tree (default Orange)",
+   1,
+   1,
+   1,
+   1,
+   1,
+   0
+  ],
+  [
+   "Tree (Entropy, default)",
+   1,
+   1,
+   1,
+   1,
+   1,
+   0
+  ],
+  [
+   "Tree (tuning/pruning)",
+   1,
+   1,
+   1,
+   1,
+   1,
+   0
+  ],
+  [
+   "Random Forest",
+   1,
+   1,
+   1,
+   1,
+   1,
+   0
+  ],
+  [
+   "Logistic Regression",
+   1,
+   1,
+   1,
+   1,
+   1,
+   0
+  ]
+ ],
+ "skenario2_sumber": "Tabel 13",
+ "pohon": [
+  [
+   "Skenario 1, default Orange",
+   1289,
+   645,
+   23,
+   0.776,
+   0.2,
+   0.195
+  ],
+  [
+   "Skenario 1, hasil tuning",
+   15,
+   8,
+   3,
+   0.258,
+   0.2,
+   0.158
+  ],
+  [
+   "Skenario 2, default Orange",
+   9,
+   5,
+   4,
+   1.0,
+   1.0,
+   1.0
+  ],
+  [
+   "Skenario 2, hasil tuning",
+   9,
+   5,
+   3,
+   1.0,
+   1.0,
+   1.0
+  ]
+ ],
+ "pohon_sumber": "Tabel 14 (simpul, daun, kedalaman, akurasi latih, akurasi uji, F1 makro uji)",
+ "entropy_manual": {
+  "H_akar": 2.319,
+  "for_ada": 0.9983,
+  "for_tidak": 1.5842,
+  "H_setelah": 1.3644,
+  "IG": 0.9546,
+  "sumber": "Tabel 8–9; Subbab 4.3"
+ },
+ "permutasi": {
+  "akurasi_asli": 0.1928,
+  "rerata_acak": 0.2061,
+  "sd": 0.0081,
+  "p": 0.97,
+  "n": 200,
+  "sumber": "Subbab 4.4.4"
+ },
+ "importance_s2": {
+  "for": 0.412,
+  "developments": 0.251,
+  "react": 0.176,
+  "professionals": 0.161,
+  "sumber": "Gambar 51"
+ },
+ "judul_baru": [
+  [
+   "Bitcoin price surges after new regulation",
+   "Economy",
+   "AI & Tech",
+   "Salah"
+  ],
+  [
+   "Lakers beat Celtics in overtime thriller",
+   "Sports",
+   "AI & Tech",
+   "Salah"
+  ],
+  [
+   "New smartphone chip promises faster on-device AI",
+   "AI & Tech",
+   "AI & Tech",
+   "Benar"
+  ],
+  [
+   "Fans react to latest Hollywood news on social media",
+   "Entertainment",
+   "Entertainment",
+   "Benar"
+  ],
+  [
+   "Global attention shifts towards elections developments",
+   "Global Events",
+   "Global Events",
+   "Benar"
+  ],
+  [
+   "Inflation remains a key concern for young professionals",
+   "Economy",
+   "Economy",
+   "Benar"
+  ],
+  [
+   "Record engagement for recent cricket matches",
+   "Sports",
+   "Sports",
+   "Benar"
+  ],
+  [
+   "Startup funding for climate technology grows",
+   "AI & Tech",
+   "Sports",
+   "Salah"
+  ]
+ ],
+ "judul_baru_sumber": "Tabel 15"
+}

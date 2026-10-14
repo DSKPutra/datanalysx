@@ -1,0 +1,95 @@
+{
+ "judul": "Penerapan Algoritma Linear Regression pada NVIDIA Stock Data (1999–2026)",
+ "sumber": "Laporan Pertemuan 01 (Tugas 01)",
+ "dataset": {
+  "nama": "NVIDIA Stock Data (1999–2026)",
+  "baris": 7079,
+  "kolom": 16,
+  "periode": "22 Jan 1999 – 11 Mar 2026",
+  "duplikat": 0,
+  "missing_struktural": {
+   "stock_split": 7073,
+   "key_event": 6826
+  },
+  "sumber": "Tabel 2.4; Lampiran B"
+ },
+ "split": {
+  "latih": 5663,
+  "uji": 1416,
+  "metode": "train_test_split acak 80:20, random_state=42",
+  "sumber": "Subbab 3.2"
+ },
+ "metrik": {
+  "MAE": 0.0047,
+  "RMSE": 0.0101,
+  "R2": 0.999994,
+  "MAE_penuh": 0.004668613695335099,
+  "RMSE_penuh": 0.01005357433891022,
+  "R2_penuh": 0.9999935789811613,
+  "sumber": "Tabel 3.3; Lampiran B"
+ },
+ "intercept": -8.177877961923485e-05,
+ "koefisien": {
+  "Open": 0.006963,
+  "High": 0.475677,
+  "Low": 0.512563,
+  "Volume": -1.6e-12,
+  "SMA 50": 0.005132,
+  "RSI 14": 3.9e-06,
+  "sumber": "Tabel 3.7"
+ },
+ "korelasi_close": {
+  "Open": 0.999985,
+  "High": 0.999981,
+  "Low": 0.999982,
+  "Volume": 0.783967,
+  "SMA 50": 0.998605,
+  "RSI 14": 0.248561,
+  "sumber": "Tabel 3.4"
+ },
+ "statistik": [
+  [
+   "Open",
+   2.95,
+   3.84,
+   0.03,
+   20.81
+  ],
+  [
+   "High",
+   2.98,
+   3.88,
+   0.03,
+   20.96
+  ],
+  [
+   "Low",
+   2.92,
+   3.8,
+   0.03,
+   20.63
+  ],
+  [
+   "Close",
+   2.95,
+   3.84,
+   0.03,
+   20.73
+  ],
+  [
+   "SMA 50",
+   2.95,
+   3.84,
+   0.03,
+   22.0
+  ],
+  [
+   "RSI 14",
+   56.36,
+   10.15,
+   38.0,
+   78.0
+  ]
+ ],
+ "statistik_sumber": "Tabel 2.5"
+}
