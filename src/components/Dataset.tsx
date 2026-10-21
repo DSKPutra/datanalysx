@@ -49,7 +49,7 @@ export default function Dataset({ dataKey, tool, onReady }: {
   }
   return (
     <div className="space-y-2">
-      <div className="flex flex-wrap items-end gap-3">
+      <div data-export-skip className="flex flex-wrap items-end gap-3">
         <div className="min-w-[220px]"><Select label="Sumber data" value={mode} onChange={setMode} options={[{ value: 'upload', label: 'Unggah CSV saya' }, ...(relevant.length ? [{ value: 'sample' as const, label: 'Contoh dari studi kasus' }] : [])]} /></div>
         {mode === 'sample' && relevant.length > 0 && <div className="min-w-[280px] flex-1"><Select label="Dataset contoh" value={idx} onChange={setIdx} options={relevant.map((x, i) => ({ value: i, label: x.label }))} /></div>}
       </div>

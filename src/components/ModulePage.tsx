@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { MODULES, type ModuleInfo } from '../content/modules';
 import { useI18n, type Key } from '../lib/i18n';
 import CodeViewer from './CodeViewer';
+import ExportPanel from './ExportPanel';
 import PyGate from './PyGate';
 import { Callout, Section } from './ui';
 
@@ -84,7 +85,7 @@ export default function ModulePage({ m, summary, data, report, lab, manual, crit
     kritis: critical ?? <Critical m={m} />,
   };
   return (
-    <article className="space-y-5">
+    <article data-export-root className="space-y-5">
       <header className="space-y-2">
         <div className="flex flex-wrap items-center gap-2 text-xs">
           <span className="chip on-brand">Studi Kasus {m.no}</span>
@@ -94,12 +95,13 @@ export default function ModulePage({ m, summary, data, report, lab, manual, crit
         <h1 className="text-4xl font-bold leading-tight md:text-5xl">{m.title}</h1>
         <p className="max-w-3xl muted">{m.short}</p>
         {m.tool && (
-          <p className="max-w-3xl rounded-lg border-l-4 px-3 py-2 text-sm" style={{ borderColor: 'var(--gold)', background: 'var(--surface-2)' }}>
+          <p data-export-skip className="max-w-3xl rounded-lg border-l-4 px-3 py-2 text-sm" style={{ borderColor: 'var(--gold)', background: 'var(--surface-2)' }}>
             Halaman ini adalah <strong>studi kasus</strong> — contoh penerapan pada satu dataset, bukan patokan. Untuk menganalisis data Anda sendiri, gunakan alat <Link to={m.tool.path}><strong>{m.tool.label}</strong></Link>.
           </p>
         )}
+        <ExportPanel key={m.slug} defaultTitle={`Studi Kasus ${m.no}: ${m.title}`} subtitle={m.short} />
       </header>
-      <div role="tablist" aria-label="Bagian modul" className="flex gap-1 overflow-x-auto border-b pb-px" style={{ borderColor: 'var(--line)' }}>
+      <div data-export-skip role="tablist" aria-label="Bagian modul" className="flex gap-1 overflow-x-auto border-b pb-px" style={{ borderColor: 'var(--line)' }}>
         {TABS.map((x) => (
           <button key={x.id} role="tab" id={`tab-${x.id}`} aria-selected={tab === x.id} aria-controls={`panel-${x.id}`}
             className="whitespace-nowrap rounded-t-lg px-3 py-2 text-sm font-semibold"
@@ -110,7 +112,7 @@ export default function ModulePage({ m, summary, data, report, lab, manual, crit
       {TABS.map((x) => visited.has(x.id) && (
         <div key={x.id} role="tabpanel" id={`panel-${x.id}`} aria-labelledby={`tab-${x.id}`} hidden={tab !== x.id}>{content[x.id]}</div>
       ))}
-      <nav className="flex justify-between gap-3 border-t pt-4 text-sm" style={{ borderColor: 'var(--line)' }} aria-label="Modul lain">
+      <nav data-export-skip className="flex justify-between gap-3 border-t pt-4 text-sm" style={{ borderColor: 'var(--line)' }} aria-label="Modul lain">
         {prev ? <Link to={`/${prev.slug}`}>← Studi Kasus {prev.no}: {prev.algo}</Link> : <span />}
         {next ? <Link to={`/${next.slug}`}>Studi Kasus {next.no}: {next.algo} →</Link> : <span />}
       </nav>

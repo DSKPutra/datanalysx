@@ -8,8 +8,8 @@ export function Callout({ kind = 'info', title, children }: { kind?: 'info' | 'w
     ok: { borderColor: 'var(--up)', background: 'color-mix(in srgb, var(--up) 10%, var(--surface))' },
   }[kind];
   return (
-    <div role={kind === 'warn' ? 'note' : undefined} className="rounded-xl border-l-4 p-4 text-sm" style={styles}>
-      {title && <p className="mb-1 font-semibold">{kind === 'warn' ? '⚠ ' : ''}{title}</p>}
+    <div role={kind === 'warn' ? 'note' : undefined} data-export-callout={kind} className="rounded-xl border-l-4 p-4 text-sm" style={styles}>
+      {title && <p data-export-title className="mb-1 font-semibold">{kind === 'warn' ? '⚠ ' : ''}{title}</p>}
       <div className="prose-dmx">{children}</div>
     </div>
   );
@@ -22,15 +22,15 @@ export function ReportBadge({ source }: { source?: string | null }) {
   );
 }
 export function LiveBadge() {
-  return <span className="chip" style={{ background: 'color-mix(in srgb, var(--brand-2) 18%, transparent)', color: 'var(--text)' }}>⚡ Hasil Live (dihitung di browser)</span>;
+  return <span data-export-skip className="chip" style={{ background: 'color-mix(in srgb, var(--brand-2) 18%, transparent)', color: 'var(--text)' }}>⚡ Hasil Live (dihitung di browser)</span>;
 }
 
 export function Stat({ label, value, hint }: { label: string; value: ReactNode; hint?: string }) {
   return (
-    <div className="rounded-xl border p-3" style={{ borderColor: 'var(--line)', background: 'var(--surface)' }}>
-      <div className="text-xs font-semibold uppercase tracking-wide muted">{label}</div>
-      <div className="mt-1 text-xl font-bold tabular-nums">{value}</div>
-      {hint && <div className="mt-0.5 text-xs muted">{hint}</div>}
+    <div data-export-stat className="rounded-xl border p-3" style={{ borderColor: 'var(--line)', background: 'var(--surface)' }}>
+      <div data-export-label className="text-xs font-semibold uppercase tracking-wide muted">{label}</div>
+      <div data-export-value className="mt-1 text-xl font-bold tabular-nums">{value}</div>
+      {hint && <div data-export-hint className="mt-0.5 text-xs muted">{hint}</div>}
     </div>
   );
 }
@@ -40,7 +40,7 @@ export function StatGrid({ children }: { children: ReactNode }) {
 
 export function Section({ title, children, right }: { title: string; children: ReactNode; right?: ReactNode }) {
   return (
-    <section className="card space-y-3">
+    <section data-export-section className="card space-y-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h2 className="text-2xl font-semibold">{title}</h2>
         {right}
@@ -115,7 +115,7 @@ export function ErrorBox({ error }: { error: string | null }) {
 }
 
 export function Spinner({ text = 'Menghitung …' }: { text?: string }) {
-  return <div role="status" className="flex items-center gap-2 text-sm muted"><span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />{text}</div>;
+  return <div data-export-skip role="status" className="flex items-center gap-2 text-sm muted"><span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />{text}</div>;
 }
 
 export function Collapse({ title, children, defaultOpen = false }: { title: string; children: ReactNode; defaultOpen?: boolean }) {

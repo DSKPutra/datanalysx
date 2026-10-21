@@ -56,7 +56,7 @@ export default function DataSource({ dataKey, sample, onReady, uploadHint, uploa
   }
 
   return (
-    <div className="card space-y-3">
+    <div data-export-skip className="card space-y-3">
       <div className="flex flex-wrap items-end gap-3">
         {sample && (
           <button className="btn-ghost" onClick={loadSample} disabled={busy}>Pakai dataset contoh</button>
@@ -66,7 +66,7 @@ export default function DataSource({ dataKey, sample, onReady, uploadHint, uploa
           <input type="file" accept=".csv,text/csv" multiple={multiple} className="sr-only" onChange={(e) => onFiles(e.target.files)} />
         </label>
         {busy && <Spinner text="Memuat data …" />}
-        {source && !busy && <span className="text-sm">Data aktif: <strong>{source}</strong></span>}
+        {source && !busy && <span className="text-sm">Data aktif: <strong data-export-dataset>{source}</strong></span>}
       </div>
       {sample && <p className="text-xs muted">Dataset contoh: {sample.label} — lisensi {sample.license}.</p>}
       {!sample && <Callout kind="info" title={uploadTitle}>{uploadHint ?? 'Lisensi dataset asli tidak mengizinkan redistribusi; silakan unggah berkas Anda sendiri.'}</Callout>}
