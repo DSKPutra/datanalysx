@@ -93,7 +93,7 @@ export default function ModulePage({ m, summary, data, report, lab, manual, crit
           {!m.reportAvailable && <span className="chip" style={{ background: 'var(--warn-bg)' }}>Laporan belum tersedia</span>}
         </div>
         <h1 className="text-4xl font-bold leading-tight md:text-5xl">{m.title}</h1>
-        <p className="max-w-3xl muted">{m.short}</p>
+        <p data-export-skip className="max-w-3xl muted">{m.short}</p>
         {m.tool && (
           <p data-export-skip className="max-w-3xl rounded-lg border-l-4 px-3 py-2 text-sm" style={{ borderColor: 'var(--gold)', background: 'var(--surface-2)' }}>
             Halaman ini adalah <strong>studi kasus</strong> — contoh penerapan pada satu dataset, bukan patokan. Untuk menganalisis data Anda sendiri, gunakan alat <Link to={m.tool.path}><strong>{m.tool.label}</strong></Link>.

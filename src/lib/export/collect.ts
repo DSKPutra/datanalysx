@@ -7,6 +7,17 @@ const SKIP_TAGS = new Set(['BUTTON', 'INPUT', 'SELECT', 'TEXTAREA', 'LABEL', 'FI
 
 export const clean = (s: string | null | undefined) => (s ?? '').replace(/\s+/g, ' ').trim();
 
+const BLOCK_TAGS = new Set(['DIV', 'P', 'LI', 'BR', 'TR', 'TD', 'TH', 'DT', 'DD', 'SECTION', 'HEADER', 'H2', 'H3', 'H4']);
+/** Seperti textContent, tetapi memberi spasi di antara elemen blok (mis. "94" + "TN" → "94 TN"). */
+function textOf(n: Node | null | undefined): string {
+  if (!n) return '';
+  if (n.nodeType === 3) return n.textContent ?? '';
+  if (n.nodeType !== 1) return '';
+  const inner = Array.from(n.childNodes).map(textOf).join('');
+  return BLOCK_TAGS.has((n as Element).tagName.toUpperCase()) ? ` ${inner} ` : inner;
+}
+const txt = (n: Node | null | undefined) => clean(textOf(n));
+
 function skipped(el: Element): boolean {
   if (SKIP_TAGS.has(el.tagName.toUpperCase())) return true;
   if (el.hasAttribute('data-export-skip') || el.hasAttribute('hidden') || el.getAttribute('aria-hidden') === 'true') return true;
@@ -15,7 +26,7 @@ function skipped(el: Element): boolean {
 }
 
 function tableBlock(t: HTMLTableElement): Block | null {
-  const cells = (tr: Element) => Array.from(tr.children).filter((c) => c.tagName === 'TH' || c.tagName === 'TD').map((c) => clean(c.textContent));
+  const cells = (tr: Element) => Array.from(tr.children).filter((c) => c.tagName === 'TH' || c.tagName === 'TD').map((c) => txt(c));
   const trs = Array.from(t.querySelectorAll('tr'));
   if (!trs.length) return null;
   const headRow = t.querySelector('thead tr');
@@ -43,7 +54,7 @@ function walk(el: Element, depth: number, out: Raw[]): void {
     const titleEl = el.querySelector('[data-export-title]');
     const title = clean(titleEl?.textContent).replace(/^⚠\s*/, '') || undefined;
     const body = el.querySelector('.prose-dmx') ?? el;
-    const text = clean(body.textContent);
+    const text = txt(body);
     if (text) out.push({ kind: 'note', title, text, tone: (el.getAttribute('data-export-callout') as 'info' | 'warn' | 'ok') || 'info' });
     return;
   }
@@ -57,24 +68,24 @@ function walk(el: Element, depth: number, out: Raw[]): void {
   if (tag === 'H2' || tag === 'H3' || tag === 'H4' || tag === 'H5') {
     // Judul bagian sudah dicetak oleh <section>; judul lepas menjadi subjudul.
     if (el.parentElement?.closest('[data-export-section]') && el.parentElement.parentElement?.hasAttribute('data-export-section')) return;
-    const text = clean(el.textContent);
+    const text = txt(el);
     if (text) out.push({ kind: 'heading', text, level: 2 });
     return;
   }
   if (tag === 'TABLE') { const b = tableBlock(el as HTMLTableElement); if (b) out.push(b); return; }
   if (tag === 'UL' || tag === 'OL') {
-    const items = Array.from(el.children).filter((c) => c.tagName === 'LI' && !skipped(c)).map((c) => clean(c.textContent)).filter(Boolean);
+    const items = Array.from(el.children).filter((c) => c.tagName === 'LI' && !skipped(c)).map((c) => txt(c)).filter(Boolean);
     if (items.length) out.push({ kind: 'bullets', items });
     return;
   }
   if (tag === 'DL') {
     const items: string[] = [];
-    for (const dt of Array.from(el.querySelectorAll('dt'))) items.push(`${clean(dt.textContent)}: ${clean(dt.nextElementSibling?.textContent)}`);
+    for (const dt of Array.from(el.querySelectorAll('dt'))) items.push(`${txt(dt)}: ${txt(dt.nextElementSibling)}`);
     if (items.length) out.push({ kind: 'bullets', items });
     return;
   }
   if (tag === 'P' || tag === 'FIGCAPTION' || tag === 'BLOCKQUOTE') {
-    const text = clean(el.textContent);
+    const text = txt(el);
     if (text) out.push({ kind: 'para', text });
     return;
   }

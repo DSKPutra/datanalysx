@@ -1,11 +1,13 @@
 import {
-  AlignmentType, BorderStyle, Document, Footer, Header, HeadingLevel, ImageRun, Packer, PageBreak, PageNumber,
-  Paragraph, ShadingType, Table, TableCell, TableRow, TextRun, WidthType,
+  AlignmentType, BorderStyle, Document, Footer, Header, HeadingLevel, ImageRun, Packer, PageNumber,
+  Paragraph, ShadingType, Table, TableCell, TableLayoutType, TableRow, TextRun, WidthType,
 } from 'docx';
 import { fmtDate, type Block, type ReportDoc } from './model';
 
 const BRAND = '0B4F3A';
 const MAX_ROWS = 100;
+/** Lebar isi halaman A4 dengan margin 1 inci, dalam twip (DXA). */
+const PAGE_W = 9026;
 const TONE = { info: '0B7A53', warn: 'B7791F', ok: '2F855A' } as const;
 
 function dataUrlBytes(dataUrl: string): Uint8Array {
@@ -15,7 +17,8 @@ function dataUrlBytes(dataUrl: string): Uint8Array {
   return out;
 }
 
-const cell = (text: string, header = false) => new TableCell({
+const cell = (text: string, width: number, header = false) => new TableCell({
+  width: { size: width, type: WidthType.DXA },
   children: [new Paragraph({ children: [new TextRun({ text, bold: header, size: 18, color: header ? 'FFFFFF' : undefined })] })],
   shading: header ? { type: ShadingType.CLEAR, color: 'auto', fill: BRAND } : undefined,
   margins: { top: 40, bottom: 40, left: 80, right: 80 },
@@ -24,11 +27,15 @@ const cell = (text: string, header = false) => new TableCell({
 function table(head: string[], rows: string[][]): Table {
   const width = Math.max(head.length, ...rows.map((r) => r.length), 1);
   const pad = (r: string[]) => [...r, ...Array(Math.max(0, width - r.length)).fill('')];
+  // Lebar kolom eksplisit: tanpa ini sebagian pembaca (Quick Look, LibreOffice, Google Docs) meremas tabel.
+  const colW = Math.floor(PAGE_W / width);
   return new Table({
-    width: { size: 100, type: WidthType.PERCENTAGE },
+    width: { size: colW * width, type: WidthType.DXA },
+    columnWidths: Array(width).fill(colW),
+    layout: TableLayoutType.FIXED,
     rows: [
-      new TableRow({ tableHeader: true, children: pad(head).map((h) => cell(h, true)) }),
-      ...rows.map((r) => new TableRow({ children: pad(r).map((c) => cell(c)) })),
+      new TableRow({ tableHeader: true, children: pad(head).map((h) => cell(h, colW, true)) }),
+      ...rows.map((r) => new TableRow({ children: pad(r).map((c) => cell(c, colW)) })),
     ],
   });
 }
@@ -82,9 +89,9 @@ export async function toDocx(doc: ReportDoc): Promise<Blob> {
     meta('Tanggal', fmtDate(doc.date)),
     meta('Sumber', doc.source),
     new Paragraph({ children: [new TextRun({ text: 'Dibuat otomatis oleh DATANALYSX dari hasil yang tampil di aplikasi; seluruh perhitungan berjalan di browser.', italics: true, size: 18, color: '4B5650' })], spacing: { before: 480 } }),
-    new Paragraph({ children: [new PageBreak()] }),
   ];
   const body = doc.blocks.flatMap(blockToDocx);
+  const page = { size: { width: 11906, height: 16838 }, margin: { top: 1440, bottom: 1440, left: 1440, right: 1440 } };
   const document = new Document({
     creator: doc.author, title: doc.title, description: doc.subtitle,
     styles: {
@@ -94,10 +101,11 @@ export async function toDocx(doc: ReportDoc): Promise<Blob> {
         { id: 'Heading2', name: 'Heading 2', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { size: 26, bold: true, color: '0B7A53' }, paragraph: { spacing: { before: 240, after: 120 } } },
       ],
     },
-    sections: [{
+    sections: [{ properties: { page }, children: cover }, {
+      properties: { page },
       headers: { default: new Header({ children: [new Paragraph({ alignment: AlignmentType.RIGHT, children: [new TextRun({ text: `DATANALYSX — ${doc.title}`, size: 16, color: '808080' })] })] }) },
       footers: { default: new Footer({ children: [new Paragraph({ alignment: AlignmentType.CENTER, children: [new TextRun({ children: [`${doc.author} · Halaman `, PageNumber.CURRENT, ' dari ', PageNumber.TOTAL_PAGES], size: 16, color: '808080' })] })] }) },
-      children: [...cover, ...body],
+      children: body,
     }],
   });
   return Packer.toBlob(document);

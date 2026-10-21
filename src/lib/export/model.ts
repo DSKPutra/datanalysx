@@ -19,8 +19,10 @@ export interface ReportDoc {
 
 /** Nama berkas aman: huruf kecil, tanda hubung, tanpa karakter khusus. */
 export function fileStem(...parts: string[]): string {
-  return parts.join('-').normalize('NFKD').replace(/[̀-ͯ]/g, '')
-    .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 80) || 'laporan';
+  // Setiap bagian dipotong sendiri (maks. 50 karakter) agar nama penyusun di ujung tidak ikut terpotong.
+  const slug = (x: string) => x.normalize('NFKD').replace(/[̀-ͯ]/g, '')
+    .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 50).replace(/-+$/, '');
+  return parts.map(slug).filter(Boolean).join('-') || 'laporan';
 }
 
 export function fmtDate(d: Date): string {

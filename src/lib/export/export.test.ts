@@ -42,6 +42,11 @@ describe('collectBlocks', () => {
     expect(JSON.stringify(blocks)).not.toContain('tidak boleh ikut');
   });
 
+  it('memberi spasi di antara elemen blok di dalam sel', async () => {
+    const { blocks } = await collectBlocks(page('<table><thead><tr><th>A</th></tr></thead><tbody><tr><td><div>94</div><div>TN</div></td></tr></tbody></table>'), null);
+    expect(blocks[0]).toMatchObject({ rows: [['94 TN']] });
+  });
+
   it('tanpa grafik bila opsi grafik dimatikan', async () => {
     const { blocks } = await collectBlocks(page('<p>a</p><div data-export-plot></div>'), null);
     expect(blocks).toEqual([{ kind: 'para', text: 'a' }]);

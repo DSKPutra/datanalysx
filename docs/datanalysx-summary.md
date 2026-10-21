@@ -15,9 +15,11 @@
 - Dataset tidak diredistribusi: NASDAQ OHLC (© pemilik) dan komentar MBG (tanpa izin) → unggah saja. InSet & kamus slang dimuat runtime dari GitHub aslinya.
 - “Hasil Laporan” = `public/data/studi-kasus-XX.json` (bersumber tabel), “Hasil Live” = Pyodide; tidak dicampur.
 
+- Ekspor laporan: tombol di setiap alat & studi kasus (nama penyusun wajib) → .docx (docx 9.5.1) dan .pptx (pptxgenjs 3.12.0), disusun di browser dari konten yang tampil (`src/lib/export/`); penanda `data-export-*` di komponen UI menentukan apa yang ikut/dilewati.
+
 ## Kualitas
 - `docs/verifikasi-angka.md`: 101/104 angka cocok; selisih: T03 CV Random Forest (RMSE 4,906 / MAE 0,946 vs 4,912 / 0,949, beda versi sklearn), T04 “4.184 baris bersih” (kode: 4.203; observasi 4.183 cocok).
-- pytest 24 lulus, Vitest 9 lulus, ESLint/tsc bersih, Lighthouse a11y 100, performa 81–99.
+- pytest 24 lulus, Vitest 15 lulus, ESLint/tsc bersih, Lighthouse a11y 100, performa 81–99.
 
 ## Temuan audit (sudah ditampilkan di aplikasi)
 - T02: berkas = LLM Agent Failure Analysis Benchmark (Apache 2.0), bukan AI Economy Pulse; failure_type membocorkan target (R²≈1).

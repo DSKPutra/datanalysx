@@ -114,5 +114,7 @@ export async function toPptx(doc: ReportDoc): Promise<Blob> {
   end.addText('Terima kasih', { x: X, y: 2.6, w: CONTENT_W, h: 1, fontSize: 40, bold: true, color: 'FFFFFF', fontFace: 'Georgia' });
   end.addText(`${doc.author} · ${fmtDate(doc.date)} · dibuat dengan DATANALYSX`, { x: X, y: 3.7, w: CONTENT_W, h: 0.5, fontSize: 16, color: 'DDEFE6' });
 
-  return (await pptx.write({ outputType: 'blob' })) as Blob;
+  const blob = (await pptx.write({ outputType: 'blob' })) as Blob;
+  // pptxgenjs memberi tipe application/zip; pakai MIME PowerPoint agar dikenali sistem operasi.
+  return new Blob([blob], { type: 'application/vnd.openxmlformats-officedocument.presentationml.presentation' });
 }
