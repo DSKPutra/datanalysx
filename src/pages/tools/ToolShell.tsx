@@ -11,8 +11,8 @@ export default function ToolShell({ title, intro, cases, children }: { title: st
   return (
     <div data-export-root className="space-y-5">
       <header className="space-y-2">
-        <span className="chip on-brand">Alat analisis</span>
-        <h1 className="text-4xl font-bold md:text-5xl">{title}</h1>
+        <span className="chip" style={{ color: 'var(--brand-2)' }}>// Alat analisis</span>
+        <h1 className="text-4xl font-bold md:text-5xl"><span className="text-gradient">{title}</span></h1>
         <div className="max-w-3xl muted">{intro}</div>
         {related.length > 0 && (
           <p data-export-skip className="text-sm">Contoh penerapan: {related.map((m, i) => (

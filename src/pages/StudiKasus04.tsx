@@ -23,8 +23,8 @@ function Confusion({ cm, labels = ['Turun/Tetap (0)', 'Naik (1)'] }: { cm: numbe
         <thead><tr><th>Aktual \ Prediksi</th>{labels.map((l) => <th key={l} className="text-center">{l}</th>)}</tr></thead>
         <tbody>{cm.map((row, i) => (
           <tr key={i}><th scope="row">{labels[i]}</th>{row.map((v, j) => (
-            <td key={j} style={{ background: `color-mix(in srgb, var(--brand-2) ${Math.round((v / max) * 45)}%, var(--surface))` }}>
-              <div className="text-lg font-bold">{int(v)}</div><div className="text-xs opacity-80">{names[i][j]}</div>
+            <td key={j} style={{ background: `color-mix(in srgb, var(--brand-2) ${Math.round((v / max) * 30)}%, var(--surface))` }}>
+              <div className="text-lg font-bold">{int(v)}</div><div className="font-mono text-xs">{names[i][j]}</div>
             </td>))}</tr>))}</tbody>
       </table>
     </div>

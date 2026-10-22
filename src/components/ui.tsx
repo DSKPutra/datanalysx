@@ -27,9 +27,10 @@ export function LiveBadge() {
 
 export function Stat({ label, value, hint }: { label: string; value: ReactNode; hint?: string }) {
   return (
-    <div data-export-stat className="rounded-xl border p-3" style={{ borderColor: 'var(--line)', background: 'var(--surface)' }}>
-      <div data-export-label className="text-xs font-semibold uppercase tracking-wide muted">{label}</div>
-      <div data-export-value className="mt-1 text-xl font-bold tabular-nums">{value}</div>
+    <div data-export-stat className="relative overflow-hidden rounded-xl border p-3" style={{ borderColor: 'var(--line)', background: 'color-mix(in srgb, var(--surface-2) 70%, transparent)' }}>
+      <span aria-hidden className="absolute inset-x-0 top-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, var(--brand-2), transparent)', opacity: 0.7 }} />
+      <div data-export-label className="font-mono text-[11px] font-semibold uppercase tracking-wider muted">{label}</div>
+      <div data-export-value className="mt-1 font-display text-2xl font-bold tabular-nums">{value}</div>
       {hint && <div data-export-hint className="mt-0.5 text-xs muted">{hint}</div>}
     </div>
   );
@@ -40,9 +41,9 @@ export function StatGrid({ children }: { children: ReactNode }) {
 
 export function Section({ title, children, right }: { title: string; children: ReactNode; right?: ReactNode }) {
   return (
-    <section data-export-section className="card space-y-3">
+    <section data-export-section className="card min-w-0 space-y-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h2 className="text-2xl font-semibold">{title}</h2>
+        <h2 className="text-2xl font-semibold"><span className="section-bar" aria-hidden />{title}</h2>
         {right}
       </div>
       {children}

@@ -17,6 +17,8 @@
 
 - Ekspor laporan: tombol di setiap alat & studi kasus (nama penyusun wajib) → .docx (docx 9.5.1) dan .pptx (pptxgenjs 3.12.0), disusun di browser dari konten yang tampil (`src/lib/export/`); penanda `data-export-*` di komponen UI menentukan apa yang ikut/dilewati.
 
+- Desain UI (2026-10-22): tema futuristik — token di `src/styles/index.css` (deep space + neon emerald→cyan, grid latar, kartu kaca, glow), font Space Grotesk/Inter/JetBrains Mono, hero dengan animasi SVG regresi (mati bila prefers-reduced-motion). Ekspor .docx/.pptx memakai palet yang sama.
+
 ## Kualitas
 - `docs/verifikasi-angka.md`: 101/104 angka cocok; selisih: T03 CV Random Forest (RMSE 4,906 / MAE 0,946 vs 4,912 / 0,949, beda versi sklearn), T04 “4.184 baris bersih” (kode: 4.203; observasi 4.183 cocok).
 - pytest 24 lulus, Vitest 15 lulus, ESLint/tsc bersih, Lighthouse a11y 100, performa 81–99.

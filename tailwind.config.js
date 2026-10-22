@@ -10,9 +10,9 @@ export default {
         ink: { DEFAULT: '#0F1512', soft: '#1A231F', line: '#2A3631' },
       },
       fontFamily: {
-        display: ['"Cormorant Garamond"', 'Cambria', 'Georgia', 'serif'],
-        sans: ['Inter', 'Calibri', 'system-ui', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'Menlo', 'Consolas', 'monospace'],
+        display: ['"Space Grotesk"', '"Grotesk Fallback"', 'system-ui', 'sans-serif'],
+        sans: ['Inter', '"Inter Fallback"', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono"', '"Mono Fallback"', 'Menlo', 'Consolas', 'monospace'],
       },
     },
   },

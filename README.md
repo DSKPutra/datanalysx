@@ -63,7 +63,7 @@ Halaman pendukung: **Perbandingan Algoritma**, **Pelajaran Metodologi**, **Tenta
 
 | Studi Kasus 04 — Hasil Laporan | Studi Kasus 07 — Hasil Laporan | Mobile |
 |---|---|---|
-| ![Studi Kasus 04](docs/screenshots/studi-kasus-04-laporan.png) | ![Studi Kasus 07](docs/screenshots/studi-kasus-07-laporan.png) | ![Mobile](docs/screenshots/home-mobile.png) |
+| ![Studi Kasus 04](docs/screenshots/studi-kasus-04-laporan.png) | ![Studi Kasus 07](docs/screenshots/studi-kasus-07-laporan.png) | ![Mobile](docs/screenshots/home-mobile.jpg) |
 
 ## Arsitektur
 
@@ -84,6 +84,7 @@ docs/                    verifikasi-angka.md, screenshots, ringkasan proyek
 
 * Pipeline scikit-learn memastikan scaler/encoder/TF-IDF di-fit hanya pada data latih; data saham memakai split berbasis waktu. Mode yang meniru laporan (mis. studi kasus 01 split acak, studi kasus 06 IQR seluruh periode) tetap tersedia dan diberi label.
 * `random_state = 42` di semua modul. Versi pustaka uji = versi Pyodide (scikit-learn 1.7.0) — penting karena scikit-learn ≥ 1.8 tidak mereproduksi studi kasus 01 (lihat `docs/verifikasi-angka.md`).
+* Desain: tema gelap/terang bernuansa futuristik (grid latar, kartu kaca, aksen neon emerald → cyan, Space Grotesk + JetBrains Mono); animasi menghormati `prefers-reduced-motion`, kontras teks memenuhi WCAG AA di kedua tema.
 * Leksikon InSet & kamus slang Salsabila dkk. dimuat saat runtime dari GitHub aslinya (tidak diredistribusi); Sastrawi dipasang lewat micropip.
 
 ## Menjalankan lokal

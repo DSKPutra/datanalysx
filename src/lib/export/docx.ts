@@ -4,11 +4,11 @@ import {
 } from 'docx';
 import { fmtDate, type Block, type ReportDoc } from './model';
 
-const BRAND = '0B4F3A';
+const BRAND = '047857';
 const MAX_ROWS = 100;
 /** Lebar isi halaman A4 dengan margin 1 inci, dalam twip (DXA). */
 const PAGE_W = 9026;
-const TONE = { info: '0B7A53', warn: 'B7791F', ok: '2F855A' } as const;
+const TONE = { info: '0E7490', warn: 'B7791F', ok: '2F855A' } as const;
 
 function dataUrlBytes(dataUrl: string): Uint8Array {
   const bin = atob(dataUrl.split(',')[1] ?? '');
@@ -82,7 +82,7 @@ function blockToDocx(b: Block): (Paragraph | Table)[] {
 export async function toDocx(doc: ReportDoc): Promise<Blob> {
   const meta = (label: string, value: string) => new Paragraph({ children: [new TextRun({ text: `${label}: `, bold: true }), new TextRun(value)], spacing: { after: 80 } });
   const cover = [
-    new Paragraph({ children: [new TextRun({ text: 'DATANALYSX · LAPORAN ANALISIS', bold: true, color: 'B7791F', size: 20 })], spacing: { before: 2400, after: 240 } }),
+    new Paragraph({ children: [new TextRun({ text: 'DATANALYSX · LAPORAN ANALISIS', bold: true, color: '0E7490', size: 20 })], spacing: { before: 2400, after: 240 } }),
     new Paragraph({ children: [new TextRun({ text: doc.title, bold: true, size: 52, color: BRAND })], spacing: { after: 240 } }),
     ...(doc.subtitle ? [new Paragraph({ children: [new TextRun({ text: doc.subtitle, size: 24, color: '4B5650' })], spacing: { after: 480 } })] : []),
     meta('Disusun oleh', doc.author),
@@ -98,7 +98,7 @@ export async function toDocx(doc: ReportDoc): Promise<Blob> {
       default: { document: { run: { font: 'Calibri', size: 22 } } },
       paragraphStyles: [
         { id: 'Heading1', name: 'Heading 1', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { size: 32, bold: true, color: BRAND }, paragraph: { spacing: { before: 360, after: 160 } } },
-        { id: 'Heading2', name: 'Heading 2', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { size: 26, bold: true, color: '0B7A53' }, paragraph: { spacing: { before: 240, after: 120 } } },
+        { id: 'Heading2', name: 'Heading 2', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { size: 26, bold: true, color: '0E7490' }, paragraph: { spacing: { before: 240, after: 120 } } },
       ],
     },
     sections: [{ properties: { page }, children: cover }, {

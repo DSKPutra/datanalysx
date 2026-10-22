@@ -88,7 +88,7 @@ export default function ModulePage({ m, summary, data, report, lab, manual, crit
     <article data-export-root className="space-y-5">
       <header className="space-y-2">
         <div className="flex flex-wrap items-center gap-2 text-xs">
-          <span className="chip on-brand">Studi Kasus {m.no}</span>
+          <span className="chip" style={{ color: 'var(--brand-2)' }}>// Studi Kasus {m.no}</span>
           <span className="chip" style={{ background: 'var(--surface-2)' }}>{m.group}</span>
           {!m.reportAvailable && <span className="chip" style={{ background: 'var(--warn-bg)' }}>Laporan belum tersedia</span>}
         </div>
@@ -104,8 +104,7 @@ export default function ModulePage({ m, summary, data, report, lab, manual, crit
       <div data-export-skip role="tablist" aria-label="Bagian modul" className="flex gap-1 overflow-x-auto border-b pb-px" style={{ borderColor: 'var(--line)' }}>
         {TABS.map((x) => (
           <button key={x.id} role="tab" id={`tab-${x.id}`} aria-selected={tab === x.id} aria-controls={`panel-${x.id}`}
-            className="whitespace-nowrap rounded-t-lg px-3 py-2 text-sm font-semibold"
-            style={tab === x.id ? { background: 'var(--brand)', color: 'var(--on-brand)' } : { color: 'var(--muted)' }}
+            className={`nav-link !rounded-b-none !py-2 font-semibold${tab === x.id ? ' active' : ''}`}
             onClick={() => setParams({ tab: x.id }, { replace: true })}>{t(x.key)}</button>
         ))}
       </div>

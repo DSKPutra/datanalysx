@@ -1,7 +1,8 @@
 import PptxGenJS from 'pptxgenjs';
 import { chunk, fmtDate, type Block, type ReportDoc } from './model';
 
-const BRAND = '0B4F3A', BRAND2 = '0B7A53', GOLD = 'E9C46A', TEXT = '1F2A26', MUTED = '5B6660', LINE = 'DDE2DC';
+// Palet selaras UI: emerald/cyan untuk konten, latar 'deep space' + aksen neon untuk sampul & penutup.
+const BRAND = '047857', BRAND2 = '0E7490', SPACE = '05080D', NEON = '34E3A4', CYAN = '22D3EE', TEXT = '0B1220', MUTED = '475569', LINE = 'D5DEE8';
 const W = 13.333, H = 7.5, X = 0.6, CONTENT_W = W - 2 * X, TOP = 1.35, CONTENT_H = H - TOP - 0.7;
 const ROWS_PER_SLIDE = 12, MAX_TABLE_SLIDES = 4, ITEMS_PER_SLIDE = 7, MAX_COLS = 8;
 const TONE = { info: BRAND2, warn: 'B7791F', ok: '2F855A' } as const;
@@ -29,10 +30,12 @@ export async function toPptx(doc: ReportDoc): Promise<Blob> {
 
   // Slide judul
   const cover = pptx.addSlide();
-  cover.background = { color: BRAND };
-  cover.addText('DATANALYSX · LAPORAN ANALISIS', { x: X, y: 1.3, w: CONTENT_W, h: 0.4, fontSize: 14, bold: true, color: GOLD, charSpacing: 3 });
-  cover.addText(doc.title, { x: X, y: 1.8, w: CONTENT_W, h: 1.6, fontSize: 40, bold: true, color: 'FFFFFF', fontFace: 'Georgia', valign: 'top', fit: 'shrink' });
-  if (doc.subtitle) cover.addText(cut(doc.subtitle, 260), { x: X, y: 3.5, w: CONTENT_W * 0.8, h: 1.1, fontSize: 16, color: 'DDEFE6', valign: 'top' });
+  cover.background = { color: SPACE };
+  cover.addShape(pptx.ShapeType.rect, { x: 0, y: 0, w: W, h: 0.08, fill: { color: NEON } });
+  cover.addShape(pptx.ShapeType.rect, { x: X, y: 6.75, w: 2.4, h: 0.05, fill: { color: CYAN } });
+  cover.addText('DATANALYSX · LAPORAN ANALISIS', { x: X, y: 1.3, w: CONTENT_W, h: 0.4, fontSize: 14, bold: true, color: NEON, charSpacing: 3, fontFace: 'Consolas' });
+  cover.addText(doc.title, { x: X, y: 1.8, w: CONTENT_W, h: 1.6, fontSize: 40, bold: true, color: 'FFFFFF', fontFace: 'Arial', valign: 'top', fit: 'shrink' });
+  if (doc.subtitle) cover.addText(cut(doc.subtitle, 260), { x: X, y: 3.5, w: CONTENT_W * 0.8, h: 1.1, fontSize: 16, color: 'B4C2D3', valign: 'top' });
   cover.addText([
     { text: 'Disusun oleh: ', options: { bold: true } }, { text: doc.author, options: { breakLine: true } },
     { text: 'Tanggal: ', options: { bold: true } }, { text: fmtDate(doc.date), options: { breakLine: true } },
@@ -42,7 +45,7 @@ export async function toPptx(doc: ReportDoc): Promise<Blob> {
   let section = doc.title, sub = '';
   const newSlide = (cont = false) => {
     const s = pptx.addSlide({ masterName: 'DMX' });
-    s.addText(cut(section, 80) + (cont ? ' (lanjutan)' : ''), { x: X, y: 0.35, w: CONTENT_W, h: 0.6, fontSize: 26, bold: true, color: BRAND, fontFace: 'Georgia' });
+    s.addText(cut(section, 80) + (cont ? ' (lanjutan)' : ''), { x: X, y: 0.35, w: CONTENT_W, h: 0.6, fontSize: 26, bold: true, color: BRAND, fontFace: 'Arial' });
     if (sub) s.addText(cut(sub, 120), { x: X, y: 0.92, w: CONTENT_W, h: 0.35, fontSize: 14, color: BRAND2 });
     return s;
   };
@@ -110,9 +113,10 @@ export async function toPptx(doc: ReportDoc): Promise<Blob> {
   flushText();
 
   const end = pptx.addSlide();
-  end.background = { color: BRAND };
-  end.addText('Terima kasih', { x: X, y: 2.6, w: CONTENT_W, h: 1, fontSize: 40, bold: true, color: 'FFFFFF', fontFace: 'Georgia' });
-  end.addText(`${doc.author} · ${fmtDate(doc.date)} · dibuat dengan DATANALYSX`, { x: X, y: 3.7, w: CONTENT_W, h: 0.5, fontSize: 16, color: 'DDEFE6' });
+  end.background = { color: SPACE };
+  end.addShape(pptx.ShapeType.rect, { x: 0, y: H - 0.08, w: W, h: 0.08, fill: { color: CYAN } });
+  end.addText('Terima kasih', { x: X, y: 2.6, w: CONTENT_W, h: 1, fontSize: 40, bold: true, color: NEON });
+  end.addText(`${doc.author} · ${fmtDate(doc.date)} · dibuat dengan DATANALYSX`, { x: X, y: 3.7, w: CONTENT_W, h: 0.5, fontSize: 16, color: 'B4C2D3' });
 
   const blob = (await pptx.write({ outputType: 'blob' })) as Blob;
   // pptxgenjs memberi tipe application/zip; pakai MIME PowerPoint agar dikenali sistem operasi.

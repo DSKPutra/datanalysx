@@ -11,7 +11,11 @@ function PyIndicator() {
   const s = usePyStatus();
   const color = { idle: 'var(--neutral)', loading: 'var(--gold)', ready: 'var(--up)', error: 'var(--down)' }[s.status];
   const txt = { idle: 'Python: belum dimuat', loading: 'Python: memuat…', ready: 'Python: siap', error: 'Python: gagal' }[s.status];
-  return <span className="hidden items-center gap-1.5 text-xs muted lg:inline-flex" title={s.message}><span className="h-2 w-2 rounded-full" style={{ background: color }} />{txt}</span>;
+  return (
+    <span className="hidden items-center gap-2 whitespace-nowrap rounded-md border px-2 py-1 font-mono text-[11px] uppercase tracking-wider muted lg:inline-flex" style={{ borderColor: 'var(--line)' }} title={s.message}>
+      <span className={`h-2 w-2 rounded-full ${s.status === 'loading' || s.status === 'ready' ? 'pulse-dot' : ''}`} style={{ background: color, color }} />{txt}
+    </span>
+  );
 }
 
 export default function Layout({ children }: { children: ReactNode }) {
@@ -32,37 +36,36 @@ export default function Layout({ children }: { children: ReactNode }) {
     { to: '/pelajaran', label: t('lessons') },
     { to: '/tentang', label: t('about') },
   ];
-  const linkCls = ({ isActive }: { isActive: boolean }) =>
-    `whitespace-nowrap rounded-md px-2.5 py-1.5 text-sm font-medium ${isActive ? 'on-brand' : ''}`;
+  const linkCls = ({ isActive }: { isActive: boolean }) => `nav-link${isActive ? ' active' : ''}`;
   const activeStyle = () => ({});
   return (
     <div className="flex min-h-screen flex-col">
       <a href="#main" className="skip-link">Lewati ke konten</a>
-      <header className="sticky top-0 z-40 border-b backdrop-blur" style={{ borderColor: 'var(--line)', background: 'color-mix(in srgb, var(--bg) 88%, transparent)' }}>
+      <header className="glass sticky top-0 z-40 border-b" style={{ borderColor: 'var(--line)' }}>
         <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-2.5">
           <Link to="/" className="flex items-center gap-2 no-underline" style={{ color: 'var(--text)' }}>
             <img src={`${BASE}img/favicon.svg`} alt="" aria-hidden width={36} height={36} className="h-9 w-9" />
             <span className="leading-tight">
-              <span className="block font-display text-xl font-bold tracking-wide" style={{ color: 'var(--brand)' }}>DATANALYSX</span>
-              <span className="hidden text-[11px] muted sm:block">Data Analysis & Data Mining Lab</span>
+              <span className="text-gradient block font-display text-xl font-bold tracking-[0.08em]">DATANALYSX</span>
+              <span className="hidden whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.18em] muted sm:block">Data Mining Lab</span>
             </span>
           </Link>
           <nav className="ml-auto hidden items-center gap-1 xl:flex" aria-label="Navigasi utama">
             {nav.map((n) => <NavLink key={n.to} to={n.to} end className={linkCls} style={activeStyle}>{n.label}</NavLink>)}
             <details className="relative">
-              <summary className="cursor-pointer list-none whitespace-nowrap rounded-md px-2.5 py-1.5 text-sm font-medium">{t('modules')} ▾</summary>
-              <div className="absolute right-0 z-50 mt-2 w-80 rounded-xl border p-2 shadow-lg" style={{ background: 'var(--surface)', borderColor: 'var(--line)' }}>
-                <p className="px-2 pb-1 text-xs muted">Contoh penerapan alat pada dataset nyata</p>
+              <summary className="nav-link cursor-pointer list-none">{t('modules')} ▾</summary>
+              <div className="glass absolute right-0 z-50 mt-3 w-80 rounded-xl border p-2 shadow-2xl" style={{ borderColor: 'var(--line)' }}>
+                <p className="px-2 pb-1 font-mono text-[10px] uppercase tracking-wider muted">Contoh penerapan alat pada dataset nyata</p>
                 {MODULES.map((m) => (
                   <Link key={m.slug} to={`/${m.slug}`} className="block rounded-md px-2 py-1.5 text-sm no-underline hover:opacity-80" style={{ color: 'var(--text)' }}>
-                    <strong>{m.no}</strong> · {m.algo}
+                    <span className="font-mono text-xs" style={{ color: 'var(--brand-2)' }}>{m.no}</span> · {m.algo}
                   </Link>
                 ))}
               </div>
             </details>
             <details className="relative">
-              <summary className="cursor-pointer list-none whitespace-nowrap rounded-md px-2.5 py-1.5 text-sm font-medium">{t('guide')} ▾</summary>
-              <div className="absolute right-0 z-50 mt-2 w-60 rounded-xl border p-2 shadow-lg" style={{ background: 'var(--surface)', borderColor: 'var(--line)' }}>
+              <summary className="nav-link cursor-pointer list-none">{t('guide')} ▾</summary>
+              <div className="glass absolute right-0 z-50 mt-3 w-60 rounded-xl border p-2 shadow-2xl" style={{ borderColor: 'var(--line)' }}>
                 {guide.map((g) => <Link key={g.to} to={g.to} className="block rounded-md px-2 py-1.5 text-sm no-underline" style={{ color: 'var(--text)' }}>{g.label}</Link>)}
               </div>
             </details>
@@ -83,7 +86,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         )}
       </header>
       <main id="main" key={loc.pathname} className="mx-auto w-full max-w-7xl flex-1 px-4 py-6" style={{ minHeight: '100vh' }}>{children}</main>
-      <footer className="border-t" style={{ borderColor: 'var(--line)' }}>
+      <footer className="glass border-t" style={{ borderColor: 'var(--line)' }}>
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-6 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-3">
             <span className="rounded-lg px-2 py-1" style={{ background: '#F6F6F3' }}>
@@ -91,7 +94,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             </span>
             <div className="text-xs muted">
               <p><strong style={{ color: 'var(--text)' }}>Dea Saka Kurnia Putra</strong> · @PUTRATALKS</p>
-              <p>DATANALYSX — Data Analysis & Data Mining Lab · 2026</p>
+              <p className="font-mono text-[11px] uppercase tracking-wider">DATANALYSX · Data Analysis & Mining Lab · 2026</p>
             </div>
           </div>
           <p className="max-w-md text-xs muted">🔒 {t('privacy')} Tanpa backend, tanpa API key, tanpa pelacakan. Kode MIT; dataset mengikuti lisensi masing-masing.</p>
